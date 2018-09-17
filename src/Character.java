@@ -1,23 +1,25 @@
-//fazer construtor e as funções abaixo
+//fazer construtor e as funções abaixo:
 
 public class Character {
+
   private String name;
   private Stats stats;
 
-  public Character(String name, int hp, int dano) {
+  public Character(String name, String clss) {
+    this.name = name;
+    this.stats = new Stats(clss);
+    System.out.println("Personagem criado com sucesso!");
   }
 
+
   public boolean is_dead() {
-    //retorna verdadeiro se personagem tiver morto
+    if (this.stats.hp < 1) return true;
     return false;
   }
 
-  public void attack(Character character) {
-    //hp do inimigo(paramento character) é diminuido pelo dano do atacante
-  }
 
-  public String impressao() {
-    //Retorna umqa string com as informações do personagem
-    return null;
+  public String get_status() {
+    //Retorna uma string com as informações do personagem:
+
   }
 }
