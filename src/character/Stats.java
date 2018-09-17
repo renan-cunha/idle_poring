@@ -2,7 +2,7 @@ package character;//fazer codigo do construtor e criar getters e setters
 
 public class Stats {
   //Status base:
-  private int lvl = 0; // Nível
+  protected int lvl = 0; // Nível
   protected int hp = 0; //Pontos de vida
   private int sp = 0; //Pontos de skills
   private int atk = 0; // Pontos de ataque
