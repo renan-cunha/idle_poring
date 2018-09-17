@@ -1,8 +1,7 @@
-//fazer codigo do construtor e criar getters e setters
+package character;//fazer codigo do construtor e criar getters e setters
 
 public class Stats {
   //Status base:
-  private String clss; //Classe
   private int lvl = 0; // Nível
   protected int hp = 0; //Pontos de vida
   private int sp = 0; //Pontos de skills
@@ -24,35 +23,11 @@ public class Stats {
   private int dex = 0; //Detreza
   private int luk = 0; //Sorte
 
-  // Construtor
-  public Stats(String clss){
-    this.clss = clss;
-  }
-
-
-  //Exemplo de função que adiciona pontos aos stats:
-  //Se o personagem recebe um ponto de atributo tipo 'Força' os seguintes pontos serão adicionados aos stats:
-  void add_str(){
-    if(this.clss.equals("Archer")){
-      this.atk += 4;
-      this.hp += 2;
-      this.sp += 2;
-    }
-
-    else if(this.clss.equals("Swordsman")){
-      this.hp += 8;
-      this.sp += 8;
-      this.def += 2;
-      this.m_def += 2;
-    }
-
-    else if(this.clss.equals("Magician")){
-      this.hp += 8;
-      this.def += 2;
-      this.m_def += 2;
-    }
+  // Construtor:
+  public Stats(){
 
   }
+
 
 
 }

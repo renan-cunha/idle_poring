@@ -1,11 +1,12 @@
+import character.Character
 public class Main {
 
     public static void main(String[] args) {
         //Criando um personagem (exemplo):
-        Character fulano = new Character("Fulano","Archer");
-        System.out.println(fulano.get_status());
+        Character fulano = new Character("Fulano");
+
         if(!fulano.is_dead()){
-            System.out.println(fulano.get_status());
+            System.out.println("Tá morto");
         }
 
     }
