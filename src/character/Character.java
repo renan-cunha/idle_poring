@@ -19,7 +19,7 @@ public class Character {
 
   //Métodos auxiliares:
   public boolean is_dead() {
-    if (this.stats.hp < 1) return true;
+    //if (this.stats. < 1) return true;
     return false;
   }
 
