@@ -1,49 +1,51 @@
 package character;
+import java.util.Map;
+import java.util.HashMap;
 
 public class Character {
 
   //Atributos:
   private static int n_characters;
   private String name;
-  public Stats stats; //instância da classe Stats que possui todos os status do personagem
-  private Jobs job; //Define a classe do personagem por meio de um enumerador
+  private int lvl;
+  private Map stats = new HashMap(); //variaveis dependentes
+  private Map attributes = new HashMap(); //variaveis independentes
+  public Job job; //Personagem tem uma classe
 
-  //Construtor:
-  public Character(String name) {
-    this.job = Jobs.NOVICE;
+  //Construtor
+  public Character(String name, int lvl, Job job) {
     this.name = name;
-    this.stats = new Stats(Jobs.SWORDSMAN); //classe swordsman apenas para teste
-    System.out.println("Personagem criado com sucesso!");
+    this.lvl = lvl;
+    for (TypeStats att : TypeStats.values()){
+      stats.put(att, 0);
+    }
+
+    for (TypeAttribute att : TypeAttribute.values()){
+      attributes.put(att, 1);
+    }
+    this.job =job;
+    updateStats();
   }
 
 
-  //Métodos auxiliares:
-  public boolean is_dead() {
-    //if (this.stats. < 1) return true;
-    return false;
+  public Map showStats() {
+    return stats;
   }
 
-  //Setters:
-  void set_name(String name){
-    this.name = name;
+  public Map showAttributes() {
+    return attributes;
   }
 
-  /*void set_stats(Stats stats){
-    this.stats = stats;
-  }*/
-
-  //Getters:
-  public String get_status() {
-    //Retorna algum tipo de dado com os status do personagem:
-    String stats = "not defined yet";
-    return stats; //precisamos definir como funionará este retorno
-  }
-
-  public String get_name(){
+  public String getName(){
     return this.name;
   }
 
-  public Jobs get_job(){
-    return this.job;
+  public void updateAtt(TypeAttribute att, int increment){
+    attributes.replace(att,((int)attributes.get(att))+increment);
+    updateStats();
+  }
+
+  public void updateStats(){
+    job.updateStats(this.attributes, this.stats);
   }
 }
