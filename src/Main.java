@@ -1,4 +1,6 @@
 import character.Character;
+import character.TypeAttribute;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -10,6 +12,8 @@ public class Main {
         }
 
         System.out.println("O job de "+fulano.get_name()+" é: "+ fulano.get_job());
+        fulano.stats.update(TypeAttribute.STR, 5);
+        System.out.println(fulano.stats.show_stats());
 
     }
 

@@ -5,14 +5,14 @@ public class Character {
   //Atributos:
   private static int n_characters;
   private String name;
-  private Stats stats; //instância da classe Stats que possui todos os status do personagem
+  public Stats stats; //instância da classe Stats que possui todos os status do personagem
   private Jobs job; //Define a classe do personagem por meio de um enumerador
 
   //Construtor:
   public Character(String name) {
-    this.name = name;
-    this.stats = new Stats();
     this.job = Jobs.NOVICE;
+    this.name = name;
+    this.stats = new Stats(Jobs.SWORDSMAN); //classe swordsman apenas para teste
     System.out.println("Personagem criado com sucesso!");
   }
 
@@ -28,9 +28,9 @@ public class Character {
     this.name = name;
   }
 
-  void set_stats(Stats stats){
+  /*void set_stats(Stats stats){
     this.stats = stats;
-  }
+  }*/
 
   //Getters:
   public String get_status() {
