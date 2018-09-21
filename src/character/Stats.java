@@ -7,10 +7,10 @@ public class Stats {
   //Hash table com os atributos:
   private Map stats = new HashMap();
   private Map attributes = new HashMap();
-  private Jobs job;
+  private JobType job;
 
   // Construtor:
-  public Stats(Jobs job){
+  public Stats(JobType job){
     //Atribuindo 0 como valor padrão aos atributos:
     for (TypeStats att : TypeStats.values()){
       stats.put(att, 0);
@@ -29,9 +29,9 @@ public class Stats {
   //exemplo de definição de atributo dependente
   private void SetAtk(){
     int value=0;
-    if (job==Jobs.ARCHER) {
+    if (job== JobType.ARCHER) {
       value = 4 * get_value_att(TypeAttribute.DEX);
-    }else if(job==Jobs.SWORDSMAN){
+    }else if(job== JobType.SWORDSMAN){
       value = 4 * get_value_att(TypeAttribute.STR);
     }
     stats.replace(TypeStats.ATK, value);

@@ -1,6 +1,6 @@
 package character;
 
-public enum Jobs {
+public enum JobType {
     //Default new Character Job:
     NOVICE("Novice"),
     // 1st improvements:
@@ -10,7 +10,7 @@ public enum Jobs {
 
     private String job;
 
-    Jobs(String job){
+    JobType(String job){
         this.job = job;
     }
 
