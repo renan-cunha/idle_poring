@@ -5,11 +5,12 @@ public enum TypeStats {
     ATK("Attack"), DEF("Defense"), M_ATK("Magical Attack"), M_DEF("Magical Defense"),
     ACC("Accuracy"), CRT("Critical"), TEN("Tenacity"), EVA("Evasion"), ATK_SPD("Attack Speed");
 
-    private String attribute;
+    private String stat;
 
-    TypeStats(String attribute){this.attribute = attribute;};
+    //construtor:
+    TypeStats(String stat){this.stat = stat;};
 
-    public String getAttribute(){
-        return attribute;
+    public String getStat(){
+        return stat;
     }
 }

@@ -10,17 +10,18 @@ public class Character {
 
   //Construtor:
   public Character(String name) {
-    this.job = Jobs.NOVICE;
+    this.job = Jobs.SWORDSMAN; //Declara  job
     this.name = name;
-    this.stats = new Stats(Jobs.SWORDSMAN); //classe swordsman apenas para teste
+    this.stats = new Stats(job); //Passa o job para a instancia da classe stats
     System.out.println("Personagem criado com sucesso!");
   }
 
 
   //Métodos auxiliares:
-  public boolean is_dead() {
-    //if (this.stats. < 1) return true;
-    return false;
+  public boolean isDead() {
+    System.out.println(this.stats.get_status_value(TypeStats.HP));
+    if (this.stats.get_status_value(TypeStats.HP) > 0) return false;
+    return true;
   }
 
   //Setters:

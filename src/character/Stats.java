@@ -9,24 +9,32 @@ public class Stats {
   private Map attributes = new HashMap();
   private Jobs job;
 
+
   // Construtor:
   public Stats(Jobs job){
-    //Atribuindo 0 como valor padrão aos atributos:
+    this.job = job;
+    //Atribuindo 0 como valor padrão aos status:
     for (TypeStats att : TypeStats.values()){
       stats.put(att, 0);
     }
+    //Atribuindo 0 como valor padrão aos atributos:
     for (TypeAttribute att : TypeAttribute.values()){
       attributes.put(att, 0);
     }
-    this.job=job;
+
   }
 
+  //retorna o valor de um atributo:
   private int get_value_att(TypeAttribute att){
     return (int) this.attributes.get(att);
   }
+  //retorna o valor de um status:
+  protected int get_status_value(TypeStats stt){
+    return (int) this.stats.get(stt);
+  }
 
 
-  //exemplo de definição de atributo dependente
+  //exemplo de definição de atributo dependente:
   private void SetAtk(){
     int value=0;
     if (job==Jobs.ARCHER) {
@@ -52,13 +60,13 @@ public class Stats {
     return false;
   }
 
-  //Método para atualizar um atributo, adicione os argumentos necessários
+  //Método para atualizar um atributo:
   public void update(TypeAttribute att, int increment){
     int old_value = (int) this.attributes.get(att);
     int new_value = old_value+increment;
     if(test_value(new_value))
       this.attributes.replace(att, old_value+increment);
-    SetAtk(); //SetAtk coomo exemplo para teste
+    SetAtk(); //SetAtk como exemplo para teste
   }
 
 

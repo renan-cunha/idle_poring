@@ -7,13 +7,18 @@ public class Main {
         //Criando um personagem (exemplo):
         Character fulano = new Character("Fulano");
 
-        if(!fulano.is_dead()){
-            System.out.println("Tá morto");
-        }
-
+        //Cria um personagem e atribui a ele umm job:
         System.out.println("O job de "+fulano.get_name()+" é: "+ fulano.get_job());
+
+        //Adiciona 5 pontos no atributo força:
         fulano.stats.update(TypeAttribute.STR, 5);
+        System.out.println("Fulano recebeu 5 pontos de força");
+
+        //Exibe os status, genial!
         System.out.println(fulano.stats.show_stats());
+
+        //testa a função isDead():
+        if (fulano.isDead()) System.out.println("O cara tá vivo, bicho!");
 
     }
 

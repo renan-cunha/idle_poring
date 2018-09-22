@@ -2,7 +2,7 @@ package character;
 
 public enum TypeAttribute {
     LVL("Level"), STA("Stamina"), AGI("Agility"), LUK("Lucky"),
-    INT("Inteligence"), DEX("Dexterity"), STR("Strenght");
+    INT("Intelligence"), DEX("Dexterity"), STR("Strength");
 
     private String ind_att;
 
