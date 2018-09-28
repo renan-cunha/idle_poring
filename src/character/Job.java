@@ -1,7 +1,6 @@
 package character;
 
 public abstract class Job {
-    private String name;
 
     public abstract int setAtk(int dex, int sta, int str,
                                int intel, int agi, int luk);
@@ -21,19 +20,24 @@ public abstract class Job {
     public abstract int setMaxSp(int dex, int sta, int str,
                                int intel, int agi, int luk);
 
-    public abstract int setAtkSpd(int dex, int sta, int str,
-                               int intel, int agi, int luk);
+    public int setAtkSpd(int dex, int sta, int str, int intel, int agi, int luk) {
+      return 2*agi;
+    }
 
-    public abstract int setEva(int dex, int sta, int str,
-                               int intel, int agi, int luk);
+    public int setEva(int dex, int sta, int str, int intel, int agi, int luk) {
+      return 2*agi;
+    }
 
-    public abstract int setCri(int dex, int sta, int str,
-                               int intel, int agi, int luk);
+    public int setCri(int dex, int sta, int str, int intel, int agi, int luk) {
+      return 2*luk;
+    }
 
-    public abstract int setHit(int dex, int sta, int str,
-                               int intel, int agi, int luk);
+    public int setHit(int dex, int sta, int str, int intel, int agi, int luk) {
+      return 2*luk;
+    }
 
-    public abstract int setTen(int dex, int sta, int str,
-                               int intel, int agi, int luk);
+    public int setTen(int dex, int sta, int str, int intel, int agi, int luk) {
+      return 2*luk;
+    }
 
 }
