@@ -5,12 +5,32 @@ public class Character {
   //Atributos:
   private static int n_characters;
   private String name;
-  public Stats stats; //instância da classe Stats que possui todos os status do personagem
   private Jobs job; //Define a classe do personagem por meio de um enumerador
+
+  //atributos independentes
+  private int intel;
+  private int strenght;
+  private int stamina;
+  private int agility;
+  private int dexterity;
+  private int luck;
+
+  //atributos dependentes
+  private int atk;
+  private int mAtk;
+  private int def;
+  private int mDef;
+  private int maxHp;
+  private int maxSp;
+  private int atkSpd;
+  private int tenacity;
+  private int cri;
+  private int hit;
+  private int eva;
 
   //Construtor:
   public Character(String name) {
-    this.job = Jobs.SWORDSMAN; //Declara  job
+    this.job = Jobs.NOVICE; //Declara  job
     this.name = name;
     this.stats = new Stats(job); //Passa o job para a instancia da classe stats
     System.out.println("Personagem criado com sucesso!");
