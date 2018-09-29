@@ -1,5 +1,6 @@
 package character;
 
+
 public class Character {
 
   //Atributos:
@@ -7,14 +8,14 @@ public class Character {
   private String name;
   private Job job; //Define o job do personagem
 
-  //level
+  //level:
   private int lvl;
 
-  //atributos independentes
+  //atributos independentes:
   private int dex; private int sta; private int str; private int intel;
   private int agi; private int luk;
 
-  //atributos dependentes
+  //atributos dependentes:
   private int atk; private int mAtk; private int def; private int mDef;
   private int maxHp; private int maxSp; private int atkSpd; private int ten;
   private int cri; private int hit; private int eva;
@@ -197,4 +198,15 @@ public class Character {
     this.ten = job.setTen(dex,sta,str,intel,agi,luk);
   }
 
+    //Talvez possamos ler os atributos desta forma, durante o desenvolvimento:
+    @Override
+    public String toString(){
+    return  "Name: "+this.name+" Level: "+this.lvl+" Job: "+this.job.name+
+            "\nDependent attributes list: \n"+"Dexterity: "+this.dex+
+                                                "\nStamina: "+this.sta+
+                                                "\nStrength: "+this.str+
+                                                "\nInteligence: "+this.intel+
+                                                "\nAgility: "+this.agi+
+                                                "\nLuck: "+this.luk;
+  }
 }
