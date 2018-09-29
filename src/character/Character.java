@@ -5,46 +5,38 @@ public class Character {
   //Atributos:
   private static int n_characters;
   private String name;
-  private Jobs job; //Define a classe do personagem por meio de um enumerador
+  private Job job; //Define o job do personagem
 
   //level
   private int lvl;
 
   //atributos independentes
-  private int intelligence;
-  private int strenght;
-  private int stamina;
-  private int agility;
-  private int dexterity;
-  private int luck;
+  private int dex; private int sta; private int str; private int intel;
+  private int agi; private int luk;
 
   //atributos dependentes
-  private int atk;
-  private int mAtk;
-  private int def;
-  private int mDef;
-  private int maxHp;
-  private int maxSp;
-  private int atkSpd;
-  private int ten;
-  private int cri;
-  private int hit;
-  private int eva;
+  private int atk; private int mAtk; private int def; private int mDef;
+  private int maxHp; private int maxSp; private int atkSpd; private int ten;
+  private int cri; private int hit; private int eva;
 
   //Construtor:
 
-  public Character(String name, int lvl) {
+  public Character(String name, int lvl, Job job) {
     this.name = name;
     this.lvl = lvl;
-    System.out.println("Personagem criado com sucesso!");
+    this.job = job;
+
+    this.dex = lvl; this.sta = lvl; this.str = lvl; this.intel = lvl;
+    this.agi = lvl; this.luk = lvl;
+
+    updateStats();
   }
 
   public Character(String name) {
-    new Character(name,1);
+    this(name,1, new Novice());
   }
 
   //Métodos auxiliares:
-
   public static int getN_characters() {
     return n_characters;
   }
@@ -53,36 +45,36 @@ public class Character {
     return name;
   }
 
-  public Jobs getJob() {
-    return job;
+  public String getJob() {
+    return job.name;
   }
 
   public int getLvl() {
     return lvl;
   }
 
-  public int getIntelligence() {
-    return intelligence;
+  public int getIntel() {
+    return intel;
   }
 
-  public int getStrenght() {
-    return strenght;
+  public int getStr() {
+    return str;
   }
 
-  public int getStamina() {
-    return stamina;
+  public int getSta() {
+    return sta;
   }
 
-  public int getAgility() {
-    return agility;
+  public int getAgi() {
+    return agi;
   }
 
-  public int getDexterity() {
-    return dexterity;
+  public int getDex() {
+    return dex;
   }
 
-  public int getLuck() {
-    return luck;
+  public int getLuk() {
+    return luk;
   }
 
   public int getAtk() {
@@ -129,35 +121,80 @@ public class Character {
     return eva;
   }
 
-  public void setJob(Jobs job) {
+  public void setJob(Job job) {
     this.job = job;
   }
 
-  public void setLvl(int lvl) {
-    this.lvl = lvl;
+  public void lvlUp() {
+    this.lvl += lvl;
   }
 
-  public void setIntelligence(int intelligence) {
-    this.intelligence = intelligence;
+  public void incrementIntel(int increment) {
+    if (increment>0) {
+      this.intel += increment;
+      updateStats();
+    }
+    else
+      System.out.println("Erro, increment de atributo negativo");
   }
 
-  public void setStrenght(int strenght) {
-    this.strenght = strenght;
+  public void incrementStr(int increment) {
+    if (increment>0) {
+      this.str += increment;
+      updateStats();
+    }
+    else
+      System.out.println("Erro, increment de atributo negativo");
   }
 
-  public void setStamina(int stamina) {
-    this.stamina = stamina;
+  public void incrementSta(int increment) {
+    if (increment>0){
+      this.sta +=increment;
+      updateStats();
+    }
+    else
+      System.out.println("Erro, increment de atributo negativo");
   }
 
-  public void setAgility(int agility) {
-    this.agility = agility;
+  public void incrementAgi(int increment) {
+    if (increment>0) {
+      this.agi += increment;
+      updateStats();
+    }
+    else
+      System.out.println("Erro, increment de atributo negativo");
   }
 
-  public void setDexterity(int dexterity) {
-    this.dexterity = dexterity;
+  public void incrementDex(int increment) {
+    if (increment>0){
+      this.dex +=increment;
+      updateStats();
+    }
+    else
+      System.out.println("Erro, increment de atributo negativo");
   }
 
-  public void setLuck(int luck) {
-    this.luck = luck;
+  public void incrementLuk(int increment) {
+    if (increment>0) {
+      this.luk += increment;
+      updateStats();
+    }
+    else
+      System.out.println("Erro, increment de atributo negativo");
   }
+
+  private void updateStats(){
+    this.atk = job.setAtk(dex,sta,str,intel,agi,luk);
+    this.mAtk = job.setMAtk(dex,sta,str,intel,agi,luk);
+    this.def = job.setDef(dex,sta,str,intel,agi,luk);
+    this.mDef = job.setMDef(dex,sta,str,intel,agi,luk);
+    this.maxHp = job.setMaxHp(dex,sta,str,intel,agi,luk);
+    this.maxSp = job.setMaxSp(dex,sta,str,intel,agi,luk);
+    this.atkSpd = job.setAtkSpd(dex,sta,str,intel,agi,luk);
+    this.eva = job.setEva(dex,sta,str,intel,agi,luk);
+    this.cri = job.setCri(dex,sta,str,intel,agi,luk);
+    this.hit = job.setHit(dex,sta,str,intel,agi,luk);
+    this.ten = job.setTen(dex,sta,str,intel,agi,luk);
+  }
+
 }

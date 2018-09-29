@@ -1,24 +1,24 @@
 package character;
 
-public class Swordsman extends Job {
+public class Mage extends Job {
 
-  public Swordsman(){
-    this.name="Swordsman";
+  public Mage(){
+    this.name = "Mage";
   }
 
   @Override
   public int setAtk(int dex, int sta, int str, int intel, int agi, int luk) {
-    return 4*str;
-  }
-
-  @Override
-  public int setMAtk(int dex, int sta, int str, int intel, int agi, int luk) {
     return 0;
   }
 
   @Override
+  public int setMAtk(int dex, int sta, int str, int intel, int agi, int luk) {
+    return 4*intel;
+  }
+
+  @Override
   public int setDef(int dex, int sta, int str, int intel, int agi, int luk) {
-    return 2*sta+2*intel+2*dex;
+    return 2*dex+2*sta+2*str;
   }
 
   @Override
@@ -28,11 +28,12 @@ public class Swordsman extends Job {
 
   @Override
   public int setMaxHp(int dex, int sta, int str, int intel, int agi, int luk) {
-    return 12*agi+16*sta+8*intel+8*dex+10*luk;
+    return 10*luk+8*dex+4*intel+16*sta+12*agi+8*str;
   }
 
   @Override
   public int setMaxSp(int dex, int sta, int str, int intel, int agi, int luk) {
-    return 8*dex+8*intel+2*str;
+    return 8*str+2*intel+8*dex;
   }
+
 }

@@ -1,6 +1,7 @@
 package character;
 
 public abstract class Job {
+    public String name;
 
     public abstract int setAtk(int dex, int sta, int str,
                                int intel, int agi, int luk);
