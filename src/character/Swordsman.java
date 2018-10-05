@@ -8,7 +8,7 @@ public class Swordsman extends Job {
 
   @Override
   public int setAtk(Character character) {
-    return 4*character.str;
+    return 4*character.getStr();
   }
 
   @Override
@@ -18,7 +18,7 @@ public class Swordsman extends Job {
 
   @Override
   public int setDef(Character character) {
-    return 2*character.sta+2*character.intel+2*character.dex;
+    return 2*character.getSta()+2*character.getIntel()+2*character.getDex();
   }
 
   @Override
@@ -28,12 +28,12 @@ public class Swordsman extends Job {
 
   @Override
   public int setMaxHp(Character character) {
-    return 12*character.agi+16*character.sta+8*character.intel+
-            8*character.dex+10*character.luk;
+    return 12*character.getAgi()+16*character.getSta()+8*character.getIntel()+
+            8*character.getDex()+10*character.getLuk();
   }
 
   @Override
   public int setMaxSp(Character character) {
-    return 8*character.dex+8*character.intel+2*character.str;
+    return 8*character.getDex()+8*character.getIntel()+2*character.getStr();
   }
 }

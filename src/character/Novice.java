@@ -7,7 +7,7 @@ public class Novice extends Job {
 
   @Override
   public int setAtk(Character character) {
-    return 2*character.str+character.dex;
+    return 2*character.getStr()+character.getDex();
   }
 
   @Override
@@ -17,7 +17,7 @@ public class Novice extends Job {
 
   @Override
   public int setDef(Character character) {
-    return 2*character.str + 2*character.sta;
+    return 2*character.getStr() + 2*character.getSta();
   }
 
   @Override
@@ -27,12 +27,12 @@ public class Novice extends Job {
 
   @Override
   public int setMaxHp(Character character) {
-    return 16*character.str+32*character.sta;
+    return 16*character.getStr()+32*character.getSta();
   }
 
   @Override
   public int setMaxSp(Character character) {
-    return 12*character.intel;
+    return 12*character.getIntel();
   }
 
 }

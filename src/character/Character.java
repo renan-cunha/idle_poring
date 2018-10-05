@@ -12,8 +12,8 @@ public class Character {
   private int lvl;
 
   //atributos independentes:
-  int dex; int sta; int str; int intel;
-  int agi; int luk;
+  private int dex; private int sta; private int str; private int intel;
+  private int agi; private int luk;
 
   //atributos dependentes:
   private int hp;   private int atk;   private int mAtk;  private int def;

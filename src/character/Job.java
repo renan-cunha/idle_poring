@@ -18,7 +18,7 @@ public abstract class Job {
     public abstract int setMaxSp(Character character);
 
     public int setAtkSpd(Character character) {
-      return 2*character.agi;
+      return 2*character.getAgi();
     }
 
     public int setEva(Character character) {
@@ -26,7 +26,7 @@ public abstract class Job {
     }
 
     public int setCri(Character character) {
-      return 2*character.luk;
+      return 2*character.getLuk();
     }
 
     public int setHit(Character character) {

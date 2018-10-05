@@ -8,7 +8,7 @@ public class Archer extends Job{
 
   @Override
   public int setAtk(Character character) {
-    return 4*character.dex;
+    return 4*character.getDex();
   }
 
   @Override
@@ -18,7 +18,7 @@ public class Archer extends Job{
 
   @Override
   public int setDef(Character character) {
-    return 2*character.str + 2*character.sta + 2*character.intel;
+    return 2*character.getStr() + 2*character.getSta() + 2*character.getIntel();
   }
 
   @Override
@@ -28,12 +28,12 @@ public class Archer extends Job{
 
   @Override
   public int setMaxHp(Character character) {
-    return 8*character.str+12*character.agi+16*character.sta+
-            8*character.intel+4*character.dex+10*character.luk;
+    return 8*character.getStr()+12*character.getAgi()+16*character.getSta()+
+            8*character.getIntel()+4*character.getDex()+10*character.getLuk();
   }
 
   @Override
   public int setMaxSp(Character character) {
-    return 8*character.str+8*character.intel+2*character.dex;
+    return 8*character.getStr()+8*character.getIntel()+2*character.getDex();
   }
 }

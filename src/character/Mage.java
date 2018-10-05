@@ -13,12 +13,12 @@ public class Mage extends Job {
 
   @Override
   public int setMAtk(Character character) {
-    return 4*character.intel;
+    return 4*character.getIntel();
   }
 
   @Override
   public int setDef(Character character) {
-    return 2*character.dex+2*character.sta+2*character.str;
+    return 2*character.getDex()+2*character.getSta()+2*character.getStr();
   }
 
   @Override
@@ -28,13 +28,13 @@ public class Mage extends Job {
 
   @Override
   public int setMaxHp(Character character) {
-    return 10*character.luk +8*character.dex+4*character.intel+
-            16*character.sta+12*character.agi+8*character.str;
+    return 10*character.getLuk() +8*character.getDex()+4*character.getIntel()+
+            16*character.getSta()+12*character.getAgi()+8*character.getStr();
   }
 
   @Override
   public int setMaxSp(Character character) {
-    return 8*character.str+2*character.intel+8*character.dex;
+    return 8*character.getStr()+2*character.getIntel()+8*character.getDex();
   }
 
 }
