@@ -6,33 +6,33 @@ public class Novice extends Job {
   }
 
   @Override
-  public int setAtk(int dex, int sta, int str, int intel, int agi, int luk) {
-    return 2*str+dex;
+  public int setAtk(Character character) {
+    return 2*character.str+character.dex;
   }
 
   @Override
-  public int setMAtk(int dex, int sta, int str, int intel, int agi, int luk) {
+  public int setMAtk(Character character) {
     return 0;
   }
 
   @Override
-  public int setDef(int dex, int sta, int str, int intel, int agi, int luk) {
-    return 2*str + 2*sta;
+  public int setDef(Character character) {
+    return 2*character.str + 2*character.sta;
   }
 
   @Override
-  public int setMDef(int dex, int sta, int str, int intel, int agi, int luk) {
+  public int setMDef(Character character) {
     return 0;
   }
 
   @Override
-  public int setMaxHp(int dex, int sta, int str, int intel, int agi, int luk) {
-    return 16*str+32*sta;
+  public int setMaxHp(Character character) {
+    return 16*character.str+32*character.sta;
   }
 
   @Override
-  public int setMaxSp(int dex, int sta, int str, int intel, int agi, int luk) {
-    return 12*intel;
+  public int setMaxSp(Character character) {
+    return 12*character.intel;
   }
 
 }

@@ -7,32 +7,33 @@ public class Swordsman extends Job {
   }
 
   @Override
-  public int setAtk(int dex, int sta, int str, int intel, int agi, int luk) {
-    return 4*str;
+  public int setAtk(Character character) {
+    return 4*character.str;
   }
 
   @Override
-  public int setMAtk(int dex, int sta, int str, int intel, int agi, int luk) {
+  public int setMAtk(Character character) {
     return 0;
   }
 
   @Override
-  public int setDef(int dex, int sta, int str, int intel, int agi, int luk) {
-    return 2*sta+2*intel+2*dex;
+  public int setDef(Character character) {
+    return 2*character.sta+2*character.intel+2*character.dex;
   }
 
   @Override
-  public int setMDef(int dex, int sta, int str, int intel, int agi, int luk) {
-    return setDef(dex,sta,str,intel,agi,luk);
+  public int setMDef(Character character) {
+    return setDef(character);
   }
 
   @Override
-  public int setMaxHp(int dex, int sta, int str, int intel, int agi, int luk) {
-    return 12*agi+16*sta+8*intel+8*dex+10*luk;
+  public int setMaxHp(Character character) {
+    return 12*character.agi+16*character.sta+8*character.intel+
+            8*character.dex+10*character.luk;
   }
 
   @Override
-  public int setMaxSp(int dex, int sta, int str, int intel, int agi, int luk) {
-    return 8*dex+8*intel+2*str;
+  public int setMaxSp(Character character) {
+    return 8*character.dex+8*character.intel+2*character.str;
   }
 }

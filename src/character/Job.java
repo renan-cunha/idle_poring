@@ -5,42 +5,36 @@ public abstract class Job {
     public String name;
 
     //Abaixo estão os métodos para setar um atributo dependente: 
-    public abstract int setAtk(int dex, int sta, int str,
-                               int intel, int agi, int luk);
+    public abstract int setAtk(Character character);
 
-    public abstract int setMAtk(int dex, int sta, int str,
-                               int intel, int agi, int luk);
+    public abstract int setMAtk(Character character);
 
-    public abstract int setDef(int dex, int sta, int str,
-                               int intel, int agi, int luk);
+    public abstract int setDef(Character character);
 
-    public abstract int setMDef(int dex, int sta, int str,
-                               int intel, int agi, int luk);
+    public abstract int setMDef(Character character);
 
-    public abstract int setMaxHp(int dex, int sta, int str,
-                               int intel, int agi, int luk);
+    public abstract int setMaxHp(Character character);
 
-    public abstract int setMaxSp(int dex, int sta, int str,
-                               int intel, int agi, int luk);
+    public abstract int setMaxSp(Character character);
 
-    public int setAtkSpd(int dex, int sta, int str, int intel, int agi, int luk) {
-      return 2*agi;
+    public int setAtkSpd(Character character) {
+      return 2*character.agi;
     }
 
-    public int setEva(int dex, int sta, int str, int intel, int agi, int luk) {
-      return 2*agi;
+    public int setEva(Character character) {
+      return setAtkSpd(character);
     }
 
-    public int setCri(int dex, int sta, int str, int intel, int agi, int luk) {
-      return 2*luk;
+    public int setCri(Character character) {
+      return 2*character.luk;
     }
 
-    public int setHit(int dex, int sta, int str, int intel, int agi, int luk) {
-      return 2*luk;
+    public int setHit(Character character) {
+      return setCri(character);
     }
 
-    public int setTen(int dex, int sta, int str, int intel, int agi, int luk) {
-      return 2*luk;
+    public int setTen(Character character) {
+      return setCri(character);
     }
 
 }

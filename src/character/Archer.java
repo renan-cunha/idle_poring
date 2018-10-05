@@ -7,32 +7,33 @@ public class Archer extends Job{
   }
 
   @Override
-  public int setAtk(int dex, int sta, int str, int intel, int agi, int luk) {
-    return 4*dex;
+  public int setAtk(Character character) {
+    return 4*character.dex;
   }
 
   @Override
-  public int setMAtk(int dex, int sta, int str, int intel, int agi, int luk) {
+  public int setMAtk(Character character) {
     return 0;
   }
 
   @Override
-  public int setDef(int dex, int sta, int str, int intel, int agi, int luk) {
-    return 2*str + 2*sta + 2*intel;
+  public int setDef(Character character) {
+    return 2*character.str + 2*character.sta + 2*character.intel;
   }
 
   @Override
-  public int setMDef(int dex, int sta, int str, int intel, int agi, int luk) {
-    return setDef(dex,sta,str,intel,agi,luk);
+  public int setMDef(Character character) {
+    return setDef(character);
   }
 
   @Override
-  public int setMaxHp(int dex, int sta, int str, int intel, int agi, int luk) {
-    return 8*str+12*agi+16*sta+8*intel+4*dex+10*luk;
+  public int setMaxHp(Character character) {
+    return 8*character.str+12*character.agi+16*character.sta+
+            8*character.intel+4*character.dex+10*character.luk;
   }
 
   @Override
-  public int setMaxSp(int dex, int sta, int str, int intel, int agi, int luk) {
-    return 8*str+8*intel+2*dex;
+  public int setMaxSp(Character character) {
+    return 8*character.str+8*character.intel+2*character.dex;
   }
 }

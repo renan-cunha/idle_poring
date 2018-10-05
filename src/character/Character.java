@@ -12,8 +12,8 @@ public class Character {
   private int lvl;
 
   //atributos independentes:
-  private int dex; private int sta; private int str; private int intel;
-  private int agi; private int luk;
+  int dex; int sta; int str; int intel;
+  int agi; int luk;
 
   //atributos dependentes:
   private int hp;   private int atk;   private int mAtk;  private int def;
@@ -188,17 +188,17 @@ public class Character {
   }
 
   private void updateStats(){
-    this.atk = job.setAtk(dex,sta,str,intel,agi,luk);
-    this.mAtk = job.setMAtk(dex,sta,str,intel,agi,luk);
-    this.def = job.setDef(dex,sta,str,intel,agi,luk);
-    this.mDef = job.setMDef(dex,sta,str,intel,agi,luk);
-    this.maxHp = job.setMaxHp(dex,sta,str,intel,agi,luk);
-    this.maxSp = job.setMaxSp(dex,sta,str,intel,agi,luk);
-    this.atkSpd = job.setAtkSpd(dex,sta,str,intel,agi,luk);
-    this.eva = job.setEva(dex,sta,str,intel,agi,luk);
-    this.cri = job.setCri(dex,sta,str,intel,agi,luk);
-    this.hit = job.setHit(dex,sta,str,intel,agi,luk);
-    this.ten = job.setTen(dex,sta,str,intel,agi,luk);
+    this.atk = job.setAtk(this);
+    this.mAtk = job.setMAtk(this);
+    this.def = job.setDef(this);
+    this.mDef = job.setMDef(this);
+    this.maxHp = job.setMaxHp(this);
+    this.maxSp = job.setMaxSp(this);
+    this.atkSpd = job.setAtkSpd(this);
+    this.eva = job.setEva(this);
+    this.cri = job.setCri(this);
+    this.hit = job.setHit(this);
+    this.ten = job.setTen(this);
   }
 
     //atualiza o HP, para batalhas:
