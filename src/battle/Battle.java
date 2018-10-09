@@ -6,6 +6,7 @@ import character.Character;
 public class Battle {
     Character heroi, inimigo;
     private int turn;
+
     //construtor:
     public Battle(Character heroi, Character inimigo){
         //Inicia a batalha:
@@ -29,23 +30,45 @@ public class Battle {
             else
                 hitOpponent(inimigo, heroi);
         }
+        System.out.println("Evasão: "+ heroi.getEva());
+        System.out.println("Evasão: "+ heroi.getHit());
     }
 
     private void hitOpponent(Character attacker, Character defender){
         //TODO: Que tipos de exeções esse método pode levantar?
+
         int attack = attacker.getAtk();
+        int defense = defender.getDef();
         System.out.printf("%n%s deu %d de dano em %s neste turno!",
                 attacker.getName(),
-                attack,
+                damage(attacker,defender),
                 defender.getName());
-        //pega o ataque de um
         //subtrai do hp de outro:
-        int newHp = defender.getHP()-attack;
+        int newHp = defender.getHP() - damage(attacker,defender);
+
         if (newHp < 0){
             newHp=0;
         }
         defender.setHP(newHp);
     }
+
+
+    private int damage(Character attacker, Character defender){
+        int attack = attacker.getAtk();
+        int defense = defender.getDef();
+
+        int damage =  attack - (int) (0.10 * defense);
+        if (!evaded(attacker,defender)) return 0;
+        if(damage > 0){
+            return damage;
+        }
+        else return 1;
+    }
+
+    private boolean evaded(Character attacker, Character defender){
+        return Math.random() < 1.0*attacker.getHit()/(attacker.getHit()+defender.getEva());
+    }
+
 
 
     //TODO: Isso provavelmente vai passar para a GUI, junto com os outros prints
