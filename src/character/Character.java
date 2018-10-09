@@ -11,12 +11,15 @@ public class Character {
   //level:
   private int lvl;
 
+  private int hp;
+  private int sp;
+
   //atributos independentes:
   private int dex; private int sta; private int str; private int intel;
   private int agi; private int luk;
 
   //atributos dependentes:
-  private int hp;   private int atk;   private int mAtk;  private int def;
+  private int atk;   private int mAtk;  private int def;
   private int mDef; private int maxHp; private int maxSp; private int atkSpd;
   private int ten;  private int cri;   private int hit;   private int eva;
 
@@ -203,9 +206,9 @@ public class Character {
 
     //atualiza o HP, para batalhas:
     public void setHP(int newHP){
-    if (newHP<0) {System.out.println("Valor precisa ser positivo!"); return;}
-    if (newHP <= this.maxHp) {this.hp = newHP;}
-    else {System.out.printf("Novo valor tem q ser menor q o valor máximo (%i)", this.maxHp);}
+      if (newHP<0) {System.out.println("Valor precisa ser positivo!"); return;}
+      else if (newHP <= this.maxHp) {this.hp = newHP;}
+      else {System.out.printf("Novo valor tem q ser menor q o valor máximo (%i)", this.maxHp);}
   }
     //Talvez possamos ler os atributos desta forma, durante o desenvolvimento:
     @Override
