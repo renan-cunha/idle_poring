@@ -1,3 +1,5 @@
+import Items.Equip;
+import Items.TypeEquip;
 import character.Character;
 import character.Novice;
 import battle.Battle;
@@ -10,19 +12,9 @@ public class Main {
 
         Character ciclano = new Character("Ciclano",2, new Novice());
 
-        //Exemplos de chamadas para checar valores de atributos do personagem:
-        System.out.println("O level desse cara é: "+fulano.getLvl());
-        System.out.println(fulano.getAtkSpd());
-        //Exemplo de chamada indivudual de get de atributo
-        System.out.println(fulano.toString());
-        //Retorna um agrupado de informações sobre o personagem
-
-        //Instanciando uma batalha:
-        Battle exemploDeBatalha = new Battle(fulano,ciclano);
-
-        //iniciando a batalha:
-        exemploDeBatalha.start();
-
+        Equip capacete = new Equip("HellmetX", TypeEquip.Head, new Novice(),1,1, 1, 1, 1, 1);
+        fulano.getHead().setEquip(capacete);
+        System.out.println(fulano.getHead().getEquip().getName());
     }
 
 

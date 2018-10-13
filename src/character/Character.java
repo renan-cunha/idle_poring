@@ -1,9 +1,10 @@
 package character;
 
 
+import Items.TypeEquip;
+
 public class Character {
 
-  //Atributos:
   private static int n_characters;
   private String name;
   private Job job; //Define o job do personagem
@@ -23,8 +24,21 @@ public class Character {
   private int mDef; private int maxHp; private int maxSp; private int atkSpd;
   private int ten;  private int cri;   private int hit;   private int eva;
 
-  //Construtor:
+  //equipamentos
+  private Body head = new Body(TypeEquip.Head);
+  private Body armor = new Body(TypeEquip.Armor);;
+  private Body leftHand = new Body(TypeEquip.LeftHand);
+  private Body rightHand = new Body(TypeEquip.RightHand);
+  private Body manteau = new Body(TypeEquip.Manteau);
+  private Body footGear = new Body(TypeEquip.FootGear);
+  private Body acessory1 = new Body(TypeEquip.Acessory);
+  private Body acessory2 = new Body(TypeEquip.Acessory);
 
+  public Body getHead() {
+    return head;
+  }
+
+  //Construtor:
   public Character(String name, int lvl, Job job) {
     this.name = name;
     this.lvl = lvl;
@@ -50,8 +64,8 @@ public class Character {
     return name;
   }
 
-  public String getJob() {
-    return job.name;
+  public Job getJob() {
+    return job;
   }
 
   public int getHP() { return hp; }
@@ -136,59 +150,57 @@ public class Character {
     this.lvl += lvl;
   }
 
+  private boolean testIncrementAtt(int increment){
+    if (increment > 0)
+      return true;
+    else {
+      System.out.println("Erro, incremento de atributo negativo");
+      return false;
+    }
+  }
+
   public void incrementIntel(int increment) {
-    if (increment>0) {
+    if (testIncrementAtt(increment)) {
       this.intel += increment;
       updateStats();
     }
-    else
-      System.out.println("Erro, increment de atributo negativo");
   }
 
   public void incrementStr(int increment) {
-    if (increment>0) {
+    if (testIncrementAtt(increment)) {
       this.str += increment;
       updateStats();
     }
-    else
-      System.out.println("Erro, increment de atributo negativo");
   }
 
   public void incrementSta(int increment) {
-    if (increment>0){
-      this.sta +=increment;
+    if (testIncrementAtt(increment)) {
+      this.sta += increment;
       updateStats();
     }
-    else
-      System.out.println("Erro, increment de atributo negativo");
   }
 
   public void incrementAgi(int increment) {
-    if (increment>0) {
+    if (testIncrementAtt(increment)) {
       this.agi += increment;
       updateStats();
     }
-    else
-      System.out.println("Erro, increment de atributo negativo");
   }
 
   public void incrementDex(int increment) {
-    if (increment>0){
-      this.dex +=increment;
+    if (testIncrementAtt(increment)) {
+      this.dex += increment;
       updateStats();
     }
-    else
-      System.out.println("Erro, increment de atributo negativo");
   }
 
   public void incrementLuk(int increment) {
-    if (increment>0) {
+    if (testIncrementAtt(increment)) {
       this.luk += increment;
       updateStats();
     }
-    else
-      System.out.println("Erro, increment de atributo negativo");
   }
+
 
   private void updateStats(){
     this.atk = job.setAtk(this);
@@ -206,7 +218,7 @@ public class Character {
 
     //atualiza o HP, para batalhas:
     public void setHP(int newHP){
-      if (newHP<0) {System.out.println("Valor precisa ser positivo!"); return;}
+      if (newHP<0) { System.out.println("Valor precisa ser positivo!"); return;}
       else if (newHP <= this.maxHp) {this.hp = newHP;}
       else {System.out.printf("Novo valor tem q ser menor q o valor máximo (%i)", this.maxHp);}
   }
