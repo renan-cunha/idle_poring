@@ -8,7 +8,7 @@ public class Mage extends Job {
 
   @Override
   public int setAtk(Character character) {
-    return 0;
+    return setMAtk(character);
   }
 
   @Override

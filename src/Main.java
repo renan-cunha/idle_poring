@@ -12,14 +12,16 @@ public class Main {
 
         //Exemplos de chamadas para checar valores de atributos do personagem:
         System.out.println("O level desse cara é: "+fulano.getLvl());
-        System.out.println(fulano.getAtkSpd()); //Exemplo de chamada indivudual de get de atributo
-        System.out.println(fulano.toString()); //Retorna um agrupado de informações sobre o personagem
+        System.out.println(fulano.getAtkSpd());
+        //Exemplo de chamada indivudual de get de atributo
+        System.out.println(fulano.toString());
+        //Retorna um agrupado de informações sobre o personagem
 
         //Instanciando uma batalha:
         Battle exemploDeBatalha = new Battle(fulano,ciclano);
 
         //iniciando a batalha:
-        exemploDeBatalha.battle();
+        exemploDeBatalha.start();
 
     }
 
