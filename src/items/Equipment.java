@@ -1,4 +1,4 @@
-package Items;
+package items;
 
 import character.Job;
 
@@ -6,10 +6,10 @@ import character.Job;
 // duvidas type quipe
 // duvidas Job
 
-public class Equip {
+public abstract class Equipment {
   private String name;
-  private TypeEquip TypeEquip;
   private Job job;
+  private int level;
   private int str;
   private int agi;
   private int sta;
@@ -18,10 +18,10 @@ public class Equip {
   private int luk;
   //TODO: Adicionar gemas
 
-  public Equip(String name, Items.TypeEquip typeEquip, Job job, int str, int agi, int sta, int intel, int dex, int luk) {
+  public Equipment(String name, Job job, int level, int str, int agi, int sta, int intel, int dex, int luk) {
     this.name = name;
-    TypeEquip = typeEquip;
     this.job = job;
+    this.level = level;
     this.str = str;
     this.agi = agi;
     this.sta = sta;
@@ -34,12 +34,12 @@ public class Equip {
     return name;
   }
 
-  public TypeEquip getTypeEquip() {
-    return TypeEquip;
-  }
-
   public Job getJob() {
     return job;
+  }
+
+  public int getLevel() {
+    return level;
   }
 
   public int getStr() {
@@ -64,5 +64,10 @@ public class Equip {
 
   public int getLuk() {
     return luk;
+  }
+
+  @Override
+  public String toString(){
+    return "\nNome: " + name;
   }
 }

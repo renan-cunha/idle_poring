@@ -1,7 +1,6 @@
 package character;
 
-
-import Items.TypeEquip;
+import items.*;
 
 public class Character {
 
@@ -25,18 +24,14 @@ public class Character {
   private int ten;  private int cri;   private int hit;   private int eva;
 
   //equipamentos
-  private Body head = new Body(TypeEquip.Head);
-  private Body armor = new Body(TypeEquip.Armor);;
-  private Body leftHand = new Body(TypeEquip.LeftHand);
-  private Body rightHand = new Body(TypeEquip.RightHand);
-  private Body manteau = new Body(TypeEquip.Manteau);
-  private Body footGear = new Body(TypeEquip.FootGear);
-  private Body acessory1 = new Body(TypeEquip.Acessory);
-  private Body acessory2 = new Body(TypeEquip.Acessory);
-
-  public Body getHead() {
-    return head;
-  }
+  private items.Helmet helmet;
+  private items.Armor armor;
+  private items.LeftHand leftHand;
+  private items.RightHand rightHand;
+  private items.Manteau manteau;
+  private items.FootGear footGear;
+  private items.Acessory acessory1;
+  private items.Acessory acessory2;
 
   //Construtor:
   public Character(String name, int lvl, Job job) {
@@ -146,8 +141,8 @@ public class Character {
     this.job = job;
   }
 
-  public void lvlUp() {
-    this.lvl += lvl;
+  public void lvlUp(int increment) {
+    this.lvl += increment;
   }
 
   private boolean testIncrementAtt(int increment){
@@ -232,5 +227,95 @@ public class Character {
                                                 "\nInteligence: "+this.intel+
                                                 "\nAgility: "+this.agi+
                                                 "\nLuck: "+this.luk;
+  }
+
+  public int getHp() {
+    return hp;
+  }
+
+  public int getSp() {
+    return sp;
+  }
+
+  public Helmet getHelmet() {
+    return helmet;
+  }
+
+  public Armor getArmor() {
+    return armor;
+  }
+
+  public LeftHand getLeftHand() {
+    return leftHand;
+  }
+
+  public RightHand getRightHand() {
+    return rightHand;
+  }
+
+  public Manteau getManteau() {
+    return manteau;
+  }
+
+  public FootGear getFootGear() {
+    return footGear;
+  }
+
+  public Acessory getAcessory1() {
+    return acessory1;
+  }
+
+  public Acessory getAcessory2() {
+    return acessory2;
+  }
+
+  private boolean testEquipment(Equipment equipment){
+    if (equipment.getJob().getClass()==this.getJob().getClass()) {
+      return true;
+    }
+    else {
+      System.out.println("Job of equipment is different from job of character");
+      return false;
+    }
+  }
+
+  public void setHelmet(Helmet helmet) {
+    if (testEquipment(helmet))
+      this.helmet = helmet;
+  }
+
+  public void setArmor(Armor armor) {
+    if (testEquipment(armor))
+      this.armor = armor;
+  }
+
+  public void setLeftHand(LeftHand leftHand) {
+    if (testEquipment(leftHand))
+      this.leftHand = leftHand;
+  }
+
+  public void setRightHand(RightHand rightHand) {
+    if (testEquipment(rightHand))
+      this.rightHand = rightHand;
+  }
+
+  public void setManteau(Manteau manteau) {
+    if (testEquipment(manteau))
+      this.manteau = manteau;
+  }
+
+  public void setFootGear(FootGear footGear) {
+    if (testEquipment(footGear))
+      this.footGear = footGear;
+  }
+
+  public void setAcessory1(Acessory acessory1) {
+    if (testEquipment(acessory1))
+      this.acessory1 = acessory1;
+  }
+
+  public void setAcessory2(Acessory acessory2) {
+    if (testEquipment(acessory2))
+      this.acessory2 = acessory2;
   }
 }

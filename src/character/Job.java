@@ -8,6 +8,11 @@ public abstract class Job {
     return name;
   }
 
+  @Override
+  public String toString(){
+    return this.name;
+  }
+
   //Abaixo estão os métodos para setar um atributo dependente:
     public abstract int setAtk(Character character);
 

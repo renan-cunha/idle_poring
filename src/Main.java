@@ -1,8 +1,8 @@
-import Items.Equip;
-import Items.TypeEquip;
+
 import character.Character;
 import character.Novice;
-import battle.Battle;
+import character.Swordsman;
+import items.Helmet;
 
 public class Main {
 
@@ -12,10 +12,12 @@ public class Main {
 
         Character ciclano = new Character("Ciclano",2, new Novice());
 
-        Equip capacete = new Equip("HellmetX", TypeEquip.Head, new Novice(),1,1, 1, 1, 1, 1);
-        fulano.getHead().setEquip(capacete);
-        System.out.println(fulano.getHead().getEquip().getName());
+        Helmet capacete = new Helmet("HelmetXX",new Swordsman(),1,1,1,1,1,1,1 );
+        fulano.setHelmet(capacete);
+        System.out.println(fulano.getHelmet().getAgi());
+
     }
+
 
 
 }
