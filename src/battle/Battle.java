@@ -23,15 +23,11 @@ public class Battle {
         //TODO: Set sp igual a spMax
         while (!isDead(heroi) && !isDead(inimigo)) {
             battleStatus();
-            //TODO: Como definir quem começa a batalha? aleatorizar quem começa?
-            //System.out.printf("%n%s começará atacando!",fighter_1.getName());
             if (turn%2==0)
                 hitOpponent(heroi, inimigo);
             else
                 hitOpponent(inimigo, heroi);
         }
-        System.out.println("Evasão: "+ heroi.getEva());
-        System.out.println("Evasão: "+ heroi.getHit());
     }
 
     private void hitOpponent(Character attacker, Character defender){
@@ -58,7 +54,11 @@ public class Battle {
         int defense = defender.getDef();
 
         int damage =  attack - (int) (0.10 * defense);
+        //aplica o dano crítico:
+        if (critical(attacker)) damage *= 2;
+        //aplica a evasiva:
         if (!evaded(attacker,defender)) return 0;
+
         if(damage > 0){
             return damage;
         }
@@ -69,7 +69,12 @@ public class Battle {
         return Math.random() < 1.0*attacker.getHit()/(attacker.getHit()+defender.getEva());
     }
 
-
+    static public boolean critical(Character attacker){
+        // A chance de critico é 20% + 1.5* pontos_de_critico:
+        float chance = (float)(20+1.5*attacker.getCri())/100;
+        if(Math.random() < chance) return true;
+        return false;
+    }
 
     //TODO: Isso provavelmente vai passar para a GUI, junto com os outros prints
     private void battleStatus(){
