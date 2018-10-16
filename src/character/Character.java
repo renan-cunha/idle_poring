@@ -1,9 +1,9 @@
 package character;
 
+import items.*;
 
 public class Character {
 
-  //Atributos:
   private static int n_characters;
   private String name;
   private Job job; //Define o job do personagem
@@ -23,8 +23,17 @@ public class Character {
   private int mDef; private int maxHp; private int maxSp; private int atkSpd;
   private int ten;  private int cri;   private int hit;   private int eva;
 
-  //Construtor:
+  //equipamentos
+  private items.Helmet helmet;
+  private items.Armor armor;
+  private items.LeftHand leftHand;
+  private items.RightHand rightHand;
+  private items.Manteau manteau;
+  private items.FootGear footGear;
+  private items.Acessory acessory1;
+  private items.Acessory acessory2;
 
+  //Construtor:
   public Character(String name, int lvl, Job job) {
     this.name = name;
     this.lvl = lvl;
@@ -50,8 +59,8 @@ public class Character {
     return name;
   }
 
-  public String getJob() {
-    return job.name;
+  public Job getJob() {
+    return job;
   }
 
   public int getHP() { return hp; }
@@ -132,63 +141,61 @@ public class Character {
     this.job = job;
   }
 
-  public void lvlUp() {
-    this.lvl += lvl;
+  public void lvlUp(int increment) {
+    this.lvl += increment;
+  }
+
+  private boolean testIncrementAtt(int increment){
+    if (increment > 0)
+      return true;
+    else {
+      System.out.println("Erro, incremento de atributo negativo");
+      return false;
+    }
   }
 
   public void incrementIntel(int increment) {
-    if (increment>0) {
+    if (testIncrementAtt(increment)) {
       this.intel += increment;
       updateStats();
     }
-    else
-      System.out.println("Erro, increment de atributo negativo");
   }
 
   public void incrementStr(int increment) {
-    if (increment>0) {
+    if (testIncrementAtt(increment)) {
       this.str += increment;
       updateStats();
     }
-    else
-      System.out.println("Erro, increment de atributo negativo");
   }
 
   public void incrementSta(int increment) {
-    if (increment>0){
-      this.sta +=increment;
+    if (testIncrementAtt(increment)) {
+      this.sta += increment;
       updateStats();
     }
-    else
-      System.out.println("Erro, increment de atributo negativo");
   }
 
   public void incrementAgi(int increment) {
-    if (increment>0) {
+    if (testIncrementAtt(increment)) {
       this.agi += increment;
       updateStats();
     }
-    else
-      System.out.println("Erro, increment de atributo negativo");
   }
 
   public void incrementDex(int increment) {
-    if (increment>0){
-      this.dex +=increment;
+    if (testIncrementAtt(increment)) {
+      this.dex += increment;
       updateStats();
     }
-    else
-      System.out.println("Erro, increment de atributo negativo");
   }
 
   public void incrementLuk(int increment) {
-    if (increment>0) {
+    if (testIncrementAtt(increment)) {
       this.luk += increment;
       updateStats();
     }
-    else
-      System.out.println("Erro, increment de atributo negativo");
   }
+
 
   private void updateStats(){
     this.atk = job.setAtk(this);
@@ -206,7 +213,7 @@ public class Character {
 
     //atualiza o HP, para batalhas:
     public void setHP(int newHP){
-      if (newHP<0) {System.out.println("Valor precisa ser positivo!"); return;}
+      if (newHP<0) { System.out.println("Valor precisa ser positivo!"); return;}
       else if (newHP <= this.maxHp) {this.hp = newHP;}
       else {System.out.printf("Novo valor tem q ser menor q o valor máximo (%i)", this.maxHp);}
   }
@@ -220,5 +227,95 @@ public class Character {
                                                 "\nInteligence: "+this.intel+
                                                 "\nAgility: "+this.agi+
                                                 "\nLuck: "+this.luk;
+  }
+
+  public int getHp() {
+    return hp;
+  }
+
+  public int getSp() {
+    return sp;
+  }
+
+  public Helmet getHelmet() {
+    return helmet;
+  }
+
+  public Armor getArmor() {
+    return armor;
+  }
+
+  public LeftHand getLeftHand() {
+    return leftHand;
+  }
+
+  public RightHand getRightHand() {
+    return rightHand;
+  }
+
+  public Manteau getManteau() {
+    return manteau;
+  }
+
+  public FootGear getFootGear() {
+    return footGear;
+  }
+
+  public Acessory getAcessory1() {
+    return acessory1;
+  }
+
+  public Acessory getAcessory2() {
+    return acessory2;
+  }
+
+  private boolean testEquipment(Equipment equipment){
+    if (equipment.getJob().getClass()==this.getJob().getClass()) {
+      return true;
+    }
+    else {
+      System.out.println("Job of equipment is different from job of character");
+      return false;
+    }
+  }
+
+  public void setHelmet(Helmet helmet) {
+    if (testEquipment(helmet))
+      this.helmet = helmet;
+  }
+
+  public void setArmor(Armor armor) {
+    if (testEquipment(armor))
+      this.armor = armor;
+  }
+
+  public void setLeftHand(LeftHand leftHand) {
+    if (testEquipment(leftHand))
+      this.leftHand = leftHand;
+  }
+
+  public void setRightHand(RightHand rightHand) {
+    if (testEquipment(rightHand))
+      this.rightHand = rightHand;
+  }
+
+  public void setManteau(Manteau manteau) {
+    if (testEquipment(manteau))
+      this.manteau = manteau;
+  }
+
+  public void setFootGear(FootGear footGear) {
+    if (testEquipment(footGear))
+      this.footGear = footGear;
+  }
+
+  public void setAcessory1(Acessory acessory1) {
+    if (testEquipment(acessory1))
+      this.acessory1 = acessory1;
+  }
+
+  public void setAcessory2(Acessory acessory2) {
+    if (testEquipment(acessory2))
+      this.acessory2 = acessory2;
   }
 }

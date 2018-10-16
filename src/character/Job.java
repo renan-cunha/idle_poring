@@ -4,7 +4,16 @@ package character;
 public abstract class Job {
     public String name;
 
-    //Abaixo estão os métodos para setar um atributo dependente: 
+  public String getName() {
+    return name;
+  }
+
+  @Override
+  public String toString(){
+    return this.name;
+  }
+
+  //Abaixo estão os métodos para setar um atributo dependente:
     public abstract int setAtk(Character character);
 
     public abstract int setMAtk(Character character);
