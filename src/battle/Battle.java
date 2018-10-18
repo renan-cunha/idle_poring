@@ -17,21 +17,21 @@ public class Battle {
     }
 
     //executa a batalha:
-    public void start(){
+    public void startBattle(){
         heroi.setHP(heroi.getMaxHp());
         inimigo.setHP(inimigo.getMaxHp());
         //TODO: Set sp igual a spMax
         while (!isDead(heroi) && !isDead(inimigo)) {
             battleStatus();
             if (turn%2==0)
-                hitOpponent(heroi, inimigo);
+                for(int i=0;i<n_hits(heroi,inimigo);i++) hitOpponent(heroi, inimigo);
             else
-                hitOpponent(inimigo, heroi);
+                for(int i=0;i<n_hits(inimigo,heroi);i++) hitOpponent(inimigo, heroi);
         }
     }
 
     private void hitOpponent(Character attacker, Character defender){
-        //TODO: Que tipos de exeções esse método pode levantar?
+        //TODO: Que tipos de exeções esse mét odo pode levantar?
 
         int attack = attacker.getAtk();
         int defense = defender.getDef();
@@ -65,15 +65,25 @@ public class Battle {
         else return 1;
     }
 
-    private boolean evaded(Character attacker, Character defender){
+    //define se esquivou de um ataque:
+    static private boolean evaded(Character attacker, Character defender){
         return Math.random() < 1.0*attacker.getHit()/(attacker.getHit()+defender.getEva());
     }
 
-    static public boolean critical(Character attacker){
+    //Define se houve dano crítico:
+    static private boolean critical(Character attacker){
         // A chance de critico é 20% + 1.5* pontos_de_critico:
         float chance = (float)(20+1.5*attacker.getCri())/100;
         if(Math.random() < chance) return true;
         return false;
+    }
+
+    //define quantos ataques por turno haverão:
+    static private int n_hits(Character attacker, Character defender){
+      //Para definir quantos hits o atacante fará, utilizamos a proporção entre seu atkSpd e o atkSpd do defensor
+      int atk_speed_ratio = Math.floor(attacker.atkSpd()/defender.getAtkSpd());
+      if (atk_speed_ratio<1) return 1;
+      return atk_speed_ratio;
     }
 
     //TODO: Isso provavelmente vai passar para a GUI, junto com os outros prints
