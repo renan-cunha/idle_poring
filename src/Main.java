@@ -1,4 +1,5 @@
 
+import battle.Battle;
 import character.Character;
 import character.Novice;
 import character.Swordsman;
@@ -12,12 +13,13 @@ public class Main {
 
         Character ciclano = new Character("Ciclano",2, new Novice());
 
-        Helmet capacete = new Helmet("HelmetXX",new Swordsman(),1,1,1,1,1,1,1 );
+        Helmet capacete = new Helmet("HelmetXX",new Novice(),1,2,1,2,1,1,1 );
+        System.out.println(fulano.getMaxHp());
         fulano.setHelmet(capacete);
-        System.out.println(fulano.getHelmet().getAgi());
+        System.out.println(fulano.getAtkSpd());
+
+        Battle battle = new Battle(fulano,ciclano);
+        battle.startBattle();
 
     }
-
-
-
 }

@@ -23,15 +23,15 @@ public class Character {
   private int mDef; private int maxHp; private int maxSp; private int atkSpd;
   private int ten;  private int cri;   private int hit;   private int eva;
 
-  //equipamentos
-  private items.Helmet helmet;
-  private items.Armor armor;
-  private items.LeftHand leftHand;
-  private items.RightHand rightHand;
-  private items.Manteau manteau;
-  private items.FootGear footGear;
-  private items.Acessory acessory1;
-  private items.Acessory acessory2;
+  //equipamento
+  private items.Helmet helmet = new Helmet("Vazio", new Novice(), 0, 0, 0, 0, 0, 0, 0);
+  private items.Armor armor = new Armor("Vazio", new Novice(), 0, 0, 0, 0, 0, 0, 0);
+  private items.LeftHand leftHand = new LeftHand("Vazio", new Novice(), 0, 0, 0, 0, 0, 0, 0);
+  private items.RightHand rightHand = new RightHand("Vazio", new Novice(), 0, 0, 0, 0, 0, 0, 0);
+  private items.Manteau manteau = new Manteau("Vazio", new Novice(), 0, 0, 0, 0, 0, 0, 0);
+  private items.FootGear footGear = new FootGear("Vazio", new Novice(), 0, 0, 0, 0, 0, 0, 0);
+  private items.Acessory acessory1 = new Acessory("Vazio", new Novice(), 0, 0, 0, 0, 0, 0, 0);
+  private items.Acessory acessory2 = new Acessory("Vazio", new Novice(), 0, 0, 0, 0, 0, 0, 0);
 
   //Construtor:
   public Character(String name, int lvl, Job job) {
@@ -70,31 +70,31 @@ public class Character {
   }
 
   public int getIntel() {
-    return intel;
+    return intel + getEquipmentsIntel();
   }
 
   public int getStr() {
-    return str;
+    return str + getEquipmentsStr();
   }
 
   public int getSta() {
-    return sta;
+    return sta + getEquipmentsSta();
   }
 
   public int getAgi() {
-    return agi;
+    return agi + getEquipmentsAgi();
   }
 
   public int getDex() {
-    return dex;
+    return dex + getEquipmentsDex();
   }
 
   public int getLuk() {
-    return luk;
+    return luk + getEquipmentsLuk();
   }
 
   public int getAtk() {
-    return atk;
+    return atk ;
   }
 
   public int getmAtk() {
@@ -282,40 +282,85 @@ public class Character {
   public void setHelmet(Helmet helmet) {
     if (testEquipment(helmet))
       this.helmet = helmet;
+      updateStats();
   }
 
   public void setArmor(Armor armor) {
     if (testEquipment(armor))
       this.armor = armor;
+      updateStats();
   }
 
   public void setLeftHand(LeftHand leftHand) {
     if (testEquipment(leftHand))
       this.leftHand = leftHand;
+      updateStats();
   }
 
   public void setRightHand(RightHand rightHand) {
     if (testEquipment(rightHand))
       this.rightHand = rightHand;
+      updateStats();
   }
 
   public void setManteau(Manteau manteau) {
     if (testEquipment(manteau))
       this.manteau = manteau;
+      updateStats();
   }
 
   public void setFootGear(FootGear footGear) {
     if (testEquipment(footGear))
       this.footGear = footGear;
+      updateStats();
   }
 
   public void setAcessory1(Acessory acessory1) {
     if (testEquipment(acessory1))
       this.acessory1 = acessory1;
+      updateStats();
   }
 
   public void setAcessory2(Acessory acessory2) {
     if (testEquipment(acessory2))
       this.acessory2 = acessory2;
+      updateStats();
   }
+
+  private int getEquipmentsAgi(){
+    return helmet.getAgi() + armor.getAgi() + leftHand.getAgi() +
+            rightHand.getAgi() + manteau.getAgi() + footGear.getAgi() +
+            acessory1.getAgi() + acessory2.getAgi();
+  }
+
+  private int getEquipmentsStr(){
+    return helmet.getStr() + armor.getStr() + leftHand.getStr() +
+            rightHand.getStr() + manteau.getStr() + footGear.getStr() +
+            acessory1.getStr() + acessory2.getStr();
+  }
+
+  private int getEquipmentsSta(){
+    return helmet.getSta() + armor.getSta() + leftHand.getSta() +
+            rightHand.getSta() + manteau.getSta() + footGear.getSta() +
+            acessory1.getSta() + acessory2.getSta();
+  }
+
+  private int getEquipmentsIntel(){
+    return helmet.getIntel() + armor.getIntel() + leftHand.getIntel() +
+            rightHand.getIntel() + manteau.getIntel() + footGear.getIntel() +
+            acessory1.getIntel() + acessory2.getIntel();
+  }
+
+  private int getEquipmentsDex(){
+    return helmet.getDex() + armor.getDex() + leftHand.getDex() +
+            rightHand.getDex() + manteau.getDex() + footGear.getDex() +
+            acessory1.getDex() + acessory2.getDex();
+  }
+
+  private int getEquipmentsLuk(){
+    return helmet.getLuk() + armor.getLuk() + leftHand.getLuk() +
+            rightHand.getLuk() + manteau.getLuk() + footGear.getLuk() +
+            acessory1.getLuk() + acessory2.getLuk();
+  }
+
 }

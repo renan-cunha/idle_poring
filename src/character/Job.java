@@ -1,6 +1,7 @@
 //Classe que serve de base abstrativa para qualquer Job do joguinho (Arqueiro, Mago, Guerreiro, etc)
 package character;
 
+
 public abstract class Job {
     public String name;
 

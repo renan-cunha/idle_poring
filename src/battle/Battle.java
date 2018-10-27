@@ -81,7 +81,7 @@ public class Battle {
     //define quantos ataques por turno haverão:
     static private int n_hits(Character attacker, Character defender){
       //Para definir quantos hits o atacante fará, utilizamos a proporção entre seu atkSpd e o atkSpd do defensor
-      int atk_speed_ratio = Math.floor(attacker.atkSpd()/defender.getAtkSpd());
+      int atk_speed_ratio = attacker.getAtkSpd() / defender.getAtkSpd();
       if (atk_speed_ratio<1) return 1;
       return atk_speed_ratio;
     }
