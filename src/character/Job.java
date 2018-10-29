@@ -1,50 +1,66 @@
 //Classe que serve de base abstrativa para qualquer Job do joguinho (Arqueiro, Mago, Guerreiro, etc)
+
 package character;
 
+
+import util.Attributes;
 
 public abstract class Job {
     public String name;
 
-  public String getName() {
+    public String getName() {
     return name;
   }
 
-  @Override
-  public String toString(){
-    return this.name;
-  }
+    @Override
+    public String toString() {
+      return "Job{" +
+            "name='" + name + '\'' +
+            '}';
+    }
+
+    int weights(Character character, int sta, int str, int dex,
+                          int intel, int agi, int luk){
+
+      Attributes att = character.getAttributes();
+
+      return  sta * att.getSta() +
+              str * att.getStr() +
+              dex * att.getDex() +
+              intel * att.getIntel() +
+              agi * att.getAgi() +
+              luk * att.getLuk();
+    }
 
   //Abaixo estão os métodos para setar um atributo dependente:
-    public abstract int setAtk(Character character);
+    abstract int setAtk(Character character);
 
-    public abstract int setMAtk(Character character);
+    abstract int setDef(Character character);
 
-    public abstract int setDef(Character character);
+    abstract int setMaxHp(Character character);
 
-    public abstract int setMDef(Character character);
+    abstract int setMaxSp(Character character);
 
-    public abstract int setMaxHp(Character character);
 
-    public abstract int setMaxSp(Character character);
-
-    public int setAtkSpd(Character character) {
-      return 2*character.getAgi();
+    int setAtkSpd(Character character) {
+      return weights(character, 0, 0, 0, 0, 2, 0);
     }
 
-    public int setEva(Character character) {
-      return setAtkSpd(character);
+    int setEva(Character character) {
+      return weights(character, 0, 0, 0, 0, 2, 0);
     }
 
-    public int setCri(Character character) {
-      return 2*character.getLuk();
+    int setCri(Character character) {
+      return weights(character, 0, 0, 0, 0, 0, 2);
+
     }
 
-    public int setHit(Character character) {
-      return setCri(character);
+    int setHit(Character character) {
+      return weights(character, 0, 0, 0, 0, 0, 2);
     }
 
-    public int setTen(Character character) {
-      return setCri(character);
+    int setTen(Character character) {
+      return weights(character, 0, 0, 0, 0, 0, 2);
     }
 
 }
