@@ -1,10 +1,11 @@
 package util;
 
 public class Attributes {
-  private int dex; private int sta; private int str; private int intel;
-  private int agi; private int luk;
+  private int level; private int dex;private int sta; private int str;
+  private int intel; private int agi; private int luk;
 
-  public Attributes(int dex, int sta, int str, int intel, int agi, int luk) {
+  public Attributes(int level, int dex, int sta, int str, int intel, int agi, int luk) {
+    this.level = level;
     this.dex = dex;
     this.sta = sta;
     this.str = str;
@@ -16,13 +17,26 @@ public class Attributes {
   @Override
   public String toString() {
     return "Attributes{" +
-            "dex=" + dex +
+            "level=" + level +
+            ", dex=" + dex +
             ", sta=" + sta +
             ", str=" + str +
             ", intel=" + intel +
             ", agi=" + agi +
             ", luk=" + luk +
             '}';
+  }
+
+  public int getLevel() {
+    return level;
+  }
+
+  public void setLevel(int level) {
+    if(level<=0){
+      System.out.println("New level is lower or equal to 0");
+      System.exit(0);
+    }
+    this.level = level;
   }
 
   public int getDex() {
