@@ -3,7 +3,12 @@
 package character;
 
 
+import items.Helmet;
+import items.Armor;
+import items.Weapon;
 import util.Attributes;
+
+import javax.smartcardio.ATR;
 
 public abstract class Job {
     public String name;
@@ -22,7 +27,8 @@ public abstract class Job {
     int weights(Character character, int sta, int str, int dex,
                           int intel, int agi, int luk){
 
-      Attributes att = character.getAttributes();
+      Attributes[] att_equip = character.getAttEquip();
+      Attributes att = character.getAttributes().add(att_equip);
 
       return  sta * att.getSta() +
               str * att.getStr() +

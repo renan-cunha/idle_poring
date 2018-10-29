@@ -86,4 +86,25 @@ public class Attributes {
   public void setLuk(int luk) {
     this.luk = luk;
   }
+
+  public Attributes add(Attributes[] att){
+    Attributes result = new Attributes(getLevel(), getDex(), getSta(), getStr(),
+            getIntel(), getAgi(), getLuk());
+    for (int i = 0; i < att.length; i++){
+      int dex = result.getDex() + att[i].getDex();
+      int sta = result.getSta() + att[i].getSta();
+      int str = result.getStr() + att[i].getStr();
+      int agi = result.getAgi() + att[i].getAgi();
+      int luk = result.getLuk() + att[i].getLuk();
+      int intel = result.getIntel() + att[i].getIntel();
+
+      result.setDex(dex);
+      result.setSta(sta);
+      result.setStr(str);
+      result.setAgi(agi);
+      result.setLuk(luk);
+      result.setIntel(intel);
+    }
+    return result;
+  }
 }

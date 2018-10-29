@@ -17,6 +17,7 @@ public class Character {
   private items.Helmet helmet;
 
   //TODO: Hp and SP should be on Battle class or in Character class?
+  //TODO: Set stats with attributes of character and equipments
 
 
   public Character(String name) {
@@ -105,6 +106,8 @@ public class Character {
     return job;
   }
 
+
+
   public int getAtk() {
     return atk;
   }
@@ -146,15 +149,21 @@ public class Character {
     return attributes;
   }
 
-  public Equipment getArmor() {
+  public Armor getArmor() {
     return armor;
   }
 
-  public Equipment getWeapon() {
+  public Weapon getWeapon() {
     return weapon;
   }
 
-  public Equipment getHelmet() {
+  public Helmet getHelmet() {
     return helmet;
+  }
+
+  public Attributes[] getAttEquip(){
+    return new Attributes[]{helmet.getAttributes(),
+            armor.getAttributes(),
+            weapon.getAttributes()};
   }
 }
