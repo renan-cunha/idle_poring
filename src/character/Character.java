@@ -11,9 +11,9 @@ public class Character {
   private int maxHp; private int maxSp; private int atkSpd;
   private int ten;  private int cri;   private int hit;   private int eva;
   private util.Attributes attributes;
-  private items.Equipment capacete;
-  private items.Equipment weapon;
-  private items.Equipment helmet;
+  private items.Armor armor;
+  private items.Weapon weapon;
+  private items.Helmet helmet;
 
   //TODO: Add Job, and the formulas of stats
   //TODO: Hp and SP should be on Battle class or in Character class?
@@ -23,21 +23,21 @@ public class Character {
     this.name = name;
     this.attributes = new Attributes(1, 1, 1, 1,
             1, 1, 1);
-    this.capacete = new Equipment("Empty", 1, 0, 0, 0,
+    this.helmet = new Helmet("Empty", 1, 0, 0, 0,
             0, 0, 0);
-    this.weapon = new Equipment("Empty", 1, 0, 0, 0,
+    this.weapon = new Weapon("Empty", 1, 0, 0, 0,
             0, 0, 0);
-    this.helmet = new Equipment("Empty", 1, 0, 0, 0,
+    this.armor = new Armor("Empty", 1, 0, 0, 0,
             0, 0, 0);
   }
 
-  public Character(String name, Attributes attributes, Equipment helmet,
-                   Equipment weapon, Equipment armor) {
+  public Character(String name, Attributes attributes, Helmet helmet,
+                   Weapon weapon, Armor armor) {
     this.name = name;
     this.attributes = attributes;
-    this.capacete = helmet;
+    this.helmet = helmet;
     this.weapon = weapon;
-    this.helmet = armor;
+    this.armor = armor;
   }
 
   @Override
@@ -56,23 +56,23 @@ public class Character {
             ", eva=" + eva +
             "}\n" +
             "Attributes=" + attributes +
-            "\nEquipamentos={"+
-            "\n\tcapacete=" + capacete +
+            "\nEquipments={"+
+            "\n\tarmor=" + armor +
             "\n\tweapon=" + weapon +
             "\n\thelmet=" + helmet +
             "}}";
   }
 
-  public void setCapacete(Equipment capacete) {
-    this.capacete = capacete;
+  public void setHelmet(Helmet helmet) {
+    this.helmet = helmet;
   }
 
-  public void setWeapon(Equipment weapon) {
+  public void setWeapon(Weapon weapon) {
     this.weapon = weapon;
   }
 
-  public void setHelmet(Equipment helmet) {
-    this.helmet = helmet;
+  public void setArmor(Armor armor) {
+    this.armor = armor;
   }
 
   public String getName() {
@@ -121,8 +121,8 @@ public class Character {
     return attributes;
   }
 
-  public Equipment getCapacete() {
-    return capacete;
+  public Equipment getArmor() {
+    return armor;
   }
 
   public Equipment getWeapon() {
