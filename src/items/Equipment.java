@@ -4,10 +4,8 @@ import character.Job;
 import util.Attributes;
 
 //TODO: Job restriction of equipment
-//TODO: Position restriction of equipment
-//TODO: Level should be in or out of class attribute:
 
-public  class Equipment {
+public abstract class Equipment {
   private String name;
   private util.Attributes attributes;
 
