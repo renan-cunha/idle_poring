@@ -1,73 +1,74 @@
 package items;
 
 import character.Job;
+import util.Attributes;
 
-// duvidas classe atributos
-// duvidas type quipe
-// duvidas Job
+//TODO: Job restriction of equipment
+//TODO: Position restriction of equipment
+//TODO: Level should be in or out of class attribute:
 
-public abstract class Equipment {
+public  class Equipment {
   private String name;
-  private Job job;
-  private int level;
-  private int str;
-  private int agi;
-  private int sta;
-  private int intel;
-  private int dex;
-  private int luk;
-  //TODO: Adicionar gemas
+  private util.Attributes attributes;
 
-  public Equipment(String name, Job job, int level, int str, int agi, int sta, int intel, int dex, int luk) {
+
+  public Equipment(String name,
+                   int level,
+                   int str,
+                   int agi,
+                   int sta,
+                   int intel,
+                   int dex,
+                   int luk) {
     this.name = name;
-    this.job = job;
-    this.level = level;
-    this.str = str;
-    this.agi = agi;
-    this.sta = sta;
-    this.intel = intel;
-    this.dex = dex;
-    this.luk = luk;
+    this.attributes = new Attributes(level,dex,sta,str,intel,agi,luk);
   }
 
   public String getName() {
     return name;
   }
 
-  public Job getJob() {
-    return job;
+  public Attributes getAttributes() {
+    return attributes;
   }
 
-  public int getLevel() {
-    return level;
+  private void lvlUpDex() {
+    int new_value = getAttributes().getDex() + 1;
+    getAttributes().setDex(new_value);
   }
 
-  public int getStr() {
-    return str;
-  }
 
-  public int getAgi() {
-    return agi;
-  }
+  public void lvlUp(){
+    int old = getAttributes().getLevel();
+    int new_level = old + 1;
+    getAttributes().setLevel(new_level);
 
-  public int getSta() {
-    return sta;
-  }
+    int new_att;
+    new_att = getAttributes().getDex() + 1;
+    getAttributes().setDex(new_att);
 
-  public int getIntel() {
-    return intel;
-  }
+    new_att = getAttributes().getSta() + 1;
+    getAttributes().setSta(new_att);
 
-  public int getDex() {
-    return dex;
-  }
+    new_att = getAttributes().getStr() + 1;
+    getAttributes().setStr(new_att);
 
-  public int getLuk() {
-    return luk;
+    new_att = getAttributes().getAgi() + 1;
+    getAttributes().setAgi(new_att);
+
+    new_att = getAttributes().getIntel() + 1;
+    getAttributes().setIntel(new_att);
+
+    new_att = getAttributes().getLuk() + 1;
+    getAttributes().setLuk(new_att);
+
   }
 
   @Override
-  public String toString(){
-    return "\nNome: " + name;
+  public String toString() {
+    return "Equipment{" +
+            "name='" + name + '\'' +
+            ", attributes=" + attributes +
+            '}';
   }
 }
