@@ -8,6 +8,7 @@ import character.Job;
 
 public abstract class Equipment {
   private String name;
+  protected String type;
   private Job job;
   private int level;
   private int str;
@@ -68,6 +69,6 @@ public abstract class Equipment {
 
   @Override
   public String toString(){
-    return "\nNome: " + name;
+    return "\nTipo: " + type+" |Lvl: "+Integer.toString(level);
   }
 }

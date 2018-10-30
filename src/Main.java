@@ -4,6 +4,7 @@ import character.Character;
 import character.Novice;
 import character.Swordsman;
 import items.Helmet;
+import bag.Bag;
 
 public class Main {
 
@@ -14,6 +15,7 @@ public class Main {
 
         //Equipando personangens:
         Helmet capacete = new Helmet("HelmetXX",new Novice(),1,2,1,2,1,1,1 );
+        fulano.getBag().addItem(capacete);
         System.out.println(fulano.getMaxHp());
         fulano.setHelmet(capacete);
         System.out.println(fulano.getMaxHp());

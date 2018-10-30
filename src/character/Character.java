@@ -1,5 +1,6 @@
 package character;
 
+import bag.*;
 import items.*;
 
 public class Character {
@@ -7,6 +8,8 @@ public class Character {
   private static int n_characters;
   private String name;
   private Job job; //Define o job do personagem
+  private Bag bag = new Bag();
+
 
   //level:
   private int lvl;
@@ -53,6 +56,10 @@ public class Character {
   //Métodos auxiliares:
   public static int getN_characters() {
     return n_characters;
+  }
+
+  public Bag getBag() {
+    return bag;
   }
 
   public String getName() {
