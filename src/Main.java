@@ -9,16 +9,13 @@ public class Main {
 
     public static void main(String[] args) {
         //Criando um personagem (exemplo):
-        Character fulano = new Character("Fulano",2, new Novice());
+        Character fulano = new Character("Fulano");
 
-        Character ciclano = new Character("Ciclano",2, new Novice());
+        Character ciclano = new Character("Ciclano");
 
-        Helmet capacete = new Helmet("HelmetXX",new Novice(),1,2,1,2,1,1,1 );
-        System.out.println(fulano.getMaxHp());
-        fulano.setHelmet(capacete);
-        System.out.println(fulano.getAtkSpd());
-
-        Battle battle = new Battle(fulano,ciclano);
+        Helmet capacete = new Helmet("HelmetXX",new Novice(),2,1,2,1,1,1,1);
+        fulano.setJob(new Swordsman());
+        Battle battle = new Battle(fulano, ciclano);
         battle.startBattle();
 
     }

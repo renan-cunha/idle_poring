@@ -35,12 +35,14 @@ public class Battle {
 
         int attack = attacker.getAtk();
         int defense = defender.getDef();
+        int damage = damage(attacker,defender);
         System.out.printf("%n%s deu %d de dano em %s neste turno!",
                 attacker.getName(),
-                damage(attacker,defender),
+                damage,
                 defender.getName());
         //subtrai do hp de outro:
-        int newHp = defender.getHp() - damage(attacker,defender);
+        System.out.println("\nAtack\n"+damage);
+        int newHp = defender.getHp() - damage;
 
         if (newHp < 0){
             newHp=0;
