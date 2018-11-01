@@ -1,5 +1,6 @@
 package character;
 
+import bag.*;
 import items.*;
 import util.Attributes;
 import bag.Bag;
@@ -7,8 +8,10 @@ import bag.Bag;
 public class Character {
 
   private String name;
+
   private Job job;
   private Bag bag = new Bag();
+
   //atributos dependentes:
   private int hp; private int sp;
   private int atk;   private int def;
@@ -68,6 +71,7 @@ public class Character {
             ", helmet=" + helmet +
             '}';
   }
+
 
   public void setHelmet(Helmet helmet) {
     this.helmet = helmet;

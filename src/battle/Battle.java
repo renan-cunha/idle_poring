@@ -19,8 +19,10 @@ public class Battle {
     public void startBattle(){
         //armazena o dano acumulado do turno;
         int turn_damage = 0;
+
         heroi.setHp(heroi.getMaxHp());
         inimigo.setHp(inimigo.getMaxHp());
+
         while (!isDead(heroi) && !isDead(inimigo)) {
             if (turn%2==0) {
                 for (int i = 0; i < n_hits(heroi, inimigo); i++) {
@@ -60,10 +62,13 @@ public class Battle {
         //subtrai do Hp de outro:
         int newHp = inimigo.getHp() - damage;
 
+
         if (newHp < 0){
             newHp=0;
         }
+
         inimigo.setHp(newHp);
+
     }
 
 
@@ -113,14 +118,18 @@ public class Battle {
                 turn_damage,
                 another.getName());
         turn_damage = 0;
+
         System.out.printf("%n%s tem %d Hps e %s tem %d Hps",
                             one.getName(),one.getHp(),
                             another.getName(), another.getHp());
 
+
     }
 
     private boolean isDead(Character defender){
+
         if (defender.getHp() == 0){
+
             System.out.println("\n\n"+ defender.getName() +" morreu");
             return true;
         } else {

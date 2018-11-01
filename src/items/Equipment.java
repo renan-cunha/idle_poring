@@ -68,5 +68,6 @@ public abstract class Equipment {
             "name='" + name + '\'' +
             ", attributes=" + attributes +
             '}';
+
   }
 }
