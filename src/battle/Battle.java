@@ -1,7 +1,6 @@
 package battle;
 import character.Character;
 //TODO: definir níveis de acesso aos métodos e atributos desta classe
-//TODO: Pensar sobre como tornar este um razoável sistema de batalhas
 //TODO: Aumentar a complexidade da batalha, levar em conta outros atributos como sorte, agilidade etc
 public class Battle {
     Character heroi, inimigo;
@@ -18,36 +17,53 @@ public class Battle {
 
     //executa a batalha:
     public void startBattle(){
-        heroi.setHP(heroi.getMaxHp());
-        inimigo.setHP(inimigo.getMaxHp());
-        //TODO: Set sp igual a spMax
+        //armazena o dano acumulado do turno;
+        int turn_damage = 0;
+        heroi.setHp(heroi.getMaxHp());
+        inimigo.setHp(inimigo.getMaxHp());
         while (!isDead(heroi) && !isDead(inimigo)) {
-            battleStatus();
-            if (turn%2==0)
-                for(int i=0;i<n_hits(heroi,inimigo);i++) hitOpponent(heroi, inimigo);
-            else
-                for(int i=0;i<n_hits(inimigo,heroi);i++) hitOpponent(inimigo, heroi);
+            if (turn%2==0) {
+                for (int i = 0; i < n_hits(heroi, inimigo); i++) {
+                    int damage = damage(heroi, inimigo);
+                    hitOpponent(heroi, inimigo, damage);
+                    turn_damage += damage;
+                }
+                battleStatus(heroi,inimigo,turn_damage);
+            }
+            else {
+                for(int i = 0; i < n_hits(inimigo, heroi); i++){
+                    int damage = damage(inimigo, heroi);
+                    hitOpponent(inimigo, heroi, damage);
+                    turn_damage += damage;
+                }
+                battleStatus(inimigo,heroi,turn_damage);
+            }
+            turn_damage = 0;
+            this.turn +=1;
+            //Pausa a execução em alguns ms por turno:
+            try {
+                Thread.sleep(700);
+            } catch (InterruptedException e) {
+
+            }
         }
+
     }
 
-    private void hitOpponent(Character attacker, Character defender){
-        //TODO: Que tipos de exeções esse mét odo pode levantar?
+    //Desfere um golpe no inimigo:
+    private void hitOpponent(Character heroi, Character inimigo, int damage){
 
-        int attack = attacker.getAtk();
-        int defense = defender.getDef();
-        int damage = damage(attacker,defender);
-        System.out.printf("%n%s deu %d de dano em %s neste turno!",
-                attacker.getName(),
-                damage,
-                defender.getName());
-        //subtrai do hp de outro:
-        System.out.println("\nAtack\n"+damage);
-        int newHp = defender.getHp() - damage;
+        int attack = heroi.getAtk();
+
+        int defense = inimigo.getDef();
+
+        //subtrai do Hp de outro:
+        int newHp = inimigo.getHp() - damage;
 
         if (newHp < 0){
             newHp=0;
         }
-        defender.setHP(newHp);
+        inimigo.setHp(newHp);
     }
 
 
@@ -59,7 +75,8 @@ public class Battle {
         //aplica o dano crítico:
         if (critical(attacker)) damage *= 2;
         //aplica a evasiva:
-        if (!evaded(attacker,defender)) return 0;
+        if (!evaded(attacker,defender)) {
+            return 0;}
 
         if(damage > 0){
             return damage;
@@ -88,17 +105,23 @@ public class Battle {
       return atk_speed_ratio;
     }
 
-    //TODO: Isso provavelmente vai passar para a GUI, junto com os outros prints
-    private void battleStatus(){
-        System.out.printf("\n\nTurno %d: %n%s tem %d HPs e %s tem %d HPs",
-                            this.turn,heroi.getName(),heroi.getHp(),
-                            inimigo.getName(), inimigo.getHp());
-        this.turn+=1;
+    private void battleStatus(Character one, Character another, int turn_damage){
+        //Após acertar o oponente, o dano causado na rodada é printado
+        System.out.printf("\n\nTurno %d: %n%s causou %d danos em %s nesse turno!",
+                this.turn,
+                one.getName(),
+                turn_damage,
+                another.getName());
+        turn_damage = 0;
+        System.out.printf("%n%s tem %d Hps e %s tem %d Hps",
+                            one.getName(),one.getHp(),
+                            another.getName(), another.getHp());
+
     }
 
     private boolean isDead(Character defender){
         if (defender.getHp() == 0){
-            System.out.println("\n"+defender.getName() +" morreu");
+            System.out.println("\n\n"+ defender.getName() +" morreu");
             return true;
         } else {
             return false;
