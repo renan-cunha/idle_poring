@@ -2,11 +2,13 @@ package character;
 
 import items.*;
 import util.Attributes;
+import bag.Bag;
 
 public class Character {
 
   private String name;
   private Job job;
+  private Bag bag = new Bag();
   //atributos dependentes:
   private int hp; private int sp;
   private int atk;   private int def;
@@ -111,6 +113,10 @@ public class Character {
     if (newHP<0) { System.out.println("Valor precisa ser positivo!"); return;}
     else if (newHP <= this.maxHp) {this.hp = newHP;}
     else {System.out.printf("Novo valor tem q ser menor q o valor máximo (%i)", this.maxHp);}
+  }
+
+  public Bag getBag() {
+    return bag;
   }
 
   public int getHp() {
