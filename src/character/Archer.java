@@ -6,34 +6,24 @@ public class Archer extends Job{
     this.name="Archer";
   }
 
+
   @Override
-  public int setAtk(Character character) {
-    return 4*character.getDex();
+  int setAtk(Character character) {
+    return weights(character, 0, 0, 4, 0, 0, 0);
   }
 
   @Override
-  public int setMAtk(Character character) {
-    return 0;
+  int setDef(Character character) {
+    return weights(character, 2, 2, 0, 2, 0, 0);
   }
 
   @Override
-  public int setDef(Character character) {
-    return 2*character.getStr() + 2*character.getSta() + 2*character.getIntel();
+  int setMaxHp(Character character) {
+    return weights(character, 16, 8, 4, 8, 12, 10);
   }
 
   @Override
-  public int setMDef(Character character) {
-    return setDef(character);
-  }
-
-  @Override
-  public int setMaxHp(Character character) {
-    return 8*character.getStr()+12*character.getAgi()+16*character.getSta()+
-            8*character.getIntel()+4*character.getDex()+10*character.getLuk();
-  }
-
-  @Override
-  public int setMaxSp(Character character) {
-    return 8*character.getStr()+8*character.getIntel()+2*character.getDex();
-  }
+  int setMaxSp(Character character) {
+    return weights(character, 0, 8, 2, 8, 0, 0);
+    }
 }
