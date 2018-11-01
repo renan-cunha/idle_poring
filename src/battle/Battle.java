@@ -24,15 +24,17 @@ public class Battle {
         while (!isDead(heroi) && !isDead(inimigo)) {
             if (turn%2==0) {
                 for (int i = 0; i < n_hits(heroi, inimigo); i++) {
-                    hitOpponent(heroi, inimigo);
-                    turn_damage += damage(heroi, inimigo);
+                    int damage = damage(heroi, inimigo);
+                    hitOpponent(heroi, inimigo, damage);
+                    turn_damage += damage;
                 }
                 battleStatus(heroi,inimigo,turn_damage);
             }
             else {
                 for(int i = 0; i < n_hits(inimigo, heroi); i++){
-                    hitOpponent(inimigo, heroi);
-                    turn_damage += damage(inimigo, heroi);
+                    int damage = damage(inimigo, heroi);
+                    hitOpponent(inimigo, heroi, damage);
+                    turn_damage += damage;
                 }
                 battleStatus(inimigo,heroi,turn_damage);
             }
@@ -49,14 +51,14 @@ public class Battle {
     }
 
     //Desfere um golpe no inimigo:
-    private void hitOpponent(Character heroi, Character inimigo){
+    private void hitOpponent(Character heroi, Character inimigo, int damage){
 
         int attack = heroi.getAtk();
 
         int defense = inimigo.getDef();
 
         //subtrai do hp de outro:
-        int newHp = inimigo.getHP() - damage(heroi,inimigo);
+        int newHp = inimigo.getHP() - damage;
 
         if (newHp < 0){
             newHp=0;
@@ -74,7 +76,7 @@ public class Battle {
         if (critical(attacker)) damage *= 2;
         //aplica a evasiva:
         if (!evaded(attacker,defender)) {
-            System.out.println("\nO ataque foi evadido!");return 0;};
+            return 0;}
 
         if(damage > 0){
             return damage;
@@ -105,13 +107,14 @@ public class Battle {
 
     private void battleStatus(Character one, Character another, int turn_damage){
         //Após acertar o oponente, o dano causado na rodada é printado
-        System.out.printf("%n%s causou %d danos em %s nesse turno!",
+        System.out.printf("\n\nTurno %d: %n%s causou %d danos em %s nesse turno!",
+                this.turn,
                 one.getName(),
                 turn_damage,
                 another.getName());
         turn_damage = 0;
-        System.out.printf("\n\nTurno %d: %n%s tem %d HPs e %s tem %d HPs",
-                            this.turn,one.getName(),one.getHP(),
+        System.out.printf("%n%s tem %d HPs e %s tem %d HPs",
+                            one.getName(),one.getHP(),
                             another.getName(), another.getHP());
 
     }
