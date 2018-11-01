@@ -7,34 +7,23 @@ public class Mage extends Job {
   }
 
   @Override
-  public int setAtk(Character character) {
-    return setMAtk(character);
+  int setAtk(Character character) {
+    return weights(character, 0, 0, 0, 4, 0, 0);
   }
 
   @Override
-  public int setMAtk(Character character) {
-    return 4*character.getIntel();
+  int setDef(Character character) {
+    return weights(character, 2, 2, 2, 0, 0, 0);
   }
 
   @Override
-  public int setDef(Character character) {
-    return 2*character.getDex()+2*character.getSta()+2*character.getStr();
+  int setMaxHp(Character character) {
+    return weights(character, 10, 8, 8, 4, 12, 10);
   }
 
   @Override
-  public int setMDef(Character character) {
-    return setDef(character);
-  }
-
-  @Override
-  public int setMaxHp(Character character) {
-    return 10*character.getLuk() +8*character.getDex()+4*character.getIntel()+
-            16*character.getSta()+12*character.getAgi()+8*character.getStr();
-  }
-
-  @Override
-  public int setMaxSp(Character character) {
-    return 8*character.getStr()+2*character.getIntel()+8*character.getDex();
+  int setMaxSp(Character character) {
+    return weights(character, 0, 8, 8, 2, 0, 0);
   }
 
 }
