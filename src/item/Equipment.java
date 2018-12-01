@@ -1,11 +1,12 @@
-package equipments;
-
+package item;
+import character.Character;
 import util.Attributes;
 
 //TODO: Job restriction of equipment
 
-public abstract class Equipment {
+public abstract class Equipment implements Item{
   private String name;
+  private int value;
   private util.Attributes attributes;
 
 
@@ -21,8 +22,12 @@ public abstract class Equipment {
     this.attributes = new Attributes(level,dex,sta,str,intel,agi,luk);
   }
 
+
   public String getName() {
     return name;
+  }
+  public int getValue() {
+    return value;
   }
 
   public Attributes getAttributes() {

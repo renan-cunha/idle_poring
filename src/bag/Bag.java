@@ -1,15 +1,15 @@
 package bag;
-import equipments.Equipment;
+import item.Item;
 import java.util.ArrayList;
 
 
 public class Bag {
     //A mochila onde os itens são aramzenados:
-    ArrayList<Equipment> bag = new ArrayList();
+    ArrayList<Item> bag = new ArrayList();
     int i;
 
     //Adiciona itens:
-    public void addItem(Equipment item){
+    public void addItem(Item item){
         this.bag.add(item);
         System.out.printf("%s foi adicionado[a] na mochila",item.getName());
     }
@@ -26,7 +26,7 @@ public class Bag {
     }
 
     //retorna infomações sobre um item no console:
-    public Equipment checkItem(int p){
+    public Item checkItem(int p){
         return this.bag.get(p);
     }
 
@@ -35,7 +35,7 @@ public class Bag {
         i = 0;
         System.out.println("\nA mochila está assim:");
 
-        for (Equipment item : this.bag){
+        for (Item item : this.bag){
             System.out.printf("\n Item %d - ",i);
             System.out.println(item.toString());
             i++;
@@ -44,11 +44,11 @@ public class Bag {
 
 
     //Pesquisa um item na mochila pelo field 'nome' e retorna ele se encontrado:
-    public Equipment findItemByName(String name){
+    public Item findItemByName(String name){
         i=0;
-        for(Equipment item : this.bag) {
+        for(Item item : this.bag) {
             if(item.getName().equalsIgnoreCase(name)) {
-                Equipment resultado = item;
+                Item resultado = item;
                 removeItem(i);
                 return item;
             }

@@ -1,10 +1,10 @@
 package item;
 
-public abstract class Item {
-    //Atributos:
-    public String name;
-    public int value;
-    abstract void consume();
-    //Adicione métodos abstratos aqui abaixo, caso houver necessidade:
+public interface Item {
+    int value=0;
+    String name ="";
+    String getName();
+    int getValue();
+    String toString();
 
 }

@@ -1,4 +1,4 @@
-package equipments;
+package item;
 
 public class Acessory extends Equipment {
 

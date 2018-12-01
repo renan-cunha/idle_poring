@@ -1,16 +1,22 @@
 package item;
+import character.Character;
 
-public class Potion extends Item {
+public class Potion implements Item {
     String name;
-    int value;
+    int value = 10;
 
-    void Potion(){
+    public Potion(String name){
+        this.name= name;
     }
 
-    @Override
-    void consume() {
-        //Como se consome uma poção?
+    void use(Character dude) {
+        int hp = dude.getHp();
+        int potionHpBonus = (int) 0.15* hp;
+        dude.setHp(hp + potionHpBonus);
     }
 
+    public String getName(){ return this.name;}
+    public int getValue(){ return this.value;}
+    public String toString(){ return "Item{" + this.name + "}"; }
 
 }

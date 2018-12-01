@@ -1,18 +1,31 @@
 package item;
+import character.Character;
 
-public class Food extends Item {
-    String name;
-    int value;
+public class Food implements Item {
+    private String name;
+    private int value = 10;
+    public Food(String name){
+        this.name = name;
+    }
 
-    public Food(){
+    //Consumir um item do tipo comida te dá 10% de hp
+
+    void use(Character dude) {
+        int hp = dude.getHp();
+        int foodHpBonus = (int) 0.10* hp;
+        dude.setHp(hp+ foodHpBonus);
+    }
+    @Override
+    public String getName(){ return this.name;}
+
+    @Override
+    public int getValue() {
+        return this.value;
     }
 
     @Override
-    void consume() {
+    public String toString() {
+        return "Item{" + this.name + "}";
 
     }
-
-
-    //Foods podem ser usados para recuperar pontos de vida quando consumidos, por exemplo
-
 }

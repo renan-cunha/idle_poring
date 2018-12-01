@@ -1,6 +1,6 @@
 package character;
 
-import equipments.*;
+import item.*;
 import util.Attributes;
 import bag.Bag;
 
@@ -17,12 +17,12 @@ public class Character {
   private int maxHp; private int maxSp; private int atkSpd;
   private int ten;  private int cri;   private int hit;   private int eva;
   private Attributes attributes;
-  private equipments.Armor armor;
-  private equipments.Weapon weapon;
-  private equipments.Helmet helmet;
+  private item.Armor armor;
+  private item.Weapon weapon;
+  private item.Helmet helmet;
 
   //TODO: Hp and SP should be on Battle class or in Character class?
-  //TODO: Set stats with attributes of character and equipments
+  //TODO: Set stats with attributes of character and item
 
 
   public Character(String name) {
@@ -115,7 +115,7 @@ public class Character {
   public void setHp(int newHP){
     if (newHP<0) { System.out.println("Valor precisa ser positivo!"); return;}
     else if (newHP <= this.maxHp) {this.hp = newHP;}
-    else {System.out.printf("Novo valor tem q ser menor q o valor máximo (%i)", this.maxHp);}
+    else if(newHP > this.maxHp){this.hp = maxHp;}
   }
 
   public Bag getBag() {
