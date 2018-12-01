@@ -6,18 +6,19 @@ import java.util.ArrayList;
 public class Bag {
     //A mochila onde os itens são aramzenados:
     ArrayList<Equipment> bag = new ArrayList();
+    int i;
 
     //Adiciona itens:
     public void addItem(Equipment item){
         this.bag.add(item);
-        System.out.println("O item foi adicionado com sucesso na mochila");
+        System.out.printf("%s foi adicionado[a] na mochila",item.getName());
     }
 
-    //remove itens:
+    //remove item baseado na posição:
     public void removeItem(int p){
         try {
             // Remover o item na posição 'p':
-            bag.remove(p);
+            this.bag.remove(p);
         } catch (IndexOutOfBoundsException e){
             System.out.printf("\nErro: posição inválida (%s).",
                     e.getMessage());
@@ -29,18 +30,32 @@ public class Bag {
         return this.bag.get(p);
     }
 
-    //Lista no console todos os itens da mochila
+    //Lista no console todos os itens da mochila:
     public void listBagItens(){
-        int i = 0;
+        i = 0;
         System.out.println("\nA mochila está assim:");
 
-        for (Equipment item : bag){
-            System.out.printf("\n Item %d",i);
+        for (Equipment item : this.bag){
+            System.out.printf("\n Item %d - ",i);
             System.out.println(item.toString());
             i++;
         }
     }
 
+
+    //Pesquisa um item na mochila pelo field 'nome' e retorna ele se encontrado:
+    public Equipment findItemByName(String name){
+        i=0;
+        for(Equipment item : this.bag) {
+            if(item.getName().equalsIgnoreCase(name)) {
+                Equipment resultado = item;
+                removeItem(i);
+                return item;
+            }
+            i++;
+        }
+        return null;
+    }
 
 
 }

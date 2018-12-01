@@ -3,6 +3,7 @@ import battle.Battle;
 import character.Character;
 import character.Novice;
 import character.Swordsman;
+import items.Equipment;
 import items.Helmet;
 import bag.Bag;
 
@@ -12,10 +13,21 @@ public class Main {
         //Criando um personagem (exemplo):
         Character fulano = new Character("Fulano");
         Character ciclano = new Character("Ciclano");
+        Helmet capacete = new Helmet("Capacete de ferro",2,1,2,1,1,1,1);
+        //Cria uma mochila:
+        Bag bag = new Bag();
+        //Guarda um item nela:
+        bag.addItem(capacete);
+        //Lista os itens da mochila:
+        bag.listBagItens();
 
-        Helmet capacete = new Helmet("HelmetXX",2,1,2,1,1,1,1);
+        //Retorna um item da mochila:
+        Equipment capacetinho = bag.findItemByName("capacete de ferro");
+        //Se retirou o único item q tinha agora a mochila tá vazia:
+        bag.listBagItens();
+        
         fulano.setJob(new Swordsman());
-        Battle.fight(fulano, ciclano);
+        //Battle.fight(fulano, ciclano);
 
     }
 }
