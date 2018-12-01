@@ -1,6 +1,5 @@
-package items;
+package equipments;
 
-import character.Job;
 import util.Attributes;
 
 //TODO: Job restriction of equipment

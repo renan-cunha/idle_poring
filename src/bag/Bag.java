@@ -1,5 +1,5 @@
 package bag;
-import items.Equipment;
+import equipments.Equipment;
 import java.util.ArrayList;
 
 

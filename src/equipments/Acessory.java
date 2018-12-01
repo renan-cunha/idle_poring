@@ -1,6 +1,4 @@
-package items;
-
-import character.Job;
+package equipments;
 
 public class Acessory extends Equipment {
 

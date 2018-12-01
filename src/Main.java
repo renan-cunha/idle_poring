@@ -1,14 +1,11 @@
 
-import battle.Battle;
 import character.Character;
-import character.Novice;
 import character.Swordsman;
-import items.Equipment;
-import items.Helmet;
+import equipments.Equipment;
+import equipments.Helmet;
 import bag.Bag;
 
 public class Main {
-
     public static void main(String[] args) {
         //Criando um personagem (exemplo):
         Character fulano = new Character("Fulano");
@@ -25,7 +22,7 @@ public class Main {
         Equipment capacetinho = bag.findItemByName("capacete de ferro");
         //Se retirou o único item q tinha agora a mochila tá vazia:
         bag.listBagItens();
-        
+
         fulano.setJob(new Swordsman());
         //Battle.fight(fulano, ciclano);
 

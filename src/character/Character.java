@@ -1,7 +1,6 @@
 package character;
 
-import bag.*;
-import items.*;
+import equipments.*;
 import util.Attributes;
 import bag.Bag;
 
@@ -18,9 +17,9 @@ public class Character {
   private int maxHp; private int maxSp; private int atkSpd;
   private int ten;  private int cri;   private int hit;   private int eva;
   private Attributes attributes;
-  private items.Armor armor;
-  private items.Weapon weapon;
-  private items.Helmet helmet;
+  private equipments.Armor armor;
+  private equipments.Weapon weapon;
+  private equipments.Helmet helmet;
 
   //TODO: Hp and SP should be on Battle class or in Character class?
   //TODO: Set stats with attributes of character and equipments
