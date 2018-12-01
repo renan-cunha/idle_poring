@@ -8,7 +8,7 @@ import items.Armor;
 import items.Weapon;
 import util.Attributes;
 
-import javax.smartcardio.ATR;
+//#import javax.smartcardio.ATR; Dá um erro ao fazer esse import
 
 public abstract class Job {
     public String name;

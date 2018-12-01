@@ -15,9 +15,7 @@ public class Main {
 
         Helmet capacete = new Helmet("HelmetXX",2,1,2,1,1,1,1);
         fulano.setJob(new Swordsman());
-        Battle battle = new Battle(fulano, ciclano);
-
-        battle.startBattle();
+        Battle.fight(fulano, ciclano);
 
     }
 }
