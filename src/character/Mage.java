@@ -2,8 +2,10 @@ package character;
 
 public class Mage extends Job {
 
+
   public Mage(){
     this.name = "Mage";
+    this.type = JobType.MAGE;
   }
 
   @Override

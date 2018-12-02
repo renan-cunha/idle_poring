@@ -1,8 +1,12 @@
 package character;
 
+import jdk.nashorn.internal.scripts.JO;
+
 public class Novice extends Job {
+
   public Novice(){
     this.name="Novice";
+    this.type=JobType.NOVICE;
   }
 
   @Override

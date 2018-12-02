@@ -30,11 +30,11 @@ public class Character {
     this.job = new Novice();
     this.attributes = new Attributes(1, 1, 1, 1,
             1, 1, 1);
-    this.helmet = new Helmet("Empty", 1, 0, 0, 0,
+    this.helmet = new Helmet("Empty", JobType.NOVICE, 1, 0, 0, 0,
             0, 0, 0);
-    this.weapon = new Weapon("Empty", 1, 0, 0, 0,
+    this.weapon = new Weapon("Empty", JobType.NOVICE, 1, 0, 0, 0,
             0, 0, 0);
-    this.armor = new Armor("Empty", 1, 0, 0, 0,
+    this.armor = new Armor("Empty", JobType.NOVICE, 1, 0, 0, 0,
             0, 0, 0);
     updateStats();
   }
@@ -71,20 +71,36 @@ public class Character {
             '}';
   }
 
+  private boolean testEquipmentJobType(Equipment equipment){
+    if (equipment.getType()==job.getType() || equipment.getType()==JobType.NOVICE){
+      return true;
+    }
+    else{
+      System.out.println("ERROR: This equipment does not suit the character's job");
+      return false;
+    }
+  }
+
 
   public void setHelmet(Helmet helmet) {
-    this.helmet = helmet;
-    updateStats();
+    if (testEquipmentJobType(helmet)) {
+      this.helmet = helmet;
+      updateStats();
+    }
   }
 
   public void setWeapon(Weapon weapon) {
-    this.weapon = weapon;
-    updateStats();
+    if (testEquipmentJobType(weapon)) {
+      this.weapon = weapon;
+      updateStats();
+    }
   }
 
   public void setArmor(Armor armor) {
-    this.armor = armor;
-    updateStats();
+    if (testEquipmentJobType(armor)) {
+      this.armor = armor;
+      updateStats();
+    }
   }
 
   public void setJob(Job job) {

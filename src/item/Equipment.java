@@ -1,5 +1,6 @@
 package item;
 import character.Character;
+import character.JobType;
 import util.Attributes;
 
 //TODO: Job restriction of equipment
@@ -7,10 +8,11 @@ import util.Attributes;
 public abstract class Equipment implements Item{
   private String name;
   private int value;
+  private JobType type;
   private util.Attributes attributes;
 
-
   public Equipment(String name,
+                   JobType type,
                    int level,
                    int str,
                    int agi,
@@ -19,6 +21,7 @@ public abstract class Equipment implements Item{
                    int dex,
                    int luk) {
     this.name = name;
+    this.type = type;
     this.attributes = new Attributes(level,dex,sta,str,intel,agi,luk);
   }
 
@@ -30,6 +33,10 @@ public abstract class Equipment implements Item{
     return value;
   }
 
+  public JobType getType() {
+    return type;
+  }
+
   public Attributes getAttributes() {
     return attributes;
   }
@@ -38,7 +45,6 @@ public abstract class Equipment implements Item{
     int new_value = getAttributes().getDex() + 1;
     getAttributes().setDex(new_value);
   }
-
 
   public void lvlUp(){
     int old = getAttributes().getLevel();
@@ -69,7 +75,8 @@ public abstract class Equipment implements Item{
   @Override
   public String toString() {
     return "Equipment{" +
-            "\nName='" + name + '\'' +
+            "\nName=" + name + '\'' +
+            "\nJobType=" + type + '\''+
             ", \nItem Attributes=" + attributes +
             '}';
 
