@@ -9,7 +9,10 @@ public class Character {
   private String name;
 
   private Job job;
-  private Bag bag = new Bag();
+  //Ttodo Character tem uma bag par items:
+  public Bag bag;
+  //E uma pouch para moedas:
+  public Pouch pouch;
 
   //atributos dependentes:
   private int hp; private int sp;
@@ -37,6 +40,8 @@ public class Character {
     this.armor = new Armor("Empty", 1, 0, 0, 0,
             0, 0, 0);
     updateStats();
+    pouch = new Pouch();
+    bag = new Bag();
   }
 
   public Character(String name, Job job, Attributes attributes, Helmet helmet,
@@ -48,6 +53,8 @@ public class Character {
     this.weapon = weapon;
     this.armor = armor;
     updateStats();
+    pouch = new Pouch();
+    bag = new Bag();
   }
 
   @Override

@@ -2,10 +2,10 @@ package bag;
 import item.Item;
 import java.util.ArrayList;
 
-
 public class Bag {
     //A mochila onde os itens são aramzenados:
     ArrayList<Item> bag = new ArrayList();
+
     int i;
 
     //Adiciona itens:
@@ -43,8 +43,9 @@ public class Bag {
     }
 
 
-    //Pesquisa um item na mochila pelo field 'nome' e retorna ele se encontrado:
-    public Item findItemByName(String name){
+    //Retira um item da mochila pelo field 'nome':
+    //se n achar nada retorna vazio
+    public Item retrieveItemByName(String name){
         i=0;
         for(Item item : this.bag) {
             if(item.getName().equalsIgnoreCase(name)) {
