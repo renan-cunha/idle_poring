@@ -54,6 +54,12 @@ public class Hero extends Character {
     updateStats();
   }
 
+  @Override
+  public void setJob(Job job) {
+    HeroJob heroJob = (HeroJob) job;
+    this.job = heroJob;
+  }
+
   public void removePet(int index){
     this.pets.remove(index);
     updateStats();

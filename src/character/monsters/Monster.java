@@ -26,6 +26,12 @@ public class Monster extends Character {
     updateStats();
   }
 
+  @Override
+  public void setJob(Job job) {
+    MonsterJob monsterJob = (MonsterJob) job;
+    this.job = monsterJob;
+  }
+
   public void setHelmet(Equipment helmet) {
     if (helmet.getEquipType() == EquipmentType.HELMET) {
         this.helmet = helmet;

@@ -4,12 +4,18 @@ import character.hero.HeroJobType;
 import character.hero.Novice;
 import item.*;
 import util.Attributes;
+import bag.Bag;
 
 public abstract class Character {
 
   final String name;
 
-  public Job job;
+  protected Job job;
+  //Ttodo Character tem uma bag par items:
+  public Bag bag = new Bag();
+  //E uma pouch para moedas:
+  public Pouch pouch = new Pouch();
+
 
   //atributos dependentes:
   int hp; int sp;
@@ -30,11 +36,10 @@ public abstract class Character {
   //TODO: Hp and SP should be on Battle class or in Character class?
   //TODO: Set stats with attributes of character and item
 
-  public Character(String name) {
+  public Character(String name){
     this.name = name;
-    this.attributes = new Attributes(1, 1, 1, 1,
-            1, 1, 1);
-
+    this.attributes = new Attributes(1,1,1,1,1,1,
+            1);
   }
 
   public Character(String name, Attributes attributes) {
@@ -47,6 +52,8 @@ public abstract class Character {
     this.name = name;
     this.attributes = new Attributes(level, dex, sta, str, intel, agi, luk);
   }
+
+  public abstract void setJob(Job job);
 
   protected void updateStats(){
     this.def = job.setDef(this);
