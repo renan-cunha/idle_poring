@@ -4,7 +4,8 @@ public class Attributes {
   private int level; private int dex;private int sta; private int str;
   private int intel; private int agi; private int luk;
 
-  public Attributes(int level, int dex, int sta, int str, int intel, int agi, int luk) {
+  public Attributes(int level, int dex, int sta, int str, int intel, int agi,
+                    int luk) {
     this.level = level;
     this.dex = dex;
     this.sta = sta;
@@ -106,5 +107,31 @@ public class Attributes {
       result.setIntel(intel);
     }
     return result;
+  }
+
+  public void lvlUp(){
+    int old = this.getLevel();
+    int new_level = old + 1;
+    setLevel(new_level);
+
+    int new_att;
+    new_att = getDex() + 1;
+    setDex(new_att);
+
+    new_att = getSta() + 1;
+    setSta(new_att);
+
+    new_att = getStr() + 1;
+    setStr(new_att);
+
+    new_att = getAgi() + 1;
+    setAgi(new_att);
+
+    new_att = getIntel() + 1;
+    setIntel(new_att);
+
+    new_att = getLuk() + 1;
+    setLuk(new_att);
+
   }
 }

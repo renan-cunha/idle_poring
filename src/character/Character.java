@@ -1,8 +1,13 @@
 package character;
 
 import item.*;
+import org.w3c.dom.Attr;
 import util.Attributes;
 import bag.Bag;
+import pets.Pet;
+
+import javax.smartcardio.ATR;
+import java.util.*;
 
 public class Character {
 
@@ -16,6 +21,7 @@ public class Character {
   private int atk;   private int def;
   private int maxHp; private int maxSp; private int atkSpd;
   private int ten;  private int cri;   private int hit;   private int eva;
+  LinkedList<Pet> pets = new LinkedList<Pet>();
   private Attributes attributes;
   private Equipment armor;
   private Equipment weapon;
@@ -79,6 +85,23 @@ public class Character {
     }
   }
 
+  public Pet getPet(int index){
+    return pets.get(index);
+  }
+
+  public String getAllPets() {
+    return pets.toString();
+  }
+
+  public void addPet(Pet pet){
+    this.pets.add(pet);
+    updateStats();
+  }
+
+  public void removePet(int index){
+    this.pets.remove(index);
+    updateStats();
+  }
 
   public void setHelmet(Equipment helmet) {
     if (testEquipmentJobType(helmet)) {
@@ -206,5 +229,16 @@ public class Character {
     return new Attributes[]{helmet.getAttributes(),
             armor.getAttributes(),
             weapon.getAttributes()};
+  }
+
+  public Attributes[] getAttPets(){
+    int size = pets.size();
+    ArrayList<Attributes> attributes = new ArrayList<Attributes>();
+    for(int i=0; i <size; i++){
+      attributes.add(pets.get(i).getAttributes());
+    }
+    Attributes[] att = new Attributes[size];
+    att = attributes.toArray(att);
+    return att;
   }
 }

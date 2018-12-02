@@ -5,6 +5,8 @@ package character;
 
 import util.Attributes;
 
+import javax.smartcardio.ATR;
+
 //#import javax.smartcardio.ATR; Dá um erro ao fazer esse import
 
 public abstract class Job {
@@ -27,6 +29,8 @@ public abstract class Job {
 
       Attributes[] att_equip = character.getAttEquip();
       Attributes att = character.getAttributes().add(att_equip);
+      Attributes[] att_pets = character.getAttPets();
+      att = att.add(att_pets);
 
       return  sta * att.getSta() +
               str * att.getStr() +
