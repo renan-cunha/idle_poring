@@ -3,6 +3,7 @@ package util;
 public class Attributes {
   private int level; private int dex;private int sta; private int str;
   private int intel; private int agi; private int luk;
+  private int xp=0;
 
   public Attributes(int level, int dex, int sta, int str, int intel, int agi,
                     int luk) {
@@ -13,6 +14,7 @@ public class Attributes {
     this.intel = intel;
     this.agi = agi;
     this.luk = luk;
+
   }
 
   @Override
@@ -27,6 +29,19 @@ public class Attributes {
             ", luk=" + luk +
             '}';
   }
+
+  public int getXp() {
+    return xp;
+  }
+
+  public void setXp(int xp) {
+    this.xp = xp;
+    if (this.xp >= 100) {
+      lvlUp();
+      this.xp = 0;
+    }
+  }
+
 
   public int getLevel() {
     return level;
