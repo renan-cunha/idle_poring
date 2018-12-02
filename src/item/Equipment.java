@@ -1,18 +1,19 @@
 package item;
-import character.Character;
 import character.JobType;
 import util.Attributes;
 
 //TODO: Job restriction of equipment
 
-public abstract class Equipment implements Item{
+public class Equipment implements Item{
   private String name;
   private int value;
-  private JobType type;
+  private JobType jobType;
+  private EquipmentType equipType;
   private util.Attributes attributes;
 
   public Equipment(String name,
-                   JobType type,
+                   JobType jobType,
+                   EquipmentType equipType,
                    int level,
                    int str,
                    int agi,
@@ -21,10 +22,14 @@ public abstract class Equipment implements Item{
                    int dex,
                    int luk) {
     this.name = name;
-    this.type = type;
+    this.jobType = jobType;
+    this.equipType = equipType;
     this.attributes = new Attributes(level,dex,sta,str,intel,agi,luk);
   }
 
+  public EquipmentType getEquipType() {
+    return equipType;
+  }
 
   public String getName() {
     return name;
@@ -33,8 +38,8 @@ public abstract class Equipment implements Item{
     return value;
   }
 
-  public JobType getType() {
-    return type;
+  public JobType getJobType() {
+    return jobType;
   }
 
   public Attributes getAttributes() {
@@ -76,7 +81,7 @@ public abstract class Equipment implements Item{
   public String toString() {
     return "Equipment{" +
             "\nName=" + name + '\'' +
-            "\nJobType=" + type + '\''+
+            "\nJobType=" + jobType + '\''+
             ", \nItem Attributes=" + attributes +
             '}';
 

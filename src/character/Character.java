@@ -17,9 +17,9 @@ public class Character {
   private int maxHp; private int maxSp; private int atkSpd;
   private int ten;  private int cri;   private int hit;   private int eva;
   private Attributes attributes;
-  private item.Armor armor;
-  private item.Weapon weapon;
-  private item.Helmet helmet;
+  private Equipment armor;
+  private Equipment weapon;
+  private Equipment helmet;
 
   //TODO: Hp and SP should be on Battle class or in Character class?
   //TODO: Set stats with attributes of character and item
@@ -30,24 +30,22 @@ public class Character {
     this.job = new Novice();
     this.attributes = new Attributes(1, 1, 1, 1,
             1, 1, 1);
-    this.helmet = new Helmet("Empty", JobType.NOVICE, 1, 0, 0, 0,
+    this.helmet = new Equipment("Empty", JobType.NOVICE,
+            EquipmentType.HELMET, 1, 0, 0, 0,
             0, 0, 0);
-    this.weapon = new Weapon("Empty", JobType.NOVICE, 1, 0, 0, 0,
+    this.weapon = new Equipment("Empty", JobType.NOVICE,
+            EquipmentType.WEAPON, 1, 0, 0, 0,
             0, 0, 0);
-    this.armor = new Armor("Empty", JobType.NOVICE, 1, 0, 0, 0,
+    this.armor = new Equipment("Empty", JobType.NOVICE,
+            EquipmentType.ARMOR,1,  0, 0, 0,
             0, 0, 0);
     updateStats();
   }
 
-  public Character(String name, Job job, Attributes attributes, Helmet helmet,
-                   Weapon weapon, Armor armor) {
+  public Character(String name, Job job, Attributes attributes) {
     this.name = name;
     this.job = job;
     this.attributes = attributes;
-    this.helmet = helmet;
-    this.weapon = weapon;
-    this.armor = armor;
-    updateStats();
   }
 
   @Override
@@ -72,7 +70,7 @@ public class Character {
   }
 
   private boolean testEquipmentJobType(Equipment equipment){
-    if (equipment.getType()==job.getType() || equipment.getType()==JobType.NOVICE){
+    if (equipment.getJobType()==job.getType() || equipment.getJobType()==JobType.NOVICE){
       return true;
     }
     else{
@@ -82,24 +80,33 @@ public class Character {
   }
 
 
-  public void setHelmet(Helmet helmet) {
+  public void setHelmet(Equipment helmet) {
     if (testEquipmentJobType(helmet)) {
-      this.helmet = helmet;
-      updateStats();
+      if (helmet.getEquipType() == EquipmentType.HELMET) {
+        this.helmet = helmet;
+        updateStats();
+      }else
+        System.out.println("It's not a Helmet");
     }
   }
 
-  public void setWeapon(Weapon weapon) {
+  public void setWeapon(Equipment weapon) {
     if (testEquipmentJobType(weapon)) {
-      this.weapon = weapon;
-      updateStats();
+      if (weapon.getEquipType() == EquipmentType.WEAPON) {
+        this.weapon = weapon;
+        updateStats();
+      }else
+        System.out.println("It's not a Weapon");
     }
   }
 
-  public void setArmor(Armor armor) {
+  public void setArmor(Equipment armor) {
     if (testEquipmentJobType(armor)) {
-      this.armor = armor;
-      updateStats();
+      if (armor.getEquipType() == EquipmentType.ARMOR) {
+        this.armor = armor;
+        updateStats();
+      }else
+        System.out.println(("Its' not an Armor"));
     }
   }
 
@@ -183,15 +190,15 @@ public class Character {
     return attributes;
   }
 
-  public Armor getArmor() {
+  public Equipment getArmor() {
     return armor;
   }
 
-  public Weapon getWeapon() {
+  public Equipment getWeapon() {
     return weapon;
   }
 
-  public Helmet getHelmet() {
+  public Equipment getHelmet() {
     return helmet;
   }
 
