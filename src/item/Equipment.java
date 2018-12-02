@@ -1,5 +1,5 @@
 package item;
-import character.JobType;
+import character.hero.HeroJobType;
 import util.Attributes;
 
 //TODO: Job restriction of equipment
@@ -7,12 +7,12 @@ import util.Attributes;
 public class Equipment implements Item{
   private String name;
   private int value;
-  private JobType jobType;
+  private HeroJobType heroJobType;
   private EquipmentType equipType;
   private util.Attributes attributes;
 
   public Equipment(String name,
-                   JobType jobType,
+                   HeroJobType heroJobType,
                    EquipmentType equipType,
                    int level,
                    int str,
@@ -22,7 +22,7 @@ public class Equipment implements Item{
                    int dex,
                    int luk) {
     this.name = name;
-    this.jobType = jobType;
+    this.heroJobType = heroJobType;
     this.equipType = equipType;
     this.attributes = new Attributes(level,dex,sta,str,intel,agi,luk);
   }
@@ -38,8 +38,8 @@ public class Equipment implements Item{
     return value;
   }
 
-  public JobType getJobType() {
-    return jobType;
+  public HeroJobType getHeroJobType() {
+    return heroJobType;
   }
 
   public Attributes getAttributes() {
@@ -50,7 +50,7 @@ public class Equipment implements Item{
   public String toString() {
     return "Equipment{" +
             "\nName=" + name + '\'' +
-            "\nJobType=" + jobType + '\''+
+            "\nHeroJobType=" + heroJobType + '\''+
             ", \nItem Attributes=" + attributes +
             '}';
 

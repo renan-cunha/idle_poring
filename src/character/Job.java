@@ -5,32 +5,21 @@ package character;
 
 import util.Attributes;
 
-import javax.smartcardio.ATR;
-
 //#import javax.smartcardio.ATR; Dá um erro ao fazer esse import
 
 public abstract class Job {
-    public String name;
-    JobType type;
+    final JobType jobType;
 
-    public String getName() {
-    return name;
-  }
-
-    @Override
-    public String toString() {
-      return "Job{" +
-            "name='" + name + '\'' +
-            '}';
+    public Job(JobType jobType) {
+      this.jobType = jobType;
     }
 
-    int weights(Character character, int sta, int str, int dex,
-                          int intel, int agi, int luk){
+    public int weights(Character character, int sta, int str, int dex,
+                     int intel, int agi, int luk){
 
-      Attributes[] att_equip = character.getAttEquip();
-      Attributes att = character.getAttributes().add(att_equip);
-      Attributes[] att_pets = character.getAttPets();
-      att = att.add(att_pets);
+      Attributes[] att_item = character.getAttItens();
+      Attributes att = character.getAttributes();
+      att = att.add(att_item);
 
       return  sta * att.getSta() +
               str * att.getStr() +
@@ -40,38 +29,27 @@ public abstract class Job {
               luk * att.getLuk();
     }
 
-  //Abaixo estão os métodos para setar um atributo dependente:
-    abstract int setAtk(Character character);
+    //Abaixo estão os métodos para setar um atributo dependente:
+    public abstract int setAtk(Character character);
 
-    abstract int setDef(Character character);
+    public abstract int setDef(Character character);
 
-    abstract int setMaxHp(Character character);
+    public abstract int setMaxHp(Character character);
 
-    abstract int setMaxSp(Character character);
+    public abstract int setMaxSp(Character character);
 
+    public abstract int setAtkSpd(Character character);
 
-    int setAtkSpd(Character character) {
-      return weights(character, 0, 0, 0, 0, 2, 0);
+    public abstract int setEva(Character character);
+
+    public abstract int setCri(Character character);
+
+    public abstract int setHit(Character character);
+
+    public abstract int setTen(Character character);
+
+    public JobType getJobType() {
+      return jobType;
     }
 
-    int setEva(Character character) {
-      return weights(character, 0, 0, 0, 0, 2, 0);
-    }
-
-    int setCri(Character character) {
-      return weights(character, 0, 0, 0, 0, 0, 2);
-
-    }
-
-    int setHit(Character character) {
-      return weights(character, 0, 0, 0, 0, 0, 2);
-    }
-
-    int setTen(Character character) {
-      return weights(character, 0, 0, 0, 0, 0, 2);
-    }
-
-  public JobType getType() {
-    return type;
-  }
 }

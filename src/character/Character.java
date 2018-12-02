@@ -1,144 +1,54 @@
 package character;
 
+import character.hero.HeroJobType;
+import character.hero.Novice;
 import item.*;
-import org.w3c.dom.Attr;
 import util.Attributes;
-import bag.Bag;
-import pets.Pet;
 
-import javax.smartcardio.ATR;
-import java.util.*;
+public abstract class Character {
 
-public class Character {
+  final String name;
 
-  private String name;
-
-  private Job job;
-  private Bag bag = new Bag();
+  public Job job;
 
   //atributos dependentes:
-  private int hp; private int sp;
-  private int atk;   private int def;
-  private int maxHp; private int maxSp; private int atkSpd;
-  private int ten;  private int cri;   private int hit;   private int eva;
-  LinkedList<Pet> pets = new LinkedList<Pet>();
-  private Attributes attributes;
-  private Equipment armor;
-  private Equipment weapon;
-  private Equipment helmet;
+  int hp; int sp;
+  int atk;   int def;
+  int maxHp; int maxSp; int atkSpd;
+  int ten;  int cri;   int hit;   int eva;
+  Attributes attributes;
+  protected Equipment armor = new Equipment("Empty", HeroJobType.NOVICE,
+          EquipmentType.ARMOR,1,  0, 0, 0,
+          0, 0, 0);
+  protected Equipment weapon = new Equipment("Empty", HeroJobType.NOVICE,
+          EquipmentType.WEAPON, 1, 0, 0, 0,
+          0, 0, 0);
+  protected Equipment helmet = new Equipment("Empty", HeroJobType.NOVICE,
+                                         EquipmentType.HELMET, 1, 0,
+          0, 0, 0, 0, 0);
 
   //TODO: Hp and SP should be on Battle class or in Character class?
   //TODO: Set stats with attributes of character and item
 
-
   public Character(String name) {
     this.name = name;
-    this.job = new Novice();
     this.attributes = new Attributes(1, 1, 1, 1,
             1, 1, 1);
-    this.helmet = new Equipment("Empty", JobType.NOVICE,
-            EquipmentType.HELMET, 1, 0, 0, 0,
-            0, 0, 0);
-    this.weapon = new Equipment("Empty", JobType.NOVICE,
-            EquipmentType.WEAPON, 1, 0, 0, 0,
-            0, 0, 0);
-    this.armor = new Equipment("Empty", JobType.NOVICE,
-            EquipmentType.ARMOR,1,  0, 0, 0,
-            0, 0, 0);
-    updateStats();
+
   }
 
-  public Character(String name, Job job, Attributes attributes) {
+  public Character(String name, Attributes attributes) {
     this.name = name;
-    this.job = job;
     this.attributes = attributes;
   }
 
-  @Override
-  public String toString() {
-    return "Character{" +
-            "name='" + name + '\'' +
-            ", job=" + job +
-            ", atk=" + atk +
-            ", def=" + def +
-            ", maxHp=" + maxHp +
-            ", maxSp=" + maxSp +
-            ", atkSpd=" + atkSpd +
-            ", ten=" + ten +
-            ", cri=" + cri +
-            ", hit=" + hit +
-            ", eva=" + eva +
-            ", attributes=" + attributes +
-            ", armor=" + armor +
-            ", weapon=" + weapon +
-            ", helmet=" + helmet +
-            '}';
+  public Character(String name, int level, int dex, int sta, int str,
+                   int intel, int agi, int luk) {
+    this.name = name;
+    this.attributes = new Attributes(level, dex, sta, str, intel, agi, luk);
   }
 
-  private boolean testEquipmentJobType(Equipment equipment){
-    if (equipment.getJobType()==job.getType() || equipment.getJobType()==JobType.NOVICE){
-      return true;
-    }
-    else{
-      System.out.println("ERROR: This equipment does not suit the character's job");
-      return false;
-    }
-  }
-
-  public Pet getPet(int index){
-    return pets.get(index);
-  }
-
-  public String getAllPets() {
-    return pets.toString();
-  }
-
-  public void addPet(Pet pet){
-    this.pets.add(pet);
-    updateStats();
-  }
-
-  public void removePet(int index){
-    this.pets.remove(index);
-    updateStats();
-  }
-
-  public void setHelmet(Equipment helmet) {
-    if (testEquipmentJobType(helmet)) {
-      if (helmet.getEquipType() == EquipmentType.HELMET) {
-        this.helmet = helmet;
-        updateStats();
-      }else
-        System.out.println("It's not a Helmet");
-    }
-  }
-
-  public void setWeapon(Equipment weapon) {
-    if (testEquipmentJobType(weapon)) {
-      if (weapon.getEquipType() == EquipmentType.WEAPON) {
-        this.weapon = weapon;
-        updateStats();
-      }else
-        System.out.println("It's not a Weapon");
-    }
-  }
-
-  public void setArmor(Equipment armor) {
-    if (testEquipmentJobType(armor)) {
-      if (armor.getEquipType() == EquipmentType.ARMOR) {
-        this.armor = armor;
-        updateStats();
-      }else
-        System.out.println(("Its' not an Armor"));
-    }
-  }
-
-  public void setJob(Job job) {
-    this.job = job;
-    updateStats();
-  }
-
-  private void updateStats(){
+  protected void updateStats(){
     this.def = job.setDef(this);
     this.atk = job.setAtk(this);
     this.eva = job.setEva(this);
@@ -164,13 +74,11 @@ public class Character {
     else if(newHP > this.maxHp){this.hp = maxHp;}
   }
 
-  public Bag getBag() {
-    return bag;
-  }
-
   public int getHp() {
     return hp;
   }
+
+
 
   public int getAtk() {
     return atk;
@@ -231,14 +139,8 @@ public class Character {
             weapon.getAttributes()};
   }
 
-  public Attributes[] getAttPets(){
-    int size = pets.size();
-    ArrayList<Attributes> attributes = new ArrayList<Attributes>();
-    for(int i=0; i <size; i++){
-      attributes.add(pets.get(i).getAttributes());
-    }
-    Attributes[] att = new Attributes[size];
-    att = attributes.toArray(att);
-    return att;
+  public Attributes[] getAttItens(){
+    return getAttEquip();
   }
+
 }

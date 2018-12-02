@@ -1,9 +1,17 @@
 package util;
 
 public class Attributes {
-  private int level; private int dex;private int sta; private int str;
-  private int intel; private int agi; private int luk;
+  private int level = 1;
+  private int dex = 0;
+  private int sta = 0;
+  private int str = 0;
+  private int intel =0;
+  private int agi = 0;
+  private int luk = 0;
   private int xp=0;
+
+  public Attributes() {
+  }
 
   public Attributes(int level, int dex, int sta, int str, int intel, int agi,
                     int luk) {
