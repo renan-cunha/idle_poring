@@ -5,10 +5,13 @@ package character;
 
 import util.Attributes;
 
+import javax.smartcardio.ATR;
+
 //#import javax.smartcardio.ATR; Dá um erro ao fazer esse import
 
 public abstract class Job {
     public String name;
+    JobType type;
 
     public String getName() {
     return name;
@@ -26,6 +29,8 @@ public abstract class Job {
 
       Attributes[] att_equip = character.getAttEquip();
       Attributes att = character.getAttributes().add(att_equip);
+      Attributes[] att_pets = character.getAttPets();
+      att = att.add(att_pets);
 
       return  sta * att.getSta() +
               str * att.getStr() +
@@ -66,4 +71,7 @@ public abstract class Job {
       return weights(character, 0, 0, 0, 0, 0, 2);
     }
 
+  public JobType getType() {
+    return type;
+  }
 }

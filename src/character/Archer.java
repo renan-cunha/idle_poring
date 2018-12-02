@@ -4,6 +4,7 @@ public class Archer extends Job{
 
   public Archer(){
     this.name="Archer";
+    this.type = JobType.ARCHER;
   }
 
 

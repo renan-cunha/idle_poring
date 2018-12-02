@@ -2,8 +2,10 @@ package character;
 
 public class Swordsman extends Job {
 
+
   public Swordsman(){
     this.name="Swordsman";
+    this.type = JobType.SWORDSMAN;
   }
 
   @Override

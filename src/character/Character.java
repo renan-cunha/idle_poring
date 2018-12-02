@@ -1,8 +1,13 @@
 package character;
 
 import item.*;
+import org.w3c.dom.Attr;
 import util.Attributes;
 import bag.Bag;
+import pets.Pet;
+
+import javax.smartcardio.ATR;
+import java.util.*;
 
 public class Character {
 
@@ -19,10 +24,11 @@ public class Character {
   private int atk;   private int def;
   private int maxHp; private int maxSp; private int atkSpd;
   private int ten;  private int cri;   private int hit;   private int eva;
+  LinkedList<Pet> pets = new LinkedList<Pet>();
   private Attributes attributes;
-  private item.Armor armor;
-  private item.Weapon weapon;
-  private item.Helmet helmet;
+  private Equipment armor;
+  private Equipment weapon;
+  private Equipment helmet;
 
   //TODO: Hp and SP should be on Battle class or in Character class?
   //TODO: Set stats with attributes of character and item
@@ -33,19 +39,21 @@ public class Character {
     this.job = new Novice();
     this.attributes = new Attributes(1, 1, 1, 1,
             1, 1, 1);
-    this.helmet = new Helmet("Empty", 1, 0, 0, 0,
+    this.helmet = new Equipment("Empty", JobType.NOVICE,
+            EquipmentType.HELMET, 1, 0, 0, 0,
             0, 0, 0);
-    this.weapon = new Weapon("Empty", 1, 0, 0, 0,
+    this.weapon = new Equipment("Empty", JobType.NOVICE,
+            EquipmentType.WEAPON, 1, 0, 0, 0,
             0, 0, 0);
-    this.armor = new Armor("Empty", 1, 0, 0, 0,
+    this.armor = new Equipment("Empty", JobType.NOVICE,
+            EquipmentType.ARMOR,1,  0, 0, 0,
             0, 0, 0);
     updateStats();
     pouch = new Pouch();
     bag = new Bag();
   }
 
-  public Character(String name, Job job, Attributes attributes, Helmet helmet,
-                   Weapon weapon, Armor armor) {
+  public Character(String name, Job job, Attributes attributes) {
     this.name = name;
     this.job = job;
     this.attributes = attributes;
@@ -78,20 +86,62 @@ public class Character {
             '}';
   }
 
+  private boolean testEquipmentJobType(Equipment equipment){
+    if (equipment.getJobType()==job.getType() || equipment.getJobType()==JobType.NOVICE){
+      return true;
+    }
+    else{
+      System.out.println("ERROR: This equipment does not suit the character's job");
+      return false;
+    }
+  }
 
-  public void setHelmet(Helmet helmet) {
-    this.helmet = helmet;
+  public Pet getPet(int index){
+    return pets.get(index);
+  }
+
+  public String getAllPets() {
+    return pets.toString();
+  }
+
+  public void addPet(Pet pet){
+    this.pets.add(pet);
     updateStats();
   }
 
-  public void setWeapon(Weapon weapon) {
-    this.weapon = weapon;
+  public void removePet(int index){
+    this.pets.remove(index);
     updateStats();
   }
 
-  public void setArmor(Armor armor) {
-    this.armor = armor;
-    updateStats();
+  public void setHelmet(Equipment helmet) {
+    if (testEquipmentJobType(helmet)) {
+      if (helmet.getEquipType() == EquipmentType.HELMET) {
+        this.helmet = helmet;
+        updateStats();
+      }else
+        System.out.println("It's not a Helmet");
+    }
+  }
+
+  public void setWeapon(Equipment weapon) {
+    if (testEquipmentJobType(weapon)) {
+      if (weapon.getEquipType() == EquipmentType.WEAPON) {
+        this.weapon = weapon;
+        updateStats();
+      }else
+        System.out.println("It's not a Weapon");
+    }
+  }
+
+  public void setArmor(Equipment armor) {
+    if (testEquipmentJobType(armor)) {
+      if (armor.getEquipType() == EquipmentType.ARMOR) {
+        this.armor = armor;
+        updateStats();
+      }else
+        System.out.println(("Its' not an Armor"));
+    }
   }
 
   public void setJob(Job job) {
@@ -174,15 +224,15 @@ public class Character {
     return attributes;
   }
 
-  public Armor getArmor() {
+  public Equipment getArmor() {
     return armor;
   }
 
-  public Weapon getWeapon() {
+  public Equipment getWeapon() {
     return weapon;
   }
 
-  public Helmet getHelmet() {
+  public Equipment getHelmet() {
     return helmet;
   }
 
@@ -190,5 +240,16 @@ public class Character {
     return new Attributes[]{helmet.getAttributes(),
             armor.getAttributes(),
             weapon.getAttributes()};
+  }
+
+  public Attributes[] getAttPets(){
+    int size = pets.size();
+    ArrayList<Attributes> attributes = new ArrayList<Attributes>();
+    for(int i=0; i <size; i++){
+      attributes.add(pets.get(i).getAttributes());
+    }
+    Attributes[] att = new Attributes[size];
+    att = attributes.toArray(att);
+    return att;
   }
 }
