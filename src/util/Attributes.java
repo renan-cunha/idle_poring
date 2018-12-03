@@ -31,9 +31,8 @@ public class Attributes {
     for(int i=0; i<6; i++){
       numbers[i] = random.nextInt(level*weight)+1;
     }
-    Attributes attributes = new Attributes(level, numbers[0], numbers[1],
+    return new Attributes(level, numbers[0], numbers[1],
             numbers[2], numbers[3], numbers[4], numbers[5]);
-    return attributes;
   }
 
   public Attributes add(Attributes[] att){
