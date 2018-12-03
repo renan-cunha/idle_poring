@@ -1,16 +1,31 @@
 package util;
+import java.util.Random;
 
 public class Attributes {
   private int level = 1;
   private int dex = 0;
   private int sta = 0;
   private int str = 0;
-  private int intel =0;
+  private int intel = 0;
   private int agi = 0;
   private int luk = 0;
-  private int xp=0;
+  private int xp = 0;
+  private static Random random = new Random();
+
 
   public Attributes() {
+  }
+
+  public Attributes(int level, int weight){
+    this.level = level;
+
+    this.dex = random.nextInt(level*weight)+1;
+    this.sta = random.nextInt(level*weight)+1;
+    this.str = random.nextInt(level*weight)+1;
+    this.intel = random.nextInt(level*weight)+1;
+    this.agi = random.nextInt(level*weight)+1;
+    this.luk = random.nextInt(level*weight)+1;
+
   }
 
   public Attributes(int level, int dex, int sta, int str, int intel, int agi,
@@ -22,20 +37,6 @@ public class Attributes {
     this.intel = intel;
     this.agi = agi;
     this.luk = luk;
-
-  }
-
-  @Override
-  public String toString() {
-    return "Attributes{" +
-            "level=" + level +
-            ", dex=" + dex +
-            ", sta=" + sta +
-            ", str=" + str +
-            ", intel=" + intel +
-            ", agi=" + agi +
-            ", luk=" + luk +
-            '}';
   }
 
   public int getXp() {
@@ -156,5 +157,19 @@ public class Attributes {
     new_att = getLuk() + 1;
     setLuk(new_att);
 
+  }
+
+  @Override
+  public String toString() {
+    return "Attributes{" +
+            "level=" + level +
+            ", dex=" + dex +
+            ", sta=" + sta +
+            ", str=" + str +
+            ", intel=" + intel +
+            ", agi=" + agi +
+            ", luk=" + luk +
+            ", xp=" + xp +
+            '}';
   }
 }

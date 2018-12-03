@@ -10,9 +10,20 @@ import character.monsters.Orc;
 import character.monsters.SimpleFactoryMonster;
 import item.*;
 import bag.Bag;
+import util.Attributes;
 
 public class Main {
     public static void main(String[] args) {
+        //utilizando attributos aleatorios a partir do level e weight
+        Attributes attributes = new Attributes(2,2);
+        System.out.println(attributes);
+        System.exit(0);
+        //Fim utilizaação atributos aleatorios, o valor maximmo de um atributo
+        // é o weight vezes o level, achei necessario um weight para dar atributos
+        // maiores para o personagem e menores para equipamentos e pets
+        // o valor minimo é 1 para cada atributo
+
+
         //utilizando simpleFactoryMonster
         Monster monster = SimpleFactoryMonster.createMonster(MonsterJobType.ORC);
         System.out.println(monster);
