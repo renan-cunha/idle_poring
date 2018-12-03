@@ -3,49 +3,34 @@ package character.monsters;
 import util.Attributes;
 
 public class SimpleFactoryMonster {
-  public static Monster createMonster(MonsterJobType monsterJobType) {
-    if (monsterJobType == MonsterJobType.PORING) {
 
-      return new Monster("Monster", new Poring());
-    }
-    else if (monsterJobType == MonsterJobType.ORC) {
-      return new Monster("Monster", new Orc());
-
-    }
-    else {
-      System.out.println("Error, This monster is not implemented yet");
+  private static MonsterJob createMonsterJob(MonsterJobType monsterJobType){
+    if(monsterJobType == MonsterJobType.PORING){
+      return new Poring();
+    }else if (monsterJobType == MonsterJobType.ORC){
+      return new Orc();
+    }else{
+      System.out.println("Error, This MonsterJob does not exist");
       System.exit(0);
     }
-    return new Monster("Monster", new Poring());
+    return new Poring();
+  }
+
+  public static Monster createMonster(MonsterJobType monsterJobType) {
+    return new Monster("Monster", createMonsterJob(monsterJobType));
   }
 
   public static Monster createMonster(MonsterJobType monsterJobType,
-    Attributes attributes){
-    if (monsterJobType == MonsterJobType.PORING)
-      return new Monster("Monster", new Poring(), attributes);
-    else if (monsterJobType == MonsterJobType.ORC)
-      return new Monster("Monster", new Orc(), attributes);
-    else {
-      System.out.println("Error, This monster is not implemented yet");
-      System.exit(0);
-    }
-    return new Monster("Monster", new Poring());
+                                      Attributes attributes){
+    return new Monster("Monster", createMonsterJob(monsterJobType),
+            attributes);
     }
 
   public static Monster createMonster(MonsterJobType monsterJobType,
                                       int level, int dex, int sta, int str,
                                       int intel, int agi, int luk){
-    if (monsterJobType == MonsterJobType.PORING)
-      return new Monster("Monster", new Poring(), level, dex, sta, str,
-              intel, agi, luk);
-    else if (monsterJobType == MonsterJobType.ORC)
-      return new Monster("Monster", new Orc(), level, dex, sta, str,
-              intel, agi, luk);
-    else {
-      System.out.println("Error, This monster is not implemented yet");
-      System.exit(0);
-    }
-    return new Monster("Monster", new Poring());
+    return new Monster("Monster", createMonsterJob(monsterJobType), level,
+            dex, sta, str, intel, agi, luk);
   }
 
 
