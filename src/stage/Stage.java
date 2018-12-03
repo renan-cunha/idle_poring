@@ -1,4 +1,5 @@
 package stage;
+import java.io.FileReader;
 import java.util.*;
 
 import battle.Battle;
@@ -6,7 +7,6 @@ import character.monsters.MonsterJobType;
 import character.monsters.Monster;
 import character.monsters.SimpleFactoryMonster;
 import character.hero.Hero;
-
 
 public class Stage {
   private LinkedList<MonsterJobType> monsterJobTypes = new
@@ -98,4 +98,6 @@ public class Stage {
   public void challengeBoss(Hero hero){
     Battle.fight(hero, this.boss);
   }
+
+
 }
