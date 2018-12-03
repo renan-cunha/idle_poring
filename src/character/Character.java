@@ -78,6 +78,8 @@ public abstract class Character {
     else if(newHP > this.maxHp){this.hp = maxHp;}
   }
 
+
+
   public int getHp() {
     return hp;
   }
