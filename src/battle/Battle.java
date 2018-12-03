@@ -6,7 +6,7 @@ public class Battle {
     static int turn = 0;
     //executa a batalha:
     static public void fight(Character heroi, Character inimigo){
-        System.out.printf("Uma batalha entre %s e %s foi inciada %n", heroi.getName(), inimigo.getName());
+        System.out.printf("Uma batalha entre %s e %s foi iniciada %n", heroi.getName(), inimigo.getName());
         //Armazena informações do turno:
         turn = 1;
         //armazena o dano acumulado do turno;
