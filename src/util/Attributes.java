@@ -1,5 +1,4 @@
 package util;
-import javax.smartcardio.ATR;
 import java.util.Random;
 
 public class Attributes {
