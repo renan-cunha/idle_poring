@@ -1,8 +1,11 @@
 package stage;
 import java.util.*;
+
+import battle.Battle;
 import character.monsters.MonsterJobType;
 import character.monsters.Monster;
 import character.monsters.SimpleFactoryMonster;
+import character.hero.Hero;
 
 
 public class Stage {
@@ -28,7 +31,7 @@ public class Stage {
     this.lvl = lvl;
     this.size = size;
     for(int i=0;i<monsterJobTypes.length;i++){
-      this.monsterJobTypes.add(monsterJobTypes[i]);
+      this.monsterJobTypes.add(monsterJobTypes[i])  ;
     }
 
     fillStageWithMonsters();
@@ -76,6 +79,16 @@ public class Stage {
             ", size=" + size +
             ", boss=" + boss +
             '}';
+  }
+
+  public void startBattle(Hero hero){
+    int i = 0;
+
+    while(true) {
+      Battle.fight(hero, this.monsters.get(i));
+      if(i==this.size-1)
+        i = 0;
+    }
   }
 
   public String getMonsters() {

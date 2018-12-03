@@ -18,9 +18,17 @@ import util.Attributes;
 
 public class Main {
     public static void main(String[] args) {
+        //batalhas continuas em stage
+        Hero hero = new Hero("Joaozinho", new Novice(), 10, 10, 10, 10, 10, 10
+                , 10);
+        Stage stage1 = new Stage(1,1);
+        stage1.startBattle(hero);
+        System.exit(0);
+
+
         // há um novo field em hero, attributes_points, e metodos para
         // incrementar os atributos de acordo com esse field
-        Hero hero = new Hero("Joaozinho", new Novice(), 10, 10, 10, 10, 10, 10
+        hero = new Hero("Joaozinho", new Novice(), 10, 10, 10, 10, 10, 10
         , 10);
         System.out.println(hero.getAttributPoints());
         System.out.println(hero.getAttributes());
@@ -50,7 +58,7 @@ public class Main {
 
 
         //Utilizando Mapas
-        Stage stage1 = new Stage(1,3);
+        stage1 = new Stage(1,3);
         System.out.println(stage1);
         //size é o numero de inimigos e lvl é lvl dos inimigos do mapa, o boss
         // tem lvl = lvl do mapa + 1. Os tipos e atributos do inimigo são
