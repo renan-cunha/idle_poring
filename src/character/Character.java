@@ -11,9 +11,8 @@ public abstract class Character {
   final String name;
 
   protected Job job;
-  //Ttodo Character tem uma bag par items:
-  public Bag bag = new Bag();
-  //E uma pouch para moedas:
+
+  //pouch para por moedas:
   public Pouch pouch = new Pouch();
 
 

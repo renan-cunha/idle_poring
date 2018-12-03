@@ -17,6 +17,7 @@ public class Hero extends Character {
 
   private Bag bag = new Bag();
 
+
   LinkedList<Pet> pets = new LinkedList<Pet>();
 
   //TODO: Hp and SP should be on Battle class or in Character class?
