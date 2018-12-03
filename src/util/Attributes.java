@@ -58,7 +58,7 @@ public class Attributes {
 
   public void setLevel(int level) {
     if(level<=0){
-      System.out.println("New level is lower or equal to 0");
+      System.out.println("New stage is lower or equal to 0");
       System.exit(0);
     }
     this.level = level;
@@ -162,7 +162,7 @@ public class Attributes {
   @Override
   public String toString() {
     return "Attributes{" +
-            "level=" + level +
+            "lvl=" + level +
             ", dex=" + dex +
             ", sta=" + sta +
             ", str=" + str +
