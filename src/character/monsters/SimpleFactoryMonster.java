@@ -3,7 +3,7 @@ package character.monsters;
 import util.Attributes;
 
 public class SimpleFactoryMonster {
-
+  private static int weight = 10;
   private static MonsterJob createMonsterJob(MonsterJobType monsterJobType){
     if(monsterJobType == MonsterJobType.PORING){
       return new Poring();
@@ -33,7 +33,9 @@ public class SimpleFactoryMonster {
             dex, sta, str, intel, agi, luk);
   }
 
-
-
-
+  public static Monster createMonster(MonsterJobType monsterJobType, int level){
+    Attributes attributes = new Attributes(level,weight);
+    MonsterJob monsterJob = createMonsterJob(monsterJobType);
+    return new Monster("Monster", monsterJob, attributes);
+  }
 }
