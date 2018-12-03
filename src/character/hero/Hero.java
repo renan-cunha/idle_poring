@@ -14,6 +14,7 @@ import java.util.LinkedList;
 public class Hero extends Character {
 
   public Inventory bag = new Inventory();
+  private int attributPoints = 0;
 
 
   LinkedList<Pet> pets = new LinkedList<Pet>();
@@ -57,6 +58,77 @@ public class Hero extends Character {
   public void setJob(Job job) {
     HeroJob heroJob = (HeroJob) job;
     this.job = heroJob;
+  }
+
+  public void setXp(int xp){
+    if (getAttributes().getXp() + xp >= 100){
+      this.attributPoints = this.attributPoints+6;
+    }
+    getAttributes().setXp(xp);
+  }
+
+  public int getAttributPoints() {
+    return attributPoints;
+  }
+
+  public void increaseSta(){
+    if(attributPoints>0){
+      int sta = getAttributes().getSta();
+      getAttributes().setSta(sta+1);
+      this.attributPoints -= 1;
+    }else{
+      System.out.println("Erro, vc não tem mais pontos de atributos");
+    }
+  }
+  public void increaseDex(){
+    if(attributPoints>0){
+      int dex = getAttributes().getDex();
+      getAttributes().setDex(dex+1);
+      this.attributPoints -= 1;
+    }else{
+      System.out.println("Erro, vc não tem mais pontos de atributos");
+    }
+  }
+  public void increaseIntel(){
+    if(attributPoints>0){
+      int intel = getAttributes().getIntel();
+      getAttributes().setSta(intel+1);
+      this.attributPoints -= 1;
+    }else{
+      System.out.println("Erro, vc não tem mais pontos de atributos");
+    }
+  }
+  public void increaseStr(){
+    if(attributPoints>0){
+      int str = getAttributes().getStr();
+      getAttributes().setStr(str+1);
+      this.attributPoints -= 1;
+    }else{
+      System.out.println("Erro, vc não tem mais pontos de atributos");
+    }
+  }
+  public void increaseAgi(){
+    if(attributPoints>0){
+      int agi = getAttributes().getAgi();
+      getAttributes().setAgi(agi+1);
+      this.attributPoints -= 1;
+    }else{
+      System.out.println("Erro, vc não tem mais pontos de atributos");
+    }
+  }
+
+  public void increaseLuk(){
+    if(attributPoints>0){
+      int luk = getAttributes().getLuk();
+      getAttributes().setLuk(luk+1);
+      this.attributPoints -= 1;
+    }else{
+      System.out.println("Erro, vc não tem mais pontos de atributos");
+    }
+  }
+
+  public LinkedList<Pet> getPets() {
+    return pets;
   }
 
   public void removePet(int index){

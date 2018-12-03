@@ -18,6 +18,17 @@ import util.Attributes;
 
 public class Main {
     public static void main(String[] args) {
+        // há um novo field em hero, attributes_points, e metodos para
+        // incrementar os atributos de acordo com esse field
+        Hero hero = new Hero("Joaozinho", new Novice(), 10, 10, 10, 10, 10, 10
+        , 10);
+        System.out.println(hero.getAttributPoints());
+        System.out.println(hero.getAttributes());
+        hero.setXp(100);
+        hero.increaseAgi();
+        System.out.println(hero.getAttributPoints());
+        System.out.println(hero.getAttributes());
+
         //
         Hero heroi = new Hero("Joaozinho", new Novice(), 10,10,
                 10, 10, 10, 10, 10);
@@ -30,7 +41,6 @@ public class Main {
         System.out.println(monster);
         Battle.fight(heroi, monster);
         heroi.getBag().listItens();
-        System.exit(0);
 
         //simple factory gera personagens com equipamentos aleatorios
         monster = SimpleFactoryMonster.createMonster(MonsterJobType.ORC,
