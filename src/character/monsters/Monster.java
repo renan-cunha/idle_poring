@@ -15,9 +15,10 @@ public class Monster extends Character {
     updateStats();
   }
 
-  public Monster(String name, MonsterJob job, Attributes attributes) {
+  public Monster(String name, MonsterJob job, Attributes attributes, int nCoins) {
     super(name, attributes);
     this.job = job;
+    this.pouch.addCoins(nCoins);
     updateStats();
   }
 

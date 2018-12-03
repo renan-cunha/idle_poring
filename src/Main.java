@@ -17,12 +17,18 @@ import util.Attributes;
 
 public class Main {
     public static void main(String[] args) {
+        //criar monstros com money
+        Monster monster = SimpleFactoryMonster.createMonster(MonsterJobType.ORC,
+                10);
+        System.out.println(monster.pouch.getBalance());
+        System.exit(0);
+
         //desafiar boss
         Hero hero = new Hero("Joaozinho", new Novice(), 10, 10, 10, 10, 10, 10
                 , 10);
         Stage stage1 = new Stage(3,1);
         stage1.challengeBoss(hero);
-        System.exit(0);
+
 
 
         // há um novo field em hero, attributes_points, e metodos para
@@ -40,7 +46,7 @@ public class Main {
         Hero heroi = new Hero("Joaozinho", new Novice(), 10,10,
                 10, 10, 10, 10, 10);
 
-        Monster monster = SimpleFactoryMonster.createMonster(MonsterJobType.ORC,1);
+        monster = SimpleFactoryMonster.createMonster(MonsterJobType.ORC,1);
         Equipment equipment = new Equipment("armadura de fogo",
                 HeroJobType.NOVICE, EquipmentType.ARMOR, 1, 1, 1,
                 1, 1, 1, 1);
