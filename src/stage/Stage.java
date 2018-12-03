@@ -94,4 +94,8 @@ public class Stage {
   public String getMonsters() {
     return monsters.get(1).toString();
   }
+
+  public void challengeBoss(Hero hero){
+    Battle.fight(hero, this.boss);
+  }
 }

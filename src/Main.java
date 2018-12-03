@@ -17,11 +17,11 @@ import util.Attributes;
 
 public class Main {
     public static void main(String[] args) {
-        //batalhas continuas em stage
+        //desafiar boss
         Hero hero = new Hero("Joaozinho", new Novice(), 10, 10, 10, 10, 10, 10
                 , 10);
-        Stage stage1 = new Stage(1,1);
-        stage1.startBattle(hero);
+        Stage stage1 = new Stage(3,1);
+        stage1.challengeBoss(hero);
         System.exit(0);
 
 
