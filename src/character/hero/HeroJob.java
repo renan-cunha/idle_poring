@@ -36,4 +36,11 @@ public abstract class HeroJob extends Job {
   public HeroJobType getHeroJobType() {
     return heroJobType;
   }
+
+  @Override
+  public String toString() {
+    return "HeroJob{" +
+            "heroJobType=" + heroJobType +
+            '}';
+  }
 }

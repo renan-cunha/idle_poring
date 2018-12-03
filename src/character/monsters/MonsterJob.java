@@ -36,4 +36,11 @@ public abstract class MonsterJob extends Job {
   public MonsterJobType getMonsterJobType() {
     return monsterJobType;
   }
+
+  @Override
+  public String toString() {
+    return "MonsterJob{" +
+            "monsterJobType=" + monsterJobType +
+            '}';
+  }
 }

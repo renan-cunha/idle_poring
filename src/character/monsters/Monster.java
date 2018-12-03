@@ -9,8 +9,9 @@ import item.EquipmentType;
 import util.Attributes;
 
 public class Monster extends Character {
-  public Monster(String name) {
+  public Monster(String name, MonsterJob job) {
     super(name);
+    this.job = job;
     updateStats();
   }
 
@@ -54,5 +55,16 @@ public class Monster extends Character {
         updateStats();
       }else
         System.out.println(("Its' not an Armor"));
+  }
+
+  @Override
+  public String toString() {
+    return "Monster{" +
+            "name="+getName()+
+            ", job=" + job +
+            ", armor=" + armor +
+            ", weapon=" + weapon +
+            ", helmet=" + helmet +
+            '}';
   }
 }

@@ -4,12 +4,20 @@ import character.hero.Swordsman;
 import character.hero.Hero;
 import character.hero.HeroJobType;
 import character.hero.Swordsman;
+import character.monsters.Monster;
+import character.monsters.MonsterJobType;
 import character.monsters.Orc;
+import character.monsters.SimpleFactoryMonster;
 import item.*;
 import bag.Bag;
 
 public class Main {
     public static void main(String[] args) {
+        //utilizando simpleFactoryMonster
+        Monster monster = SimpleFactoryMonster.createMonster(MonsterJobType.ORC);
+        System.out.println(monster);
+        //Fim utilizadação simpleFactoryMonster
+
         //Criando um personagem (exemplo):
         Character fulano = new Hero("Fulano");
         Character ciclano = new Hero("Ciclano");
@@ -33,6 +41,7 @@ public class Main {
 
         fulano.setJob(new Swordsman());
         //Battle.fight(fulano, ciclano);
+
 
     }
 }
