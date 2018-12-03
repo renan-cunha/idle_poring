@@ -26,7 +26,7 @@ public class SimpleFactoryMonster {
 
 
   public static Monster createMonster(MonsterJobType monsterJobType, int level){
-    Attributes attributes = new Attributes(level,weight);
+    Attributes attributes = Attributes.randomAttributes(level,weight);
     MonsterJob monsterJob = createMonsterJob(monsterJobType);
     Equipment equipment = Equipment.randomEquipment(level);
     int nCoins = random.nextInt(level*10);

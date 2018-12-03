@@ -1,4 +1,5 @@
 package util;
+import javax.smartcardio.ATR;
 import java.util.Random;
 
 public class Attributes {
@@ -15,16 +16,6 @@ public class Attributes {
   public Attributes() {
   }
 
-  public Attributes(int level, int weight){
-    this.level = level;
-    this.dex = random.nextInt(level*weight)+1;
-    this.sta = random.nextInt(level*weight)+1;
-    this.str = random.nextInt(level*weight)+1;
-    this.intel = random.nextInt(level*weight)+1;
-    this.agi = random.nextInt(level*weight)+1;
-    this.luk = random.nextInt(level*weight)+1;
-  }
-
   public Attributes(int level, int dex, int sta, int str, int intel, int agi,
                     int luk) {
     this.level = level;
@@ -34,6 +25,30 @@ public class Attributes {
     this.intel = intel;
     this.agi = agi;
     this.luk = luk;
+  }
+
+  public static Attributes randomAttributes(int level, int weight){
+    int[] numbers = new int[6];
+    for(int i=0; i<6; i++){
+      numbers[i] = random.nextInt(level*weight)+1;
+    }
+    Attributes attributes = new Attributes(level, numbers[0], numbers[1],
+            numbers[2], numbers[3], numbers[4], numbers[5]);
+    return attributes;
+  }
+
+  public Attributes add(Attributes[] att){
+
+    Attributes result = new Attributes();
+    for (int i = 0; i < att.length; i++){
+      result.setDex(this.dex + att[i].getDex());
+      result.setSta(this.sta + att[i].getSta());
+      result.setStr(this.str + att[i].getStr());
+      result.setAgi(this.agi + att[i].getAgi());
+      result.setLuk(this.luk + att[i].getLuk());
+      result.setIntel(this.intel + att[i].getIntel());
+    }
+    return result;
   }
 
   public int getXp() {
@@ -106,20 +121,6 @@ public class Attributes {
 
   public void setLuk(int luk) {
     this.luk = luk;
-  }
-
-  public Attributes add(Attributes[] att){
-
-    Attributes result = new Attributes();
-    for (int i = 0; i < att.length; i++){
-      result.setDex(this.dex + att[i].getDex());
-      result.setSta(this.sta + att[i].getSta());
-      result.setStr(this.str + att[i].getStr());
-      result.setAgi(this.agi + att[i].getAgi());
-      result.setLuk(this.luk + att[i].getLuk());
-      result.setIntel(this.intel + att[i].getIntel());
-    }
-    return result;
   }
 
   @Override

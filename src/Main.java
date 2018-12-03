@@ -17,7 +17,13 @@ import util.Attributes;
 
 public class Main {
     public static void main(String[] args) {
-
+        //soma atributos
+        Attributes attributes = new Attributes(1,1,1,1,
+                1,1,1);
+        Attributes attributes1 = new Attributes(10,10,10,10,
+                10,10,10);
+        System.out.println(attributes.add(new Attributes[]{attributes1}));
+        System.exit(0);
 
         //criar monstros com money
         Monster monster = SimpleFactoryMonster.createMonster(MonsterJobType.ORC,
@@ -71,7 +77,7 @@ public class Main {
 
 
         //utilizando attributos aleatorios a partir do stage e weight
-        Attributes attributes = new Attributes(2,2);
+        attributes = Attributes.randomAttributes(2,2);
         System.out.println(attributes);
         //Fim utilizaação atributos aleatorios, o valor maximmo de um atributo
         // é o weight vezes o stage, achei necessario um weight para dar atributos
@@ -121,7 +127,7 @@ public class Main {
 
 
         //Adiciona uma gem a um equipamento:
-        capacete.setGem(new Gem(new Attributes(1,3)));
+        capacete.setGem(new Gem(Attributes.randomAttributes(1,3)));
         //habilita a gem no capacete:
     }
 }

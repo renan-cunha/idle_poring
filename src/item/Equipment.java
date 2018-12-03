@@ -74,7 +74,7 @@ public class Equipment implements Item{
 
   public static Equipment randomEquipment(int level){
     EquipmentType equipmentType = EquipmentType.randomEquipmentType();
-    Attributes attributes = new Attributes(level, weight);
+    Attributes attributes = Attributes.randomAttributes(level, weight);
     HeroJobType heroJobType = HeroJobType.randomHeroJobType();
     Equipment equipment = new Equipment("Equipamentos", heroJobType,
             equipmentType, attributes);
