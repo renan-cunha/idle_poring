@@ -57,19 +57,11 @@ public class Battle {
 
     //Desfere um golpe no inimigo:
     public static void hitOpponent(Character heroi, Character inimigo, int damage){
-
         int attack = heroi.getAtk();
-
         int defense = inimigo.getDef();
-
-        //subtrai do Hp de outro:
+        //Subtrai do HP o dano recebido:
         int newHp = inimigo.getHp() - damage;
-
-
-        if (newHp < 0){
-            newHp=0;
-        }
-
+        if (newHp < 0) newHp=0;
         inimigo.setHp(newHp);
 
     }
@@ -79,6 +71,7 @@ public class Battle {
         int attack = attacker.getAtk();
         int defense = defender.getDef();
 
+        //O dano é diminuido em 10% pela defesa do inimigo (Arbitrário)
         int damage =  attack - (int) (0.10 * defense);
         //aplica o dano crítico:
         if (critical(attacker)) damage *= 2;
@@ -147,5 +140,10 @@ public class Battle {
                 hero.getBag().addItem(equipments[i]);
             }
         }
+    }
+
+    private static void passCoinsToHero(Hero hero, Monster monster){
+        int nCoins = monster.pouch.getBalance();
+        hero.pouch.addCoins(nCoins);
     }
 }
