@@ -82,6 +82,18 @@ public abstract class Character {
     return hp;
   }
 
+  public void setEquipment(Equipment equipment){
+    EquipmentType equipmentType = equipment.getEquipType();
+    if (equipmentType==EquipmentType.HELMET)
+      this.helmet = equipment;
+    else if (equipmentType==EquipmentType.WEAPON)
+      this.weapon = equipment;
+    else if (equipmentType==EquipmentType.ARMOR)
+      this.armor = equipment;
+    else
+      System.out.println("Erro, the character does not accept this type of equipment");
+  }
+
 
 
   public int getAtk() {
