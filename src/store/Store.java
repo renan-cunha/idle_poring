@@ -34,7 +34,16 @@ public class Store {
 
     }
     //Vende itens para o herói:
-    public void buyItem(){
-
+    public void buyItem(Hero buyer, String itemName){
+        //Busca o item:
+        Item itemToBeSold = this.shelf.retrieveItemByName(itemName);
+        if(itemToBeSold == null){
+            System.out.println("Erro ao comprar o item, verifique se o nome está correto! (NULL item error)");
+            return;
+        }
+        //Pagamento:
+        buyer.pouch.withdrawCoins(itemToBeSold.getValue());
+        //Adiciona na mochila:
+        buyer.bag.addItem(itemToBeSold);
     }
 }
