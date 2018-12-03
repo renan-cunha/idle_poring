@@ -1,24 +1,31 @@
-package bag;
+package inventory;
 import item.Item;
 import java.util.ArrayList;
 
-public class Bag {
+public class Inventory {
     //A mochila onde os itens são aramzenados:
-    ArrayList<Item> bag = new ArrayList();
+    ArrayList<Item> inventory = new ArrayList();
 
     int i;
 
     //Adiciona itens:
     public void addItem(Item item){
-        this.bag.add(item);
+        this.inventory.add(item);
         System.out.printf("%s foi adicionado[a] na mochila",item.getName());
+    }
+
+    //Adiciona multiplos itens:
+    public void addItens(Item[] initial_itens){
+        for(Item item : initial_itens) {
+            addItem(item);
+        }
     }
 
     //remove item baseado na posição:
     public void removeItem(int p){
         try {
             // Remover o item na posição 'p':
-            this.bag.remove(p);
+            this.inventory.remove(p);
         } catch (IndexOutOfBoundsException e){
             System.out.printf("\nErro: posição inválida (%s).",
                     e.getMessage());
@@ -27,15 +34,13 @@ public class Bag {
 
     //retorna infomações sobre um item no console:
     public Item checkItem(int p){
-        return this.bag.get(p);
+        return this.inventory.get(p);
     }
 
     //Lista no console todos os itens da mochila:
-    public void listBagItens(){
+    public void listItens(){
         i = 0;
-        System.out.println("\nA mochila está assim:");
-
-        for (Item item : this.bag){
+        for (Item item : this.inventory){
             System.out.printf("\n Item %d - ",i);
             System.out.println(item.toString());
             i++;
@@ -47,7 +52,7 @@ public class Bag {
     //se n achar nada retorna vazio
     public Item retrieveItemByName(String name){
         i=0;
-        for(Item item : this.bag) {
+        for(Item item : this.inventory) {
             if(item.getName().equalsIgnoreCase(name)) {
                 Item resultado = item;
                 removeItem(i);
@@ -57,6 +62,14 @@ public class Bag {
         }
         return null;
     }
+
+    //retorna item da mochila pelo nome:
+    public Item getItemByName(String name){
+        for(Item item : this.inventory){
+            if(item.getName().equalsIgnoreCase(name)) return item;
+            }
+        return null;
+        }
 
 
 }

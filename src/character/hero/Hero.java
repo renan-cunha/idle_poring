@@ -1,21 +1,19 @@
 package character.hero;
 
-import bag.Bag;
+import inventory.Inventory;
 import character.Character;
 import character.Job;
 import item.Equipment;
 import item.EquipmentType;
-import org.w3c.dom.Attr;
 import pets.Pet;
 import util.Attributes;
 
-import javax.smartcardio.ATR;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Hero extends Character {
 
-  private Bag bag = new Bag();
+  public Inventory bag = new Inventory();
 
 
   LinkedList<Pet> pets = new LinkedList<Pet>();
@@ -107,7 +105,7 @@ public class Hero extends Character {
     }
   }
 
-  public Bag getBag() {
+  public Inventory getBag() {
     return bag;
   }
 

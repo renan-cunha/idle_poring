@@ -13,6 +13,7 @@ public class Pouch implements Item {
 
     @Override
     public int getValue() { return this.value; }
+    public void setValue(int value){};
 
     //retorna o saldo da bolsa
     public int getBalance() { return this.nCoins; }

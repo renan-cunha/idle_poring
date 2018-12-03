@@ -17,6 +17,7 @@ public class Potion implements Item {
 
     public String getName(){ return this.name;}
     public int getValue(){ return this.value;}
+    public void setValue(int value){ this.value = value; }
     public String toString(){ return "Item{" + this.name + "}"; }
 
 }

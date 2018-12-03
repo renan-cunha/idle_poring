@@ -5,6 +5,7 @@ public interface Item {
     String name ="";
     String getName();
     int getValue();
+    void setValue(int value);
     String toString();
 
 }

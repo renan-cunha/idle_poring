@@ -1,10 +1,8 @@
 package character;
 
 import character.hero.HeroJobType;
-import character.hero.Novice;
 import item.*;
 import util.Attributes;
-import bag.Bag;
 
 public abstract class Character {
 
