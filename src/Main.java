@@ -8,9 +8,30 @@ import character.monsters.MonsterJobType;
 import character.monsters.SimpleFactoryMonster;
 import item.*;
 import store.Store;
+import inventory.*;
+import stage.Stage;
+import util.Attributes;
+
 
 public class Main {
     public static void main(String[] args) {
+        //Utilizando Mapas
+        Stage stage1 = new Stage(1,3);
+        System.out.println(stage1);
+        //size é o numero de inimigos e lvl é lvl dos inimigos do mapa, o boss
+        // tem lvl = lvl do mapa + 1. Os tipos e atributos do inimigo são
+        // escolhidos aleatoriamente, os atributos dependem do nivel do mapa
+
+
+        //utilizando attributos aleatorios a partir do stage e weight
+        Attributes attributes = new Attributes(2,2);
+        System.out.println(attributes);
+        //Fim utilizaação atributos aleatorios, o valor maximmo de um atributo
+        // é o weight vezes o stage, achei necessario um weight para dar atributos
+        // maiores para o personagem e menores para equipamentos e pets
+        // o valor minimo é 1 para cada atributo
+
+
         //utilizando simpleFactoryMonster
         Monster monster = SimpleFactoryMonster.createMonster(MonsterJobType.ORC);
         System.out.println(monster);
