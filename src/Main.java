@@ -1,5 +1,7 @@
 
+import battle.Battle;
 import character.Character;
+import character.hero.Novice;
 import character.hero.Swordsman;
 import character.hero.Hero;
 import character.hero.HeroJobType;
@@ -10,13 +12,28 @@ import item.*;
 import store.Store;
 import inventory.*;
 import stage.Stage;
+import sun.java2d.pipe.SpanShapeRenderer;
 import util.Attributes;
 
 
 public class Main {
     public static void main(String[] args) {
+        //
+        Hero heroi = new Hero("Joaozinho", new Novice(), 10,10,
+                10, 10, 10, 10, 10);
+
+        Monster monster = SimpleFactoryMonster.createMonster(MonsterJobType.ORC,1);
+        Equipment equipment = new Equipment("armadura de fogo",
+                HeroJobType.NOVICE, EquipmentType.ARMOR, 1, 1, 1,
+                1, 1, 1, 1);
+        monster.setEquipment(equipment);
+        System.out.println(monster);
+        Battle.fight(heroi, monster);
+        heroi.getBag().listItens();
+        System.exit(0);
+
         //simple factory gera personagens com equipamentos aleatorios
-        Monster monster = SimpleFactoryMonster.createMonster(MonsterJobType.ORC,
+        monster = SimpleFactoryMonster.createMonster(MonsterJobType.ORC,
                 5);
         System.out.println(monster);
         System.exit(0);

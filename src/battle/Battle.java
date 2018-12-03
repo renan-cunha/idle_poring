@@ -1,17 +1,20 @@
 package battle;
 import character.Character;
+import character.hero.*;
+import character.monsters.*;
+import item.Equipment;
+
 //TODO: definir níveis de acesso aos métodos e atributos desta classe
 //TODO: Aumentar a complexidade da batalha, levar em conta outros atributos como sorte, agilidade etc
 public class Battle {
     static int turn = 0;
     //executa a batalha:
-    static public void fight(Character heroi, Character inimigo){
+    static public void fight(Hero heroi, Monster inimigo){
         System.out.printf("Uma batalha entre %s e %s foi iniciada %n", heroi.getName(), inimigo.getName());
         //Armazena informações do turno:
         turn = 1;
         //armazena o dano acumulado do turno;
         int turn_damage = 0;
-
         heroi.setHp(heroi.getMaxHp());
         inimigo.setHp(inimigo.getMaxHp());
 
@@ -34,6 +37,13 @@ public class Battle {
             }
             turn_damage = 0;
             turn +=1;
+
+            if(isDead(heroi))
+                return;
+            else if(isDead(inimigo)){
+                passEquipmentsToHero(heroi, inimigo);
+                return;
+            }
 
             //Pausa a execução em alguns ms por turno:
             try {
@@ -127,6 +137,15 @@ public class Battle {
             return true;
         } else {
             return false;
+        }
+    }
+
+    private static void passEquipmentsToHero(Hero hero, Monster monster){
+        Equipment[] equipments = monster.getEquipments();
+        for(int i=0; i<equipments.length; i++){
+            if(! equipments[i].getName().equals("Empty")){
+                hero.getBag().addItem(equipments[i]);
+            }
         }
     }
 }
