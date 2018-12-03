@@ -1,5 +1,6 @@
 package character.monsters;
 
+import item.Equipment;
 import util.Attributes;
 
 public class SimpleFactoryMonster {
@@ -16,26 +17,13 @@ public class SimpleFactoryMonster {
     return new Poring();
   }
 
-  public static Monster createMonster(MonsterJobType monsterJobType) {
-    return new Monster("Monster", createMonsterJob(monsterJobType));
-  }
-
-  public static Monster createMonster(MonsterJobType monsterJobType,
-                                      Attributes attributes){
-    return new Monster("Monster", createMonsterJob(monsterJobType),
-            attributes);
-    }
-
-  public static Monster createMonster(MonsterJobType monsterJobType,
-                                      int level, int dex, int sta, int str,
-                                      int intel, int agi, int luk){
-    return new Monster("Monster", createMonsterJob(monsterJobType), level,
-            dex, sta, str, intel, agi, luk);
-  }
 
   public static Monster createMonster(MonsterJobType monsterJobType, int level){
     Attributes attributes = new Attributes(level,weight);
     MonsterJob monsterJob = createMonsterJob(monsterJobType);
-    return new Monster("Monster", monsterJob, attributes);
+    Equipment equipment = Equipment.randomEquipment(level);
+    Monster monster = new Monster("Monster", monsterJob, attributes);
+    monster.setEquipment(equipment);
+    return monster;
   }
 }
