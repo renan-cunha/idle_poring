@@ -61,6 +61,7 @@ public class Monster extends Character {
   public String toString() {
     return "Monster{" +
             "name="+getName()+
+            ", attributes=" + getAttributes()+
             ", job=" + job +
             ", armor=" + armor +
             ", weapon=" + weapon +
