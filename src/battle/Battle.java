@@ -42,6 +42,8 @@ public class Battle {
                 return;
             else if(isDead(inimigo)){
                 passEquipmentsToHero(heroi, inimigo);
+                int xp = heroi.getAttributes().getXp();
+                heroi.setXp(xp+10);
                 return;
             }
 

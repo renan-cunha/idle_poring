@@ -73,7 +73,7 @@ public class Equipment implements Item{
 
 
   public static Equipment randomEquipment(int level){
-    EquipmentType equipmentType = randomEquipmentType();
+    EquipmentType equipmentType = EquipmentType.randomEquipmentType();
     Attributes attributes = new Attributes(level, weight);
     HeroJobType heroJobType = HeroJobType.randomHeroJobType();
     Equipment equipment = new Equipment("Equipamentos", heroJobType,
@@ -82,11 +82,7 @@ public class Equipment implements Item{
   }
 
 
-  public static EquipmentType randomEquipmentType(){
-    EquipmentType[] equipmentTypes = EquipmentType.values();
-    int index = random.nextInt(equipmentTypes.length);
-    return equipmentTypes[index];
-  }
+
 
   @Override
   public String toString() {

@@ -17,17 +17,17 @@ import util.Attributes;
 
 public class Main {
     public static void main(String[] args) {
+
+
         //criar monstros com money
         Monster monster = SimpleFactoryMonster.createMonster(MonsterJobType.ORC,
                 10);
         System.out.println(monster.pouch.getBalance());
-        System.exit(0);
-
         //desafiar boss
         Hero hero = new Hero("Joaozinho", new Novice(), 10, 10, 10, 10, 10, 10
                 , 10);
-        Stage stage1 = new Stage(3,1);
-        stage1.challengeBoss(hero);
+        Stage stage1 = new Stage(1,10);
+        stage1.startBattle(hero);
 
 
 
