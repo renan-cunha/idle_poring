@@ -15,6 +15,13 @@ import util.Attributes;
 
 public class Main {
     public static void main(String[] args) {
+        //simple factory gera personagens com equipamentos aleatorios
+        Monster monster = SimpleFactoryMonster.createMonster(MonsterJobType.ORC,
+                5);
+        System.out.println(monster);
+        System.exit(0);
+
+
         //Utilizando Mapas
         Stage stage1 = new Stage(1,3);
         System.out.println(stage1);
@@ -32,10 +39,7 @@ public class Main {
         // o valor minimo é 1 para cada atributo
 
 
-        //utilizando simpleFactoryMonster
-        Monster monster = SimpleFactoryMonster.createMonster(MonsterJobType.ORC);
-        System.out.println(monster);
-        //Fim utilizadação simpleFactoryMonster
+
 
         //Criando um personagem (exemplo):
         Hero fulano = new Hero("Fulano");
