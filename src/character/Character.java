@@ -155,6 +155,11 @@ public abstract class Character {
             weapon.getAttributes()};
   }
 
+  public Equipment[] getEquipments(){
+    Equipment[] equipment = {this.armor, this.weapon, this.helmet};
+    return equipment;
+  }
+
   public Attributes[] getAttItens(){
     return getAttEquip();
   }
