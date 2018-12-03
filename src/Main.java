@@ -12,7 +12,6 @@ import item.*;
 import store.Store;
 import inventory.*;
 import stage.Stage;
-import sun.java2d.pipe.SpanShapeRenderer;
 import util.Attributes;
 
 
@@ -95,5 +94,10 @@ public class Main {
         lojinha.sellItem(fulano, fulano.bag.getItemByName("lasanha") );
         System.out.println("Depois de vender o item fulano tem "+ fulano.pouch.getBalance() +" moedas");
 
+
+
+        //Adiciona uma gem a um equipamento:
+        capacete.setGem(new Gem(new Attributes(1,3)));
+        //habilita a gem no capacete:
     }
 }

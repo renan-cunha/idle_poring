@@ -3,7 +3,6 @@ import character.hero.HeroJob;
 import character.hero.HeroJobType;
 import util.Attributes;
 
-import javax.smartcardio.ATR;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -16,9 +15,11 @@ public class Equipment implements Item{
   private int value;
   private HeroJobType heroJobType;
   private EquipmentType equipType;
-  private util.Attributes attributes;
+  private Attributes attributes;
   private static final Random random = new Random();
   private static int weight=1;
+  private Gem gem;
+
 
   public Equipment(String name, HeroJobType heroJobType,
                    EquipmentType equipmentType, Attributes attributes){
@@ -58,13 +59,16 @@ public class Equipment implements Item{
   public void setValue(int value){
     this.value = value;
   }
+  public void setGem(Gem gem) {this.gem = gem;}
 
   public HeroJobType getHeroJobType() {
     return heroJobType;
   }
 
   public Attributes getAttributes() {
-    return attributes;
+
+    if(gem == null) return attributes;
+    else return attributes.add(new Attributes[]{gem.getAttributes()});
   }
 
 

@@ -113,6 +113,7 @@ public class Attributes {
   }
 
   public Attributes add(Attributes[] att){
+
     Attributes result = new Attributes(getLevel(), getDex(), getSta(), getStr(),
             getIntel(), getAgi(), getLuk());
     for (int i = 0; i < att.length; i++){
