@@ -1,11 +1,14 @@
 package game;
 
 
+import battle.Battle;
 import character.hero.Hero;
 import character.hero.HeroJobType;
+import character.monster.MonsterJobType;
 import item.*;
+import stage.Stage;
 import store.Store;
-
+import util.Attributes;
 import java.io.*;
 import java.util.Scanner;
 
@@ -26,7 +29,18 @@ public class Game {
 
     }
 
+    public static void stages(Hero myHero){
+        Stage stage1 = new Stage(new MonsterJobType[]{MonsterJobType.ORC},
+                1, 3);
 
+    Stage stage2 = new Stage(new MonsterJobType[]{MonsterJobType.PORING},
+            2, 5);
+    Stage stage3 = new Stage(new MonsterJobType[]{MonsterJobType.PORING},
+            3, 10);
+    stage1.startBattle(myHero);
+    stage2.startBattle(myHero);
+    stage3.startBattle(myHero);
+    }
 
 
     //Tela de introdução do jogo:
@@ -81,13 +95,6 @@ public class Game {
         return;
     }
 
-
-
-
-
-
-    //utilitários:
-
     //Limpa a tela:
     private static void clr(){
         System.out.println(new String(new char[50]).replace("\0", "\r\n"));
@@ -110,19 +117,19 @@ public class Game {
         switch (choice){
             case "1":
                 //Vai para a luta aqui
-                fight();
+                //Battle.fight();
                 break;
             case "2":
                 //Página de pets aqui
-                pets();
+                //getpets();
                 break;
             case "3":
                 //Mochila aqui
-                bag();
+                //bag();
                 break;
             case "4":
                 //Loja aqui
-                store();
+                //store();
                 break;
             case "5":
                 //heroStatus();
@@ -141,6 +148,7 @@ public class Game {
                 break;
             case "3":
                 return;
+    }
     }
 
     private static Hero loadHero(String filename) {
@@ -172,7 +180,8 @@ public class Game {
     }
 
 
-    private static void saveHero(Hero myHero,String filename){
+
+    private static void saveHero(Hero myHero, String filename){
         //Salva o herói anets de finalizar a execução:
         try {
             //Salvando o objeto em uma arquivo

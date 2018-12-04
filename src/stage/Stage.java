@@ -92,10 +92,8 @@ public class Stage {
     while(true) {
       Battle.fight(hero, this.monsters.get(i));
 
-      System.out.println(getBossWin());
       System.out.println("\nChallenge the boss? (y/n) ");
 
-      System.out.println("efef");
       if(reader.next().equals("y")) {
         challengeBoss(hero);
         if (getBossWin())

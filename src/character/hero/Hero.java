@@ -51,7 +51,10 @@ public class Hero extends Character implements Serializable {
     if (getAttributes().getXp() + xp >= Config.XP_TO_LVL_UP.getValue()){
       this.attributPoints =
               this.attributPoints+Config.NUMBER_ATT_POINTS_LVL_UP.getValue();
+      this.getAttributes().lvlUp();
+      updateStats();
     }
+
     getAttributes().setXp(xp);
   }
 
