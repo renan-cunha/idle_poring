@@ -6,38 +6,30 @@ import util.Attributes;
 
 public abstract class Character {
 
-  final String name;
-
+  protected final String name;
   protected Job job;
-
-  //pouch para por moedas:
-  public Pouch pouch = new Pouch();
-
+  protected Pouch pouch = new Pouch();
 
   //atributos dependentes:
-  int hp; int sp;
-  int atk;   int def;
-  int maxHp; int maxSp; int atkSpd;
-  int ten;  int cri;   int hit;   int eva;
-  Attributes attributes;
-  protected Equipment armor = new Equipment("Empty", HeroJobType.NOVICE,
-          EquipmentType.ARMOR,1,  0, 0, 0,
-          0, 0, 0);
-  protected Equipment weapon = new Equipment("Empty", HeroJobType.NOVICE,
-          EquipmentType.WEAPON, 1, 0, 0, 0,
-          0, 0, 0);
-  protected Equipment helmet = new Equipment("Empty", HeroJobType.NOVICE,
-                                         EquipmentType.HELMET, 1, 0,
-          0, 0, 0, 0, 0);
+  protected int hp;
+  protected int sp;
+  protected int atk;
+  protected int def;
+  protected int maxHp;
+  protected int maxSp;
+  protected int atkSpd;
+  protected int ten;
+  protected int cri;
+  protected int hit;
+  protected int eva;
 
-  //TODO: Hp and SP should be on Battle class or in Character class?
-  //TODO: Set stats with attributes of character and item
+  //atributos independentes
+  protected Attributes attributes;
 
-  public Character(String name){
-    this.name = name;
-    this.attributes = new Attributes(1,1,1,1,1,1,
-            1);
-  }
+  protected Equipment armor = new Equipment(EquipmentType.ARMOR);
+  protected Equipment weapon = new Equipment(EquipmentType.WEAPON);
+  protected Equipment helmet = new Equipment(EquipmentType.HELMET);
+
 
   public Character(String name, Attributes attributes) {
     this.name = name;
@@ -46,8 +38,11 @@ public abstract class Character {
 
   public Character(String name, int level, int dex, int sta, int str,
                    int intel, int agi, int luk) {
-    this.name = name;
-    this.attributes = new Attributes(level, dex, sta, str, intel, agi, luk);
+    this(name, new Attributes(level, dex, sta, str, intel, agi, luk));
+  }
+
+  public Character(String name){
+    this(name, 1, 1, 1, 1, 1, 1, 1);
   }
 
   public abstract void setJob(Job job);
@@ -73,17 +68,19 @@ public abstract class Character {
   }
 
   public void setHp(int newHP){
-    if (newHP<0) { System.out.println("Valor precisa ser positivo!"); return;}
+    if (newHP<0) {
+      System.out.println("Valor precisa ser positivo!");
+      return;}
     else if (newHP <= this.maxHp) {this.hp = newHP;}
-    else if(newHP > this.maxHp){this.hp = maxHp;}
+    else{this.hp = maxHp;}
   }
-
-
 
   public int getHp() {
     return hp;
   }
 
+  //toda vez que adicionar um novo equipamento essa função e mais uma outra
+  //serão alteradas, será que daá pra fazer de uma outra forma mais eficiente
   public void setEquipment(Equipment equipment){
     EquipmentType equipmentType = equipment.getEquipType();
     if (equipmentType==EquipmentType.HELMET)
@@ -96,8 +93,6 @@ public abstract class Character {
       System.out.println("Erro, the character does not accept this type of equipment");
   }
 
-
-
   public int getAtk() {
     return atk;
   }
@@ -105,7 +100,6 @@ public abstract class Character {
   public int getDef() {
     return def;
   }
-
 
   public int getMaxHp() {
     return maxHp;
@@ -151,15 +145,15 @@ public abstract class Character {
     return helmet;
   }
 
+  //Essa função tambem será alterada toda vez que adicionar um novo equipamento
   public Attributes[] getAttEquip(){
-    return new Attributes[]{helmet.getAttributes(),
-            armor.getAttributes(),
+    return new Attributes[]{helmet.getAttributes(), armor.getAttributes(),
             weapon.getAttributes()};
   }
 
+  //Essa função será alterada sempre que adicionat um novo equipamento
   public Equipment[] getEquipments(){
-    Equipment[] equipment = {this.armor, this.weapon, this.helmet};
-    return equipment;
+    return  new Equipment[]{this.armor, this.weapon, this.helmet};
   }
 
   public Attributes[] getAttItens(){
