@@ -7,6 +7,8 @@ import item.EquipmentType;
 import pets.Pet;
 import util.Attributes;
 import util.Config;
+
+import javax.smartcardio.ATR;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -19,7 +21,7 @@ public class Hero extends Character {
   public Hero(String name) {
     super(name);
     this.job = new Novice();
-    updateStats();
+    super.updateStats();
   }
 
   public Pet getPet(int index){
@@ -156,6 +158,9 @@ public class Hero extends Character {
 
   @Override
   public Attributes getAllAttributes(){
-   return getAttributes().add(getAttEquip()).add(getAttPets());
+    if(pets.size()==0)
+      return super.getAllAttributes();
+    else
+      return super.getAllAttributes().add(getAttPets());
   }
 }

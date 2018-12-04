@@ -1,11 +1,9 @@
 
 import battle.Battle;
-import character.hero.Novice;
-import character.hero.Swordsman;
-import character.hero.Hero;
-import character.hero.HeroJobType;
+import character.hero.*;
 import character.monster.Monster;
 import character.monster.MonsterJobType;
+import character.monster.Orc;
 import character.monster.SimpleFactoryMonster;
 import item.*;
 import store.Store;
@@ -13,17 +11,29 @@ import stage.Stage;
 import util.Attributes;
 import pets.Pet;
 
+import javax.smartcardio.ATR;
+
 
 public class Main {
     public static void main(String[] args) {
-        //aumento de xp
-        Hero hero = new Hero("Joaozinho");
-        Equipment pet = new Equipment("Biscoito",HeroJobType.NOVICE,
-                EquipmentType.ARMOR, 1, 1, 1, 1,
-                1, 1, 1);
-        pet.setXp(110);
-        System.out.println(pet.getAttributes());
+        //Batalha com boleano
+        Hero hero = new Hero("Joaozinh");
+
+        //System.out.println(hero.getMaxHp());
+        System.out.println(hero.getMaxHp());
+        Pet pet = new Pet("fulnao",100,100,100,100,100,100,100);
+        //System.out.println(monster.getMax());
+        //Attributes attributes = Attributes.randomAttributes(1,2)
+        //Boolean bool = Battle.fight(hero,monster);
+        hero.addPet(pet);
+        System.out.println(hero.getMaxHp());
         System.exit(0);
+        Monster monster = SimpleFactoryMonster.createMonster(MonsterJobType.ORC,
+                1);
+
+        //aumento de xp
+
+
 
 
         //soma atributos
@@ -35,7 +45,7 @@ public class Main {
         System.exit(0);
 
         //criar monstros com money
-        Monster monster = SimpleFactoryMonster.createMonster(MonsterJobType.ORC,
+        monster = SimpleFactoryMonster.createMonster(MonsterJobType.ORC,
                 10);
         System.out.println(monster.getPouch().getBalance());
         //desafiar boss
