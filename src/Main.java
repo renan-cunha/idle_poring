@@ -13,6 +13,8 @@ import pets.Pet;
 
 import javax.smartcardio.ATR;
 
+import game.*;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -33,8 +35,8 @@ public class Main {
 
         //aumento de xp
 
-
-
+        //nova inicializacação personagem
+        
 
         //soma atributos
         Attributes attributes = new Attributes(1,1,1,1,

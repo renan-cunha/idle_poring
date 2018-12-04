@@ -6,13 +6,13 @@ import item.Equipment;
 import item.EquipmentType;
 import pets.Pet;
 import util.Attributes;
+import java.io.*;
 import util.Config;
 
-import javax.smartcardio.ATR;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class Hero extends Character {
+public class Hero extends Character implements Serializable {
 
   public Inventory bag = new Inventory();
   private int attributPoints = Config.NUMBER_ATT_POINTS_START.getValue();
