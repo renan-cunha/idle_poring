@@ -2,6 +2,9 @@ package game;
 
 
 import character.hero.Hero;
+import character.hero.HeroJobType;
+import item.*;
+import store.Store;
 
 import java.io.*;
 import java.util.Scanner;
@@ -51,10 +54,32 @@ public class Game {
         p("Qual você deseja escolher: ");
         String choice = scanner();
         clr();
-        switchToChoice(choice);
+        switchMainMenu(choice);
     }
 
+    //Carrega uma loja
+    public static void Store(){
+        Item[] preDefinedItens = {
+                new Equipment("Capacete Poderoso", HeroJobType.NOVICE, EquipmentType.HELMET, 1, 2, 1,
+                        1, 1, 1, 1),
+                new Equipment("Machado Forte", HeroJobType.NOVICE, EquipmentType.WEAPON, 1, 2, 1,
+                        1, 1, 1, 1),
+                new Equipment("ARmadura de Couraça", HeroJobType.NOVICE, EquipmentType.ARMOR, 1, 2, 1,
+                        1, 1, 1, 1),
 
+                new Potion("Poção mágica"),
+                new Food("Mantimentos Básicos"),
+        };
+        Store store = new Store(preDefinedItens);
+        p("Bem vindo a loja, escolha uma das opções a seguir:\n");
+        p("1 - Listar itens disponíveis para compra");
+        p("1 - Vender Item do seu inventário");
+        p("3 - Sair da loja");
+        String choice = scanner();
+        clr();
+        switchStore(choice);
+        return;
+    }
 
 
 
@@ -81,7 +106,7 @@ public class Game {
     }
 
     //Escolhe qual parte do jogo executar:
-    private static void switchToChoice(String choice) {
+    private static void switchMainMenu(String choice) {
         switch (choice){
             case "1":
                 //Vai para a luta aqui
@@ -103,6 +128,19 @@ public class Game {
                 //heroStatus();
                 break;
         }
+    }
+
+    private static void switchStore(String choice){
+        switch (choice){
+            case "1":
+                //lista os items da loja:
+
+                break;
+            case "2":
+                //Vender itens do inventário do herói:
+                break;
+            case "3":
+                return;
     }
 
     private static Hero loadHero(String filename) {
