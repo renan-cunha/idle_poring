@@ -2,6 +2,7 @@ package character;
 
 import character.hero.HeroJobType;
 import item.*;
+import org.w3c.dom.Attr;
 import util.Attributes;
 
 public abstract class Character {
@@ -26,9 +27,8 @@ public abstract class Character {
   //atributos independentes
   protected Attributes attributes;
 
-  protected Equipment armor = new Equipment(EquipmentType.ARMOR);
-  protected Equipment weapon = new Equipment(EquipmentType.WEAPON);
-  protected Equipment helmet = new Equipment(EquipmentType.HELMET);
+  protected Equipment[] equipments ={new Equipment(EquipmentType.ARMOR),
+  new Equipment(EquipmentType.WEAPON), new Equipment(EquipmentType.HELMET)};
 
 
   public Character(String name, Attributes attributes) {
@@ -79,16 +79,14 @@ public abstract class Character {
     return hp;
   }
 
-  //toda vez que adicionar um novo equipamento essa função e mais uma outra
-  //serão alteradas, será que daá pra fazer de uma outra forma mais eficiente
   public void setEquipment(Equipment equipment){
     EquipmentType equipmentType = equipment.getEquipType();
     if (equipmentType==EquipmentType.HELMET)
-      this.helmet = equipment;
+      equipments[0] = equipment;
     else if (equipmentType==EquipmentType.WEAPON)
-      this.weapon = equipment;
+      equipments[1] = equipment;
     else if (equipmentType==EquipmentType.ARMOR)
-      this.armor = equipment;
+      equipments[2] = equipment;
     else
       System.out.println("Erro, the character does not accept this type of equipment");
   }
@@ -133,31 +131,22 @@ public abstract class Character {
     return attributes;
   }
 
-  public Equipment getArmor() {
-    return armor;
-  }
-
-  public Equipment getWeapon() {
-    return weapon;
-  }
-
-  public Equipment getHelmet() {
-    return helmet;
-  }
-
-  //Essa função tambem será alterada toda vez que adicionar um novo equipamento
   public Attributes[] getAttEquip(){
-    return new Attributes[]{helmet.getAttributes(), armor.getAttributes(),
-            weapon.getAttributes()};
+    int length = this.equipments.length;
+    Attributes[] attributes = new Attributes[length];
+    for(int i=0; i<length; i++)
+      attributes[i] = equipments[i].getAttributes();
+    return attributes;
   }
 
-  //Essa função será alterada sempre que adicionat um novo equipamento
   public Equipment[] getEquipments(){
-    return  new Equipment[]{this.armor, this.weapon, this.helmet};
+    return  this.equipments;
   }
 
   public Attributes[] getAttItens(){
     return getAttEquip();
   }
+
+
 
 }
