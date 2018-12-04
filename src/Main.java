@@ -11,16 +11,11 @@ import store.Store;
 import stage.Stage;
 import util.Attributes;
 import pets.Pet;
-
-import javax.smartcardio.ATR;
-
 //import game.*;
 
 
 public class Main {
     public static void main(String[] args) {
-        //Batalha com boleano
-        Hero hero = new Hero("Joaozinh");
-        Game.stages(hero);
+        Game.runGame();
     }
 }
