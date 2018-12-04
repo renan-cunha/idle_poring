@@ -1,6 +1,7 @@
 package item;
 import character.hero.HeroJob;
 import character.hero.HeroJobType;
+import character.hero.Novice;
 import util.Attributes;
 
 import java.util.Arrays;
@@ -20,6 +21,14 @@ public class Equipment implements Item{
   private static int weight=1;
   private Gem gem;
 
+
+  public Equipment(EquipmentType equipmentType){
+    this.name = "Empty";
+    this.heroJobType = HeroJobType.NOVICE;
+    this.equipType = equipmentType;
+    this.attributes = new Attributes(0,0,0,0,0,0,
+            0);
+  }
 
   public Equipment(String name, HeroJobType heroJobType,
                    EquipmentType equipmentType, Attributes attributes){
