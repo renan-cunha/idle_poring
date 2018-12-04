@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public enum EquipmentType {
-  ACESSORY, ARMOR, FOOT_GEAR, HELMET, MANTEAU, WEAPON;
+  ARMOR, HELMET, WEAPON;
 
   public static EquipmentType randomEquipmentType(){
     Random random = new Random();
