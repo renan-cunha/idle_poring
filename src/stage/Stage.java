@@ -1,11 +1,10 @@
 package stage;
-import java.io.FileReader;
 import java.util.*;
 
 import battle.Battle;
-import character.monsters.MonsterJobType;
-import character.monsters.Monster;
-import character.monsters.SimpleFactoryMonster;
+import character.monster.MonsterJobType;
+import character.monster.Monster;
+import character.monster.SimpleFactoryMonster;
 import character.hero.Hero;
 
 public class Stage {
@@ -33,7 +32,6 @@ public class Stage {
     for(int i=0;i<monsterJobTypes.length;i++){
       this.monsterJobTypes.add(monsterJobTypes[i])  ;
     }
-
     fillStageWithMonsters();
     this.boss = createBoss();
   }
@@ -48,6 +46,8 @@ public class Stage {
     this.boss = createBoss();
   }
 
+  //MonsterJobType aleatorio de acordo com a fase
+  //talvez essas funções deveriam ir para simpleFactoryMonster
   private MonsterJobType randomMonsterJobType(){
     int sizeMonsterJobTypes = monsterJobTypes.size();
     int index = random.nextInt(sizeMonsterJobTypes);
@@ -74,7 +74,7 @@ public class Stage {
   public String toString() {
     return "Stage{" +
             "monsterJobTypes=" + monsterJobTypes +
-            ", monsters=" + monsters +
+            ", monster=" + monsters +
             ", lvl=" + lvl +
             ", size=" + size +
             ", boss=" + boss +
@@ -83,7 +83,6 @@ public class Stage {
 
   public void startBattle(Hero hero){
     int i = 0;
-
     while(true) {
       Battle.fight(hero, this.monsters.get(i));
       if(i==this.size-1)
@@ -92,7 +91,7 @@ public class Stage {
   }
 
   public String getMonsters() {
-    return monsters.get(1).toString();
+    return monsters.toString();
   }
 
   public void challengeBoss(Hero hero){
