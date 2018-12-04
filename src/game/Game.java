@@ -16,7 +16,6 @@ public class Game {
     static String filename = "/home/marcelo/idle_poring/src/util/myHero.ser";
 
     public static void runGame(){
-
         intro();
         //saveHero();
 
@@ -29,17 +28,60 @@ public class Game {
 
     }
 
+    public static void setEquipMenu(Hero hero){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\nName of item to equip?");
+        String name = scanner.next();
+        hero.setEquipment((Equipment) hero.bag.getItemByName(name));
+    }
+
+
+    public static void equipmentsMenu(Hero hero){
+        Scanner scanner = new Scanner(System.in);
+        while(true) {
+            System.out.println("\nChoose an option");
+            System.out.println("\n(0) Exit");
+            System.out.println("\n(1) See Bag");
+            System.out.println("\n(2) Equip Item");
+            String n = scanner.next();
+            if (n.equals("1"))
+                hero.getBag().listItens();
+            else if (n.equals("2"))
+                setEquipMenu(hero);
+            else if (n.equals("0"))
+                break;
+        }
+    }
+
+    public static void intraBattleMenu(Hero hero){
+        Scanner scanner = new Scanner(System.in);
+        while(true) {
+            System.out.println("\nChoose an option");
+            System.out.println("\n(0) Exit");
+            System.out.println("\n(1) See Equipments");
+            String n = scanner.next();
+            if (n.equals("1"))
+                equipmentsMenu(hero);
+            else if (n.equals("0"))
+                break;
+        }
+
+        //mais coisas a se adicionar
+    }
+
     public static void stages(Hero myHero){
         Stage stage1 = new Stage(new MonsterJobType[]{MonsterJobType.ORC},
                 1, 3);
-
-    Stage stage2 = new Stage(new MonsterJobType[]{MonsterJobType.PORING},
+        Stage stage2 = new Stage(new MonsterJobType[]{MonsterJobType.PORING},
             2, 5);
-    Stage stage3 = new Stage(new MonsterJobType[]{MonsterJobType.PORING},
+
+        Stage stage3 = new Stage(new MonsterJobType[]{MonsterJobType.PORING},
             3, 10);
-    stage1.startBattle(myHero);
-    stage2.startBattle(myHero);
-    stage3.startBattle(myHero);
+        stage1.startBattle(myHero);
+        intraBattleMenu(myHero);
+        stage2.startBattle(myHero);
+        intraBattleMenu(myHero);
+        stage3.startBattle(myHero);
     }
 
 
