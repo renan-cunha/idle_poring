@@ -54,7 +54,7 @@ public class Attributes {
   }
 
   public void setXp(int xp) {
-    if(xp <0){
+    if(xp <0 ){
       System.out.println("New xp is lower than 0");
       System.exit(0);
     }
@@ -138,5 +138,14 @@ public class Attributes {
             ", luk=" + luk +
             ", xp=" + xp +
             '}';
+  }
+
+  public void lvlUp(){
+    this.dex += 1;
+    this.sta += 1;
+    this.agi += 1;
+    this.intel += 1;
+    this.str += 1;
+    this.luk += 1;
   }
 }

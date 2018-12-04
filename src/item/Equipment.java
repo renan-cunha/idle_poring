@@ -90,8 +90,12 @@ public class Equipment implements Item{
     return equipment;
   }
 
-
-
+  public void setXp(int xp){
+    if (getAttributes().getXp() + xp >= 100){
+      this.getAttributes().lvlUp();
+    }
+    getAttributes().setXp(xp);
+  }
 
   @Override
   public String toString() {

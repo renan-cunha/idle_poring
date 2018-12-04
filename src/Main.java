@@ -11,12 +11,19 @@ import item.*;
 import store.Store;
 import stage.Stage;
 import util.Attributes;
+import pets.Pet;
 
 
 public class Main {
     public static void main(String[] args) {
-        //nova inicializacação personagem
-
+        //aumento de xp
+        Hero hero = new Hero("Joaozinho");
+        Equipment pet = new Equipment("Biscoito",HeroJobType.NOVICE,
+                EquipmentType.ARMOR, 1, 1, 1, 1,
+                1, 1, 1);
+        pet.setXp(110);
+        System.out.println(pet.getAttributes());
+        System.exit(0);
 
 
         //soma atributos
@@ -32,7 +39,7 @@ public class Main {
                 10);
         System.out.println(monster.getPouch().getBalance());
         //desafiar boss
-        Hero hero = new Hero("Joaozinho");
+        hero = new Hero("Joaozinho");
         Stage stage1 = new Stage(1,10);
         stage1.startBattle(hero);
 

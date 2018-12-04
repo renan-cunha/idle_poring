@@ -32,4 +32,11 @@ public class Pet {
             ", attributes=" + attributes +
             '}';
   }
+
+  public void setXp(int xp){
+    if (getAttributes().getXp() + xp >= 100){
+      this.getAttributes().lvlUp();
+    }
+    getAttributes().setXp(xp);
+  }
 }
