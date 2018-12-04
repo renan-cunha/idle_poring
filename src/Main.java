@@ -13,22 +13,20 @@ import pets.Pet;
 
 import javax.smartcardio.ATR;
 
-import game.*;
+//import game.*;
 
 
 public class Main {
     public static void main(String[] args) {
         //Batalha com boleano
         Hero hero = new Hero("Joaozinh");
-
+        Stage stage = new Stage(1,2);
         //System.out.println(hero.getMaxHp());
-        System.out.println(hero.getMaxHp());
-        Pet pet = new Pet("fulnao",100,100,100,100,100,100,100);
         //System.out.println(monster.getMax());
         //Attributes attributes = Attributes.randomAttributes(1,2)
         //Boolean bool = Battle.fight(hero,monster);
-        hero.addPet(pet);
-        System.out.println(hero.getMaxHp());
+
+        stage.startBattle(hero);
         System.exit(0);
         Monster monster = SimpleFactoryMonster.createMonster(MonsterJobType.ORC,
                 1);

@@ -6,6 +6,9 @@ import character.monster.MonsterJobType;
 import character.monster.Monster;
 import character.monster.SimpleFactoryMonster;
 import character.hero.Hero;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
+import java.util.Scanner;
 
 public class Stage {
   private LinkedList<MonsterJobType> monsterJobTypes = new
@@ -84,8 +87,23 @@ public class Stage {
 
   public void startBattle(Hero hero){
     int i = 0;
+    String n;
+    Scanner reader = new Scanner(System.in);
     while(true) {
       Battle.fight(hero, this.monsters.get(i));
+
+      System.out.println(getBossWin());
+      System.out.println("\nChallenge the boss? (y/n) ");
+
+      System.out.println("efef");
+      if(reader.next().equals("y")) {
+        challengeBoss(hero);
+        if (getBossWin())
+          break;
+      }
+
+      //reader.close();
+
       if(i==this.size-1)
         i = 0;
     }
@@ -96,8 +114,9 @@ public class Stage {
   }
 
   public void challengeBoss(Hero hero){
-    Battle.fight(hero, this.boss);
-    this.bossWin = true;
+    Boolean bool = Battle.fight(hero, this.boss);
+    if(bool)
+      this.bossWin=true;
   }
 
   public LinkedList<MonsterJobType> getMonsterJobTypes() {
