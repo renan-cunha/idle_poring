@@ -1,7 +1,7 @@
 package battle;
 import character.Character;
 import character.hero.*;
-import character.monsters.*;
+import character.monster.*;
 import item.Equipment;
 
 //TODO: definir níveis de acesso aos métodos e atributos desta classe
@@ -145,7 +145,7 @@ public class Battle {
     }
 
     private static void passCoinsToHero(Hero hero, Monster monster){
-        int nCoins = monster.pouch.getBalance();
-        hero.pouch.addCoins(nCoins);
+        int nCoins = monster.getPouch().getBalance();
+        hero.getPouch().addCoins(nCoins);
     }
 }

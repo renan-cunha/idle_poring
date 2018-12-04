@@ -174,4 +174,8 @@ public abstract class Character {
             ", equipments=" + Arrays.toString(equipments) +
             '}';
   }
+
+  public Pouch getPouch() {
+    return pouch;
+  }
 }
