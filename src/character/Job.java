@@ -5,8 +5,6 @@ package character;
 
 import util.Attributes;
 
-//#import javax.smartcardio.ATR; Dá um erro ao fazer esse import
-
 public abstract class Job {
     final JobType jobType;
 
@@ -14,19 +12,18 @@ public abstract class Job {
       this.jobType = jobType;
     }
 
-    public int weights(Character character, int sta, int str, int dex,
-                     int intel, int agi, int luk){
+    public int weights(Character character, int staWeight, int strWeight,
+                       int dexWeight, int intelWeight, int agiWeight,
+                       int lukWeight){
 
-      Attributes[] att_item = character.getAttItens();
-      Attributes att = character.getAttributes();
-      att = att.add(att_item);
+      Attributes att = character.getAllAttributes();
 
-      return  sta * att.getSta() +
-              str * att.getStr() +
-              dex * att.getDex() +
-              intel * att.getIntel() +
-              agi * att.getAgi() +
-              luk * att.getLuk();
+      return  staWeight * att.getSta() +
+              strWeight * att.getStr() +
+              dexWeight * att.getDex() +
+              intelWeight * att.getIntel() +
+              agiWeight * att.getAgi() +
+              lukWeight * att.getLuk();
     }
 
     //Abaixo estão os métodos para setar um atributo dependente:

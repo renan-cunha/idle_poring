@@ -147,6 +147,10 @@ public abstract class Character {
     return getAttEquip();
   }
 
+  public Attributes getAllAttributes(){
+    return getAttributes().add(getAttItens());
+  }
+
 
 
 }
