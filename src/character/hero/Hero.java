@@ -6,15 +6,14 @@ import item.Equipment;
 import item.EquipmentType;
 import pets.Pet;
 import util.Attributes;
-
-import javax.smartcardio.ATR;
+import util.Config;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Hero extends Character {
 
   public Inventory bag = new Inventory();
-  private int attributPoints = 0;
+  private int attributPoints = Config.NUMBER_ATT_POINTS_START.getValue();
   private LinkedList<Pet> pets = new LinkedList<Pet>();
 
   public Hero(String name) {
@@ -32,7 +31,7 @@ public class Hero extends Character {
   }
 
   public void addPet(Pet pet){
-    if(pets.size()<6) {
+    if(pets.size()<Config.NUMBER_PETS.getValue()) {
       this.pets.add(pet);
       updateStats();
     }else{
@@ -47,8 +46,9 @@ public class Hero extends Character {
   }
 
   public void setXp(int xp){
-    if (getAttributes().getXp() + xp >= 100){
-      this.attributPoints = this.attributPoints+6;
+    if (getAttributes().getXp() + xp >= Config.XP_TO_LVL_UP.getValue()){
+      this.attributPoints =
+              this.attributPoints+Config.NUMBER_ATT_POINTS_LVL_UP.getValue();
     }
     getAttributes().setXp(xp);
   }
