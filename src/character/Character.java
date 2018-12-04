@@ -5,6 +5,8 @@ import item.*;
 import org.w3c.dom.Attr;
 import util.Attributes;
 
+import java.util.Arrays;
+
 public abstract class Character {
 
   protected final String name;
@@ -151,6 +153,25 @@ public abstract class Character {
     return getAttributes().add(getAttItens());
   }
 
-
-
+  @Override
+  public String toString() {
+    return "Character{" +
+            "name='" + name + '\'' +
+            ", job=" + job +
+            ", pouch=" + pouch +
+            ", hp=" + hp +
+            ", sp=" + sp +
+            ", atk=" + atk +
+            ", def=" + def +
+            ", maxHp=" + maxHp +
+            ", maxSp=" + maxSp +
+            ", atkSpd=" + atkSpd +
+            ", ten=" + ten +
+            ", cri=" + cri +
+            ", hit=" + hit +
+            ", eva=" + eva +
+            ", attributes=" + attributes +
+            ", equipments=" + Arrays.toString(equipments) +
+            '}';
+  }
 }
