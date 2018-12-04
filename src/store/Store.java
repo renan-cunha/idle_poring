@@ -30,7 +30,7 @@ public class Store {
         //Adiciona o item ao shelf da loja:
         this.shelf.addItem(soldItem);
         //Adiona as moedas correspondentes ao valor do item vendido ao Hero:
-        seller.pouch.addCoins(item.getValue());
+        seller.getPouch().addCoins(item.getValue());
 
     }
     //Vende itens para o herói:
@@ -42,7 +42,7 @@ public class Store {
             return;
         }
         //Pagamento:
-        buyer.pouch.withdrawCoins(itemToBeSold.getValue());
+        buyer.getPouch().withdrawCoins(itemToBeSold.getValue());
         //Adiciona na mochila:
         buyer.bag.addItem(itemToBeSold);
     }
