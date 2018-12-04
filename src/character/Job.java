@@ -12,9 +12,9 @@ public abstract class Job {
       this.jobType = jobType;
     }
 
-    public int weights(Character character, int staWeight, int strWeight,
-                       int dexWeight, int intelWeight, int agiWeight,
-                       int lukWeight){
+    public int setAttWeights(Character character, int staWeight, int strWeight,
+                             int dexWeight, int intelWeight, int agiWeight,
+                             int lukWeight){
 
       Attributes att = character.getAllAttributes();
 

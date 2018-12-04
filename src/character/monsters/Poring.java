@@ -11,21 +11,21 @@ public class Poring extends MonsterJob {
 
   @Override
   public int setAtk(Character character) {
-    return weights(character, 1, 2, 0, 0, 0, 0);
+    return setAttWeights(character, 1, 2, 0, 0, 0, 0);
   }
 
   @Override
   public int setDef(Character character) {
-    return weights(character, 2, 2, 0, 0, 0, 0);
+    return setAttWeights(character, 2, 2, 0, 0, 0, 0);
   }
 
   @Override
   public int setMaxHp(Character character) {
-    return weights(character, 4, 2, 0, 0, 0, 0);
+    return setAttWeights(character, 4, 2, 0, 0, 0, 0);
   }
 
   @Override
   public int setMaxSp(Character character) {
-    return weights(character, 0, 0, 0, 2, 0, 0);
+    return setAttWeights(character, 0, 0, 0, 2, 0, 0);
   }
 }

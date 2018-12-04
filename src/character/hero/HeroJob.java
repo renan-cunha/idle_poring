@@ -13,24 +13,24 @@ public abstract class HeroJob extends Job {
   }
 
   public int setAtkSpd(Character character) {
-    return weights(character, 0, 0, 0, 0, 2, 0);
+    return setAttWeights(character, 0, 0, 0, 0, 2, 0);
   }
 
   public int setEva(Character character) {
-    return weights(character, 0, 0, 0, 0, 2, 0);
+    return setAttWeights(character, 0, 0, 0, 0, 2, 0);
   }
 
   public int setCri(Character character) {
-    return weights(character, 0, 0, 0, 0, 0, 2);
+    return setAttWeights(character, 0, 0, 0, 0, 0, 2);
 
   }
 
   public int setHit(Character character) {
-    return weights(character, 0, 0, 0, 0, 0, 2);
+    return setAttWeights(character, 0, 0, 0, 0, 0, 2);
   }
 
   public int setTen(Character character) {
-    return weights(character, 0, 0, 0, 0, 0, 2);
+    return setAttWeights(character, 0, 0, 0, 0, 0, 2);
   }
 
   public HeroJobType getHeroJobType() {
