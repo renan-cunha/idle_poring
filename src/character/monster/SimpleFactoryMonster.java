@@ -6,10 +6,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Random;
+import util.Config;
 
 public class SimpleFactoryMonster {
   //mudar esse weight para um class Config
-  private static int weight = 10;
   private static Random random = new Random();
 
   private static MonsterJob createMonsterJob(MonsterJobType monsterJobType){
@@ -26,10 +26,12 @@ public class SimpleFactoryMonster {
 
 
   public static Monster createMonster(MonsterJobType monsterJobType, int level){
-    Attributes attributes = Attributes.randomAttributes(level,weight);
+    Attributes attributes = Attributes.randomAttributes(level,
+            Config.WEIGHT_RAND_ATT_MONSTER.getValue());
     MonsterJob monsterJob = createMonsterJob(monsterJobType);
     Equipment equipment = Equipment.randomEquipment(level);
-    int nCoins = random.nextInt(level*10);
+    int nCoins = random.nextInt(level*
+            Config.WEIGHT_RAND_COINS_MONSTER.getValue());
     String name = getNameFromSeed();
     Monster monster = new Monster(name, monsterJob, attributes, nCoins);
     monster.setEquipment(equipment);

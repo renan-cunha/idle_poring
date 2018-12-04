@@ -1,24 +1,39 @@
 
 import battle.Battle;
-import character.hero.Novice;
-import character.hero.Swordsman;
-import character.hero.Hero;
-import character.hero.HeroJobType;
+import character.hero.*;
 import character.monster.Monster;
 import character.monster.MonsterJobType;
+import character.monster.Orc;
 import character.monster.SimpleFactoryMonster;
 import item.*;
 import store.Store;
 import stage.Stage;
 import util.Attributes;
+import pets.Pet;
+
+import javax.smartcardio.ATR;
 
 import game.*;
 
 
 public class Main {
     public static void main(String[] args) {
-        Game.runGame();
+        //Batalha com boleano
+        Hero hero = new Hero("Joaozinh");
 
+        //System.out.println(hero.getMaxHp());
+        System.out.println(hero.getMaxHp());
+        Pet pet = new Pet("fulnao",100,100,100,100,100,100,100);
+        //System.out.println(monster.getMax());
+        //Attributes attributes = Attributes.randomAttributes(1,2)
+        //Boolean bool = Battle.fight(hero,monster);
+        hero.addPet(pet);
+        System.out.println(hero.getMaxHp());
+        System.exit(0);
+        Monster monster = SimpleFactoryMonster.createMonster(MonsterJobType.ORC,
+                1);
+
+        //aumento de xp
 
         //nova inicializacação personagem
         
@@ -32,11 +47,11 @@ public class Main {
         System.exit(0);
 
         //criar monstros com money
-        Monster monster = SimpleFactoryMonster.createMonster(MonsterJobType.ORC,
+        monster = SimpleFactoryMonster.createMonster(MonsterJobType.ORC,
                 10);
         System.out.println(monster.getPouch().getBalance());
         //desafiar boss
-        Hero hero = new Hero("Joaozinho");
+        hero = new Hero("Joaozinho");
         Stage stage1 = new Stage(1,10);
         stage1.startBattle(hero);
 

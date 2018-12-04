@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Random;
+import util.Config;
 
 //TODO: Job restriction of equipment
 
@@ -18,7 +19,6 @@ public class Equipment implements Item{
   private EquipmentType equipType;
   private Attributes attributes;
   private static final Random random = new Random();
-  private static int weight=1;
   private Gem gem;
 
 
@@ -83,15 +83,20 @@ public class Equipment implements Item{
 
   public static Equipment randomEquipment(int level){
     EquipmentType equipmentType = EquipmentType.randomEquipmentType();
-    Attributes attributes = Attributes.randomAttributes(level, weight);
+    Attributes attributes = Attributes.randomAttributes(level,
+            Config.WEIGHT_RAND_ATT_EQUIP.getValue());
     HeroJobType heroJobType = HeroJobType.randomHeroJobType();
     Equipment equipment = new Equipment("Equipamentos", heroJobType,
             equipmentType, attributes);
     return equipment;
   }
 
-
-
+  public void setXp(int xp){
+    if (getAttributes().getXp() + xp >= Config.XP_TO_LVL_UP.getValue()){
+      this.getAttributes().lvlUp();
+    }
+    getAttributes().setXp(xp);
+  }
 
   @Override
   public String toString() {

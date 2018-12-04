@@ -1,5 +1,6 @@
 package util;
 import java.util.Random;
+import util.Config;
 
 public class Attributes {
   private int level = 1;
@@ -54,14 +55,14 @@ public class Attributes {
   }
 
   public void setXp(int xp) {
-    if(xp <0){
+    if(xp <0 ){
       System.out.println("New xp is lower than 0");
       System.exit(0);
     }
     this.xp = xp;
-    if(this.xp >= 100){
+    if(this.xp >= Config.XP_TO_LVL_UP.getValue()){
       this.level +=1;
-      this.xp -= 100;
+      this.xp -= Config.XP_TO_LVL_UP.getValue();
     }
 
   }
@@ -138,5 +139,14 @@ public class Attributes {
             ", luk=" + luk +
             ", xp=" + xp +
             '}';
+  }
+
+  public void lvlUp(){
+    this.dex += Config.AUTO_INCREMENT_ATT_LVL_UP.getValue();
+    this.sta += Config.AUTO_INCREMENT_ATT_LVL_UP.getValue();
+    this.agi += Config.AUTO_INCREMENT_ATT_LVL_UP.getValue();
+    this.intel += Config.AUTO_INCREMENT_ATT_LVL_UP.getValue();
+    this.str += Config.AUTO_INCREMENT_ATT_LVL_UP.getValue();
+    this.luk += Config.AUTO_INCREMENT_ATT_LVL_UP.getValue();
   }
 }

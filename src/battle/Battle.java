@@ -3,13 +3,14 @@ import character.Character;
 import character.hero.*;
 import character.monster.*;
 import item.Equipment;
+import util.Config;
 
 //TODO: definir níveis de acesso aos métodos e atributos desta classe
 //TODO: Aumentar a complexidade da batalha, levar em conta outros atributos como sorte, agilidade etc
 public class Battle {
     static int turn = 0;
     //executa a batalha:
-    static public void fight(Hero heroi, Monster inimigo){
+    static public Boolean fight(Hero heroi, Monster inimigo){
         System.out.printf("Uma batalha entre %s e %s foi iniciada %n", heroi.getName(), inimigo.getName());
         //Armazena informações do turno:
         turn = 1;
@@ -39,12 +40,12 @@ public class Battle {
             turn +=1;
 
             if(isDead(heroi))
-                return;
+                return false;
             else if(isDead(inimigo)){
                 passEquipmentsToHero(heroi, inimigo);
                 int xp = heroi.getAttributes().getXp();
                 heroi.setXp(xp+10);
-                return;
+                return true;
             }
 
             //Pausa a execução em alguns ms por turno:
@@ -54,7 +55,7 @@ public class Battle {
 
             }
         }
-
+    return false;
     }
 
     //Desfere um golpe no inimigo:
@@ -74,9 +75,10 @@ public class Battle {
         int defense = defender.getDef();
 
         //O dano é diminuido em 10% pela defesa do inimigo (Arbitrário)
-        int damage =  attack - (int) (0.10 * defense);
+        int damage =  attack - (int) (Config.WEIGHT_DEFENSE.getValue()
+                *0.10 * defense);
         //aplica o dano crítico:
-        if (critical(attacker)) damage *= 2;
+        if (critical(attacker)) damage *= Config.WEIGHT_CRITICAL_DAMAGE.getValue();
         //aplica a evasiva:
         if (!evaded(attacker,defender)) {
             return 0;}
@@ -89,13 +91,14 @@ public class Battle {
 
     //define se esquivou de um ataque:
     public static boolean evaded(Character attacker, Character defender){
-        return Math.random() < 1.0*attacker.getHit()/(attacker.getHit()+defender.getEva());
+        return Math.random() < Config.WEIGHT_EVADED.getValue()*
+                attacker.getHit()/(attacker.getHit()+defender.getEva());
     }
 
     //Define se houve dano crítico:
     public static boolean critical(Character attacker){
-        // A chance de critico é 20% + 1.5* pontos_de_critico:
-        float chance = (float)(20+1.5*attacker.getCri())/100;
+        float chance = (float)(Config.BASE_CRITICAL_CHANCE.getValue()+
+                Config.WEIGHT_CRITICAL_CHANCE.getValue()*attacker.getCri())/100;
         if(Math.random() < chance) return true;
         return false;
     }

@@ -7,6 +7,7 @@ import item.EquipmentType;
 import pets.Pet;
 import util.Attributes;
 import java.io.*;
+import util.Config;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -14,13 +15,13 @@ import java.util.LinkedList;
 public class Hero extends Character implements Serializable {
 
   public Inventory bag = new Inventory();
-  private int attributPoints = 0;
+  private int attributPoints = Config.NUMBER_ATT_POINTS_START.getValue();
   private LinkedList<Pet> pets = new LinkedList<Pet>();
 
   public Hero(String name) {
     super(name);
     this.job = new Novice();
-    updateStats();
+    super.updateStats();
   }
 
   public Pet getPet(int index){
@@ -32,7 +33,7 @@ public class Hero extends Character implements Serializable {
   }
 
   public void addPet(Pet pet){
-    if(pets.size()<6) {
+    if(pets.size()<Config.NUMBER_PETS.getValue()) {
       this.pets.add(pet);
       updateStats();
     }else{
@@ -47,8 +48,9 @@ public class Hero extends Character implements Serializable {
   }
 
   public void setXp(int xp){
-    if (getAttributes().getXp() + xp >= 100){
-      this.attributPoints = this.attributPoints+6;
+    if (getAttributes().getXp() + xp >= Config.XP_TO_LVL_UP.getValue()){
+      this.attributPoints =
+              this.attributPoints+Config.NUMBER_ATT_POINTS_LVL_UP.getValue();
     }
     getAttributes().setXp(xp);
   }
@@ -156,6 +158,9 @@ public class Hero extends Character implements Serializable {
 
   @Override
   public Attributes getAllAttributes(){
-   return getAttributes().add(getAttEquip()).add(getAttPets());
+    if(pets.size()==0)
+      return super.getAllAttributes();
+    else
+      return super.getAllAttributes().add(getAttPets());
   }
 }

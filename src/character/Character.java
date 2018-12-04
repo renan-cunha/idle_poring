@@ -44,7 +44,8 @@ public abstract class Character {
   }
 
   public Character(String name){
-    this(name, 1, 1, 1, 1, 1, 1, 1);
+    this(name, 1, 10, 10, 10,
+            10, 10, 10);
   }
 
   public abstract void setJob(Job job);
@@ -57,6 +58,7 @@ public abstract class Character {
     this.cri = job.setCri(this);
     this.ten = job.setTen(this);
     this.atkSpd = job.setAtkSpd(this);
+    System.out.println(job.setMaxHp(this));
     this.maxSp = job.setMaxSp(this);
     this.maxHp = job.setMaxHp(this);
   }
@@ -91,6 +93,7 @@ public abstract class Character {
       equipments[2] = equipment;
     else
       System.out.println("Erro, the character does not accept this type of equipment");
+    updateStats();
   }
 
   public int getAtk() {
