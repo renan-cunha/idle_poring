@@ -15,7 +15,7 @@ public class Stage {
   private Random random = new Random();
   private int size;
   private Monster boss;
-  private Boolean bossWin;
+  private Boolean bossWin=false;
 
   public Stage(int lvl, int size) {
     this.lvl = lvl;
@@ -97,6 +97,7 @@ public class Stage {
 
   public void challengeBoss(Hero hero){
     Battle.fight(hero, this.boss);
+    this.bossWin = true;
   }
 
   public LinkedList<MonsterJobType> getMonsterJobTypes() {
