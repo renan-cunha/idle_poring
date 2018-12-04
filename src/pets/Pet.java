@@ -1,5 +1,6 @@
 package pets;
 import util.Attributes;
+import util.Config;
 
 public class Pet {
   String name;
@@ -34,7 +35,7 @@ public class Pet {
   }
 
   public void setXp(int xp){
-    if (getAttributes().getXp() + xp >= 100){
+    if (getAttributes().getXp() + xp >= Config.XP_TO_LVL_UP.getValue()){
       this.getAttributes().lvlUp();
     }
     getAttributes().setXp(xp);
