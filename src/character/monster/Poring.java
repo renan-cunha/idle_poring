@@ -1,4 +1,4 @@
-package character.monsters;
+package character.monster;
 
 import character.Character;
 

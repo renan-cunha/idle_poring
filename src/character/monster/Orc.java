@@ -1,9 +1,8 @@
-package character.monsters;
+package character.monster;
 
 import character.Character;
 
 public class Orc extends MonsterJob {
-
 
   public Orc() {
     super(MonsterJobType.ORC);

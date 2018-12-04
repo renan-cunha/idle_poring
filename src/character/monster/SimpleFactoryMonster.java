@@ -1,17 +1,17 @@
-package character.monsters;
+package character.monster;
 
 import item.Equipment;
 import util.Attributes;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Random;
 
-
 public class SimpleFactoryMonster {
+  //mudar esse weight para um class Config
   private static int weight = 10;
   private static Random random = new Random();
+
   private static MonsterJob createMonsterJob(MonsterJobType monsterJobType){
     if(monsterJobType == MonsterJobType.PORING){
       return new Poring();
@@ -55,6 +55,5 @@ public class SimpleFactoryMonster {
       e.printStackTrace();
     }
     return line;
-
   }
 }
