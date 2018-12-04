@@ -12,12 +12,16 @@ import store.Store;
 import stage.Stage;
 import util.Attributes;
 
+import game.*;
+
 
 public class Main {
     public static void main(String[] args) {
+        Game.runGame();
+
+
         //nova inicializacação personagem
-
-
+        
 
         //soma atributos
         Attributes attributes = new Attributes(1,1,1,1,
