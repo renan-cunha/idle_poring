@@ -24,7 +24,14 @@ public class Hero extends Character implements Serializable {
     super.updateStats();
   }
 
-  public Pet getPet(int index){
+  public Hero(String name, HeroJob job) {
+    super(name);
+    this.job = job;
+    super.updateStats();
+  }
+
+
+    public Pet getPet(int index){
     return pets.get(index);
   }
 

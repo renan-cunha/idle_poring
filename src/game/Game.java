@@ -1,6 +1,5 @@
 package game;
-import character.hero.Hero;
-import character.hero.HeroJobType;
+import character.hero.*;
 import character.monster.MonsterJobType;
 import item.*;
 import stage.Stage;
@@ -17,7 +16,16 @@ public class Game {
         //Hero hero = loadHero();
         p("\nQual o nome do herói que você quer criar?\n");
         String name = reader.next();
+        p("Qual classe você quer para seu herói?\n'M' para Mago ou\n 'S' para Espadachim ou \n'A' para arqueiro\n");
+        String classe = reader.next();
         Hero hero = new Hero(name);
+        if(classe.equals("M"))
+            hero.setJob(new Mage());
+        else if(classe.equals("S"))
+            hero.setJob(new Swordsman());
+        else if(classe.equals("A"))
+            hero.setJob(new Archer());
+
         mainMenu(hero, reader);
         //saveHero(hero);
         reader.close();
