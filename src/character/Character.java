@@ -58,7 +58,6 @@ public abstract class Character {
     this.cri = job.setCri(this);
     this.ten = job.setTen(this);
     this.atkSpd = job.setAtkSpd(this);
-    System.out.println(job.setMaxHp(this));
     this.maxSp = job.setMaxSp(this);
     this.maxHp = job.setMaxHp(this);
   }
