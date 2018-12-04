@@ -59,6 +59,11 @@ public class Attributes {
       System.exit(0);
     }
     this.xp = xp;
+    if(this.xp >= 100){
+      this.level +=1;
+      this.xp -= 100;
+    }
+
   }
 
   public int getLevel() {
