@@ -1,22 +1,24 @@
 
 import battle.Battle;
-import character.Character;
 import character.hero.Novice;
 import character.hero.Swordsman;
 import character.hero.Hero;
 import character.hero.HeroJobType;
-import character.monsters.Monster;
-import character.monsters.MonsterJobType;
-import character.monsters.SimpleFactoryMonster;
+import character.monster.Monster;
+import character.monster.MonsterJobType;
+import character.monster.SimpleFactoryMonster;
 import item.*;
 import store.Store;
-import inventory.*;
 import stage.Stage;
 import util.Attributes;
 
 
 public class Main {
     public static void main(String[] args) {
+        //nova inicializacação personagem
+
+
+
         //soma atributos
         Attributes attributes = new Attributes(1,1,1,1,
                 1,1,1);
@@ -28,10 +30,9 @@ public class Main {
         //criar monstros com money
         Monster monster = SimpleFactoryMonster.createMonster(MonsterJobType.ORC,
                 10);
-        System.out.println(monster.pouch.getBalance());
+        System.out.println(monster.getPouch().getBalance());
         //desafiar boss
-        Hero hero = new Hero("Joaozinho", new Novice(), 10, 10, 10, 10, 10, 10
-                , 10);
+        Hero hero = new Hero("Joaozinho");
         Stage stage1 = new Stage(1,10);
         stage1.startBattle(hero);
 
@@ -39,8 +40,7 @@ public class Main {
 
         // há um novo field em hero, attributes_points, e metodos para
         // incrementar os atributos de acordo com esse field
-        hero = new Hero("Joaozinho", new Novice(), 10, 10, 10, 10, 10, 10
-        , 10);
+        hero = new Hero("Joaozinho");
         System.out.println(hero.getAttributPoints());
         System.out.println(hero.getAttributes());
         hero.setXp(100);
@@ -49,8 +49,7 @@ public class Main {
         System.out.println(hero.getAttributes());
 
         //
-        Hero heroi = new Hero("Joaozinho", new Novice(), 10,10,
-                10, 10, 10, 10, 10);
+        Hero heroi = new Hero("Joaozinho");
 
         monster = SimpleFactoryMonster.createMonster(MonsterJobType.ORC,1);
         Equipment equipment = new Equipment("armadura de fogo",
@@ -101,8 +100,8 @@ public class Main {
         //Lista os itens da mochila:
         fulano.bag.listItens();
         //Guarda moedas na pochete de moedas
-        fulano.pouch.addCoins(5);
-        System.out.println("Têm "+fulano.pouch.getBalance()+" moedas");
+        fulano.getPouch().addCoins(5);
+        System.out.println("Têm "+fulano.getPouch().getBalance()+" moedas");
 
         //Retorna um item da mochila:
         Equipment capacetinho = (Equipment) fulano.bag.retrieveItemByName("capacete de ferro");
@@ -118,11 +117,11 @@ public class Main {
                 1,1,1,1 ), new Potion("Poção mágica 01")});
 
         lojinha.listItens();
-        fulano.pouch.addCoins(50);
-        System.out.println("Fulano tem "+ fulano.pouch.getBalance() +" moedas");
+        fulano.getPouch().addCoins(50);
+        System.out.println("Fulano tem "+ fulano.getPouch().getBalance() +" moedas");
         //vende item da mochila:
         lojinha.sellItem(fulano, fulano.bag.getItemByName("lasanha") );
-        System.out.println("Depois de vender o item fulano tem "+ fulano.pouch.getBalance() +" moedas");
+        System.out.println("Depois de vender o item fulano tem "+ fulano.getPouch().getBalance() +" moedas");
 
 
 
