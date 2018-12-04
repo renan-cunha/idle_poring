@@ -10,7 +10,7 @@ import util.Config;
 public class Battle {
     static int turn = 0;
     //executa a batalha:
-    static public void fight(Hero heroi, Monster inimigo){
+    static public Boolean fight(Hero heroi, Monster inimigo){
         System.out.printf("Uma batalha entre %s e %s foi iniciada %n", heroi.getName(), inimigo.getName());
         //Armazena informações do turno:
         turn = 1;
@@ -40,12 +40,12 @@ public class Battle {
             turn +=1;
 
             if(isDead(heroi))
-                return;
+                return false;
             else if(isDead(inimigo)){
                 passEquipmentsToHero(heroi, inimigo);
                 int xp = heroi.getAttributes().getXp();
                 heroi.setXp(xp+10);
-                return;
+                return true;
             }
 
             //Pausa a execução em alguns ms por turno:
@@ -55,7 +55,7 @@ public class Battle {
 
             }
         }
-
+    return false;
     }
 
     //Desfere um golpe no inimigo:
