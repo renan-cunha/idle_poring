@@ -1,14 +1,10 @@
 package game;
-
-
-import battle.Battle;
 import character.hero.Hero;
 import character.hero.HeroJobType;
 import character.monster.MonsterJobType;
 import item.*;
 import stage.Stage;
 import store.Store;
-import util.Attributes;
 import java.io.*;
 import java.util.Scanner;
 
@@ -16,52 +12,50 @@ public class Game {
     static String filename = "/home/marcelo/idle_poring/src/util/myHero.ser";
 
     public static void runGame(){
-        intro();
-        //saveHero();
-
-        //Hero hero = loadHero(filename);
-        //heroStatus();
-
-        mainMenu();
-        //loop da batalha abaixo:
-
-
+        Scanner reader = new Scanner(System.in);
+        intro(reader);
+        //Hero hero = loadHero();
+        p("\nQual o nome do herói que você quer criar?\n");
+        String name = reader.next();
+        Hero hero = new Hero(name);
+        mainMenu(hero, reader);
+        //saveHero(hero);
+        reader.close();
+        return;
     }
 
-    public static void setEquipMenu(Hero hero){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("\nName of item to equip?");
-        String name = scanner.next();
+    private static void setEquipMenu(Hero hero, Scanner reader){
+        System.out.println("\nInsira o nome do item para equipar");
+        String name = scan(reader);
         hero.setEquipment((Equipment) hero.bag.getItemByName(name));
     }
 
 
-    public static void equipmentsMenu(Hero hero){
-        Scanner scanner = new Scanner(System.in);
+    private static void equipmentsMenu(Hero hero, Scanner reader){
         while(true) {
-            System.out.println("\nChoose an option");
-            System.out.println("\n(0) Exit");
-            System.out.println("\n(1) See Bag");
-            System.out.println("\n(2) Equip Item");
-            String n = scanner.next();
+            System.out.println("\nEscolha uma opção");
+            System.out.println("\n(0) Sair");
+            System.out.println("\n(1) Ver mocihla");
+            System.out.println("\n(2) Equipar um item");
+            String n = scan(reader);
             if (n.equals("1"))
                 hero.getBag().listItens();
             else if (n.equals("2"))
-                setEquipMenu(hero);
+                setEquipMenu(hero, reader);
             else if (n.equals("0"))
                 break;
         }
     }
 
-    public static void intraBattleMenu(Hero hero){
+    public static void battleMenu(Hero hero, Scanner reader){
         Scanner scanner = new Scanner(System.in);
         while(true) {
-            System.out.println("\nChoose an option");
-            System.out.println("\n(0) Exit");
-            System.out.println("\n(1) See Equipments");
+            System.out.println("\nEscolha uma opção");
+            System.out.println("\n(0) Sair");
+            System.out.println("\n(1) Ver equipamentos");
             String n = scanner.next();
             if (n.equals("1"))
-                equipmentsMenu(hero);
+                equipmentsMenu(hero,reader);
             else if (n.equals("0"))
                 break;
         }
@@ -69,7 +63,7 @@ public class Game {
         //mais coisas a se adicionar
     }
 
-    public static void stages(Hero myHero){
+    public static void stages(Hero myHero, Scanner reader){
         Stage stage1 = new Stage(new MonsterJobType[]{MonsterJobType.ORC},
                 1, 3);
         Stage stage2 = new Stage(new MonsterJobType[]{MonsterJobType.PORING},
@@ -78,63 +72,112 @@ public class Game {
         Stage stage3 = new Stage(new MonsterJobType[]{MonsterJobType.PORING},
             3, 10);
         stage1.startBattle(myHero);
-        intraBattleMenu(myHero);
+        battleMenu(myHero, reader);
         stage2.startBattle(myHero);
-        intraBattleMenu(myHero);
+        battleMenu(myHero, reader);
         stage3.startBattle(myHero);
     }
 
 
     //Tela de introdução do jogo:
-    private static void intro(){
+    private static void intro(Scanner reader){
         p("===== Bem vindo ao Idle Poring =====\n\n\n");
         p("== Autores:  == \n");
         p("Renan Cunha & João Almeida");
         p("Enter para continuar ");
-        scanner();
+        scan(reader);
+        clr();
     }
 
     //Mostra o estado atual do seu personagem:
     private static void heroStatus(Hero myHero){
         p("O seu herói está assim:\n");
-
+        //TODO: Implementar o resto
     }
     //Menu principal do jogo:
-    private static void mainMenu(){
-        p("Escolha uma das opções a seguir:\n");
-        p("1- Ir para um mapa\n");
-        p("2- Pets\n");
-        p("3- Mochila\n");
-        p("4 - Loja\n");
-        p("5 - Herói\n\n");
-        p("Qual você deseja escolher: ");
-        String choice = scanner();
-        clr();
-        switchMainMenu(choice);
+    private static void mainMenu(Hero hero, Scanner reader){
+        while(true){
+            p("Escolha uma das opções a seguir:\n");
+            p("1- Ir para um mapa\n");
+            p("2- Pets\n");
+            p("3- Mochila\n");
+            p("4 - Loja\n");
+            p("5 - Sair do jogo\n");
+            p("Qual você deseja escolher: ");
+            String choice = scan(reader);
+            clr();
+            switch (choice){
+                case "1":
+                    //Vai para a luta aqui
+                    stages(hero, reader);
+                    break;
+                case "2":
+                    //Página de pets aqui
+                    //getpets();
+                    break;
+                case "3":
+                    //Mochila aqui
+                    equipmentsMenu(hero, reader);
+                    break;
+                case "4":
+                    //Loja aqui
+                    store(hero, reader);
+                    break;
+                case "5":
+                    p("Saindo!");
+                    //savehero();
+                    System.exit(0);
+                    break;
+            }
+        }
     }
 
     //Carrega uma loja
-    public static void Store(){
+    public static void store(Hero hero, Scanner reader){
         Item[] preDefinedItens = {
-                new Equipment("Capacete Poderoso", HeroJobType.NOVICE, EquipmentType.HELMET, 1, 2, 1,
+                new Equipment("Capacete", HeroJobType.NOVICE, EquipmentType.HELMET, 1, 2, 1,
                         1, 1, 1, 1),
-                new Equipment("Machado Forte", HeroJobType.NOVICE, EquipmentType.WEAPON, 1, 2, 1,
+                new Equipment("Machado", HeroJobType.NOVICE, EquipmentType.WEAPON, 1, 2, 1,
                         1, 1, 1, 1),
-                new Equipment("ARmadura de Couraça", HeroJobType.NOVICE, EquipmentType.ARMOR, 1, 2, 1,
+                new Equipment("Armadura", HeroJobType.NOVICE, EquipmentType.ARMOR, 1, 2, 1,
                         1, 1, 1, 1),
 
-                new Potion("Poção mágica"),
-                new Food("Mantimentos Básicos"),
+                new Potion("Poção"),
+                new Food("Mantimentos"),
         };
         Store store = new Store(preDefinedItens);
-        p("Bem vindo a loja, escolha uma das opções a seguir:\n");
-        p("1 - Listar itens disponíveis para compra");
-        p("1 - Vender Item do seu inventário");
-        p("3 - Sair da loja");
-        String choice = scanner();
-        clr();
-        switchStore(choice);
-        return;
+        while(true){
+            p("Bem vindo a loja, escolha uma das opções a seguir:\n");
+            p("1 - Listar itens disponíveis para compra");
+            p("2 - Vender Item do seu inventário");
+            p("3 - Sair da loja");
+            String choice = scan(reader);
+            switch (choice){
+                case "1":
+                    //lista os items da loja:
+                    store.listItens();
+                    p("Qual o nome do item você deseja comprar?");
+                    String escolha = reader.next();
+                    store.sellItem(hero,escolha);
+                    clr();
+                    break;
+                case "2":
+                    clr();
+                    //Vender itens do inventário do herói:
+                    p("Escolha o item do seu inventário você quer vender:");
+                    hero.getBag().listItens();
+                    String entrada = scan(reader);
+                    Item item = hero.getBag().checkItem(Integer.parseInt(entrada));
+                    store.buyItem(hero,item);
+                    p("Você vendeu o item com sucesso! ");
+                    break;
+                case "3":
+                    clr();
+                    return;
+            }
+            clr();
+        }
+
     }
 
     //Limpa a tela:
@@ -147,51 +190,11 @@ public class Game {
     }
 
     //Enter para prosseguir:
-    private static String scanner(){
-        Scanner reader = new Scanner(System.in);
-        String input = reader.next();
-        reader.close();
-        return input;
+    private static String scan(Scanner reader){
+        return reader.next();
+
     }
 
-    //Escolhe qual parte do jogo executar:
-    private static void switchMainMenu(String choice) {
-        switch (choice){
-            case "1":
-                //Vai para a luta aqui
-                //Battle.fight();
-                break;
-            case "2":
-                //Página de pets aqui
-                //getpets();
-                break;
-            case "3":
-                //Mochila aqui
-                //bag();
-                break;
-            case "4":
-                //Loja aqui
-                //store();
-                break;
-            case "5":
-                //heroStatus();
-                break;
-        }
-    }
-
-    private static void switchStore(String choice){
-        switch (choice){
-            case "1":
-                //lista os items da loja:
-
-                break;
-            case "2":
-                //Vender itens do inventário do herói:
-                break;
-            case "3":
-                return;
-    }
-    }
 
     private static Hero loadHero(String filename) {
         //Recupera o estado do herói principal:

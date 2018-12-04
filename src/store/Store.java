@@ -24,9 +24,9 @@ public class Store {
     }
 
     //COmpra itens do herói:
-    public void sellItem(Hero seller, Item item){
+    public void buyItem(Hero seller, Item item){
         //Retira o item da mochila do Herói:
-        Item soldItem = seller.bag.retrieveItemByName(item.getName());
+        Item soldItem = seller.getBag().retrieveItemByName(item.getName());
         //Adiciona o item ao shelf da loja:
         this.shelf.addItem(soldItem);
         //Adiona as moedas correspondentes ao valor do item vendido ao Hero:
@@ -34,7 +34,7 @@ public class Store {
 
     }
     //Vende itens para o herói:
-    public void buyItem(Hero buyer, String itemName){
+    public void sellItem(Hero buyer, String itemName){
         //Busca o item:
         Item itemToBeSold = this.shelf.retrieveItemByName(itemName);
         if(itemToBeSold == null){
@@ -44,6 +44,8 @@ public class Store {
         //Pagamento:
         buyer.getPouch().withdrawCoins(itemToBeSold.getValue());
         //Adiciona na mochila:
-        buyer.bag.addItem(itemToBeSold);
+        buyer.getBag().addItem(itemToBeSold);
     }
+
+    public Inventory getShelf(){ return this.shelf;}
 }

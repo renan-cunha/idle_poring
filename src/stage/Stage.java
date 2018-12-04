@@ -6,7 +6,7 @@ import character.monster.MonsterJobType;
 import character.monster.Monster;
 import character.monster.SimpleFactoryMonster;
 import character.hero.Hero;
-import com.sun.org.apache.xpath.internal.operations.Bool;
+
 
 import java.util.Scanner;
 

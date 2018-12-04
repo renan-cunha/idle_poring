@@ -100,7 +100,7 @@ public class Equipment implements Item{
 
   @Override
   public String toString() {
-    return "Equipment{" +
+    return "\nEquipment{" +
             "\nName=" + name + '\'' +
             "\nEquipmentType=" + equipType + '\''+
             "\nHeroJobType=" + heroJobType + '\''+

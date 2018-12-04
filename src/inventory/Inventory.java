@@ -9,10 +9,7 @@ public class Inventory {
     int i;
 
     //Adiciona itens:
-    public void addItem(Item item){
-        this.inventory.add(item);
-        System.out.printf("%s foi adicionado[a] na mochila",item.getName());
-    }
+    public void addItem(Item item){ this.inventory.add(item); }
 
     //Adiciona multiplos itens:
     public void addItens(Item[] initial_itens){
