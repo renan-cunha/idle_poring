@@ -1,7 +1,8 @@
 package util;
 
 public enum Config {
-  XP_TO_LVL_UP(100), AUTO_INCREMENT_ATT_LVL_UP(1)
+  XP_TO_LVL_UP(100), AUTO_INCREMENT_ATT_LVL_UP(1),
+  WEIGHT_RAND_ATT_EQUIP(1)
   ;
 
   public int value;
