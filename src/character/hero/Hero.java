@@ -1,5 +1,4 @@
 package character.hero;
-
 import inventory.Inventory;
 import character.Character;
 import character.Job;
@@ -8,6 +7,7 @@ import item.EquipmentType;
 import pets.Pet;
 import util.Attributes;
 
+import javax.smartcardio.ATR;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -15,29 +15,11 @@ public class Hero extends Character {
 
   public Inventory bag = new Inventory();
   private int attributPoints = 0;
-
-
-  LinkedList<Pet> pets = new LinkedList<Pet>();
-
-  //TODO: Hp and SP should be on Battle class or in Character class?
-  //TODO: Set stats with attributes of character and item
-
+  private LinkedList<Pet> pets = new LinkedList<Pet>();
 
   public Hero(String name) {
     super(name);
     this.job = new Novice();
-    updateStats();
-  }
-
-  public Hero(String name, HeroJob job, Attributes attributes) {
-    super(name, attributes);
-    this.job = job;
-    updateStats();
-  }
-
-  public Hero(String name, HeroJob job, int level, int dex, int sta, int str, int intel, int agi, int luk) {
-    super(name, level, dex, sta, str, intel, agi, luk);
-    this.job = job;
     updateStats();
   }
 
@@ -50,8 +32,12 @@ public class Hero extends Character {
   }
 
   public void addPet(Pet pet){
-    this.pets.add(pet);
-    updateStats();
+    if(pets.size()<6) {
+      this.pets.add(pet);
+      updateStats();
+    }else{
+      System.out.println("Maximum number of pets");
+    }
   }
 
   @Override
@@ -71,59 +57,57 @@ public class Hero extends Character {
     return attributPoints;
   }
 
+
+  private boolean testAttributePoints(){
+    if(this.attributPoints>0){
+      this.attributPoints -= 1;
+      return true;
+    }else{
+      System.out.println("Error, you don't have more att points");
+      return false;
+    }
+  }
+
+  //isso abaixo é codigo duplicado ou não?
   public void increaseSta(){
-    if(attributPoints>0){
+    if(testAttributePoints()){
       int sta = getAttributes().getSta();
       getAttributes().setSta(sta+1);
-      this.attributPoints -= 1;
-    }else{
-      System.out.println("Erro, vc não tem mais pontos de atributos");
     }
   }
+
   public void increaseDex(){
-    if(attributPoints>0){
+    if(testAttributePoints()) {
       int dex = getAttributes().getDex();
-      getAttributes().setDex(dex+1);
-      this.attributPoints -= 1;
-    }else{
-      System.out.println("Erro, vc não tem mais pontos de atributos");
+      getAttributes().setDex(dex + 1);
     }
   }
+
   public void increaseIntel(){
-    if(attributPoints>0){
+    if(testAttributePoints()){
       int intel = getAttributes().getIntel();
       getAttributes().setSta(intel+1);
-      this.attributPoints -= 1;
-    }else{
-      System.out.println("Erro, vc não tem mais pontos de atributos");
     }
   }
+
   public void increaseStr(){
-    if(attributPoints>0){
+    if(testAttributePoints()){
       int str = getAttributes().getStr();
       getAttributes().setStr(str+1);
-      this.attributPoints -= 1;
-    }else{
-      System.out.println("Erro, vc não tem mais pontos de atributos");
     }
   }
+
   public void increaseAgi(){
-    if(attributPoints>0){
+    if(testAttributePoints()){
       int agi = getAttributes().getAgi();
       getAttributes().setAgi(agi+1);
-      this.attributPoints -= 1;
-    }else{
-      System.out.println("Erro, vc não tem mais pontos de atributos");
     }
   }
 
   public void increaseLuk(){
-    if(attributPoints>0){
+    if(testAttributePoints()){
       int luk = getAttributes().getLuk();
       getAttributes().setLuk(luk+1);
-      this.attributPoints -= 1;
-    }else{
-      System.out.println("Erro, vc não tem mais pontos de atributos");
     }
   }
 
@@ -138,42 +122,20 @@ public class Hero extends Character {
 
   private boolean testEquipmentJobType(Equipment equipment){
     HeroJob job = (HeroJob) this.job;
-    if (equipment.getHeroJobType() == job.getHeroJobType() || equipment.getHeroJobType()== HeroJobType.NOVICE){
+    if (equipment.getHeroJobType() == job.getHeroJobType() ||
+            equipment.getHeroJobType()== HeroJobType.NOVICE){
       return true;
     }
     else{
-      System.out.println("ERROR: This equipment does not suit the character's job");
+      System.out.println("ERROR: This equipment" +
+              " does not suit the character's job");
       return false;
     }
   }
 
-  public void setHelmet(Equipment helmet) {
-    if (testEquipmentJobType(helmet)) {
-      if (helmet.getEquipType() == EquipmentType.HELMET) {
-        this.helmet = helmet;
-        updateStats();
-      }else
-        System.out.println("It's not a Helmet");
-    }
-  }
-
-  public void setWeapon(Equipment weapon) {
-    if (testEquipmentJobType(weapon)) {
-      if (weapon.getEquipType() == EquipmentType.WEAPON) {
-        this.weapon = weapon;
-        updateStats();
-      }else
-        System.out.println("It's not a Weapon");
-    }
-  }
-
-  public void setArmor(Equipment armor) {
-    if (testEquipmentJobType(armor)) {
-      if (armor.getEquipType() == EquipmentType.ARMOR) {
-        this.armor = armor;
-        updateStats();
-      }else
-        System.out.println(("Its' not an Armor"));
+  public void setEquipment(Equipment equipment){
+    if (testEquipmentJobType(equipment)){
+      super.setEquipment(equipment);
     }
   }
 
@@ -183,21 +145,17 @@ public class Hero extends Character {
 
   public Attributes[] getAttPets(){
     int size = pets.size();
-    ArrayList<Attributes> attributes = new ArrayList<Attributes>();
+    Attributes[] attributes = new Attributes[size];
+
     for(int i=0; i <size; i++){
-      attributes.add(pets.get(i).getAttributes());
+      attributes[i] = pets.get(i).getAttributes();
     }
-    Attributes[] att = new Attributes[size];
-    att = attributes.toArray(att);
-    return att;
+
+    return attributes;
   }
 
   @Override
-  public  Attributes[] getAttItens(){
-    Attributes test = new Attributes();
-    test = test.add(getAttEquip());
-    test = test.add(getAttPets());
-    Attributes[] result = {test};
-    return result;
+  public Attributes getAllAttributes(){
+   return getAttributes().add(getAttEquip()).add(getAttPets());
   }
 }
